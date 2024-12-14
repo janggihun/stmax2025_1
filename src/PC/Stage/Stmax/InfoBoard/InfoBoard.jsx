@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import "./InfoBoard.css";
 import { AnimatePresence, motion } from "framer-motion";
 import { Category } from "./Category/Category";

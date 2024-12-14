@@ -1,0 +1,167 @@
+.RankUser_Container {
+  box-sizing: border-box;
+  padding: 10px;
+  width: 100%;
+  height: 90%;
+  background-color: rgba(99, 99, 99, 0.687);
+}
+.RankUser_Row {
+  margin: 20px;
+  width: 95%;
+  height: 50px;
+  box-sizing: border-box;
+  background-color: rgb(57, 55, 53);
+  display: flex;
+  cursor: pointer;
+}
+.RankUser_Row_My {
+  margin: 20px;
+  width: 95%;
+  height: 50px;
+  box-sizing: border-box;
+  background-color: rgb(57, 55, 53);
+  border: 3px solid rgb(1, 255, 13);
+  display: flex;
+  cursor: pointer;
+}
+.RankUserList_Top {
+  display: flex;
+
+  width: 100%;
+  height: 10%;
+  box-sizing: border-box;
+  border-bottom: 10px solid rgba(253, 25, 165, 0.848);
+}
+.RankUserList_MusicInfo1 {
+  font-size: 25px;
+  color: rgb(124, 123, 123);
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 20%;
+  height: 100%;
+}
+.RankUserList_MusicSeasonBox {
+  font-size: 25px;
+  color: rgb(124, 123, 123);
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  width: 80%;
+  height: 100%;
+}
+.RankUserList_MusicSeasonBox_detail {
+  width: 20%;
+  height: 100%;
+}
+.RankUser_Rank {
+  color: rgb(246, 204, 149);
+  box-sizing: border-box;
+  padding: 5px;
+  /* background-color: aqua; */
+  width: 5%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.RankUser_Img {
+  width: 6%;
+  height: 100%;
+  /* background-color: antiquewhite; */
+}
+.RankUser_Bar {
+  width: 0.5%;
+  height: 100%;
+  background-color: rgb(254, 249, 0);
+}
+.RankUser_Img_Status {
+  transform: scale(0.8);
+  width: 100%;
+  height: 100%;
+}
+.RankUser_Blank {
+  width: 0.5%;
+  height: 100%;
+}
+.RankUser_UserLevel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 8%;
+  height: 100%;
+}
+.RankUser_UserId {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10%;
+  height: 100%;
+}
+
+.RankUser_Judge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10.5%;
+  height: 100%;
+}
+.RankUser_Judge_S {
+  background: linear-gradient(to right top, #30e7ff, #e7dedd);
+  color: transparent;
+  -webkit-background-clip: text;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10.5%;
+  height: 100%;
+}
+.RankUser_Score {
+  color: #f3ffb6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20%;
+  height: 100%;
+}
+.RankUser_date {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10%;
+  height: 100%;
+}
+.RankUser_title {
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15%;
+  height: 100%;
+}
+
+.RankUser_title_not {
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15%;
+  height: 100%;
+  color: #ffffff6d;
+}
+.RankUser_Blank2 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 10%;
+  height: 100%;
+}
+.ShowRank_AllCombo {
+  background: linear-gradient(to right top, #ff0000, #f3ffb6);
+  color: transparent;
+  -webkit-background-clip: text;
+  /* text-shadow: 0px 0px 3px rgb(5, 151, 0); */
+}

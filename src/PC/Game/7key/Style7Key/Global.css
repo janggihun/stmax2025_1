@@ -1,0 +1,187 @@
+.App_Container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1900px;
+  height: 890px;
+  /* background-color: aqua; */
+  overflow: hidden;
+}
+.img {
+  width: 100%;
+  height: 100%;
+}
+.GameImg {
+  left: 45px;
+  position: absolute;
+  z-index: 10;
+  width: 500px;
+  height: 100%;
+}
+.Note {
+  z-index: 2;
+  position: absolute;
+  height: 30px;
+  width: 25%;
+  background-color: white;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
+.InfiniteScrollBox {
+  display: flex;
+  z-index: 1;
+  background-color: rgb(80, 255, 92);
+  box-sizing: border-box;
+  border: 1px solid black;
+  width: 420px;
+  height: 2000px;
+  top: 0px;
+  left: 0px;
+}
+.JudgeLine {
+  position: absolute;
+  z-index: 8;
+  background-color: rgb(255, 255, 255);
+  height: 5px;
+  width: 360px;
+
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+.LightScaleAni {
+  animation: lightAni 0.05s infinite;
+}
+
+@keyframes lightAni {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform-origin: 50% 50%;
+    transform: scaleX(1.2);
+  }
+  100% {
+    transform-origin: 50% 50%;
+    transform: scale(1);
+  }
+}
+.HitPngBox1 {
+  position: absolute;
+  z-index: 10;
+  top: 580px;
+  left: 300.5px;
+
+  width: 420px;
+  height: 105px;
+}
+.HitImg1 {
+  transform: scale(2);
+
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 105px;
+  height: 105px;
+}
+
+.HitPngBox2 {
+  position: absolute;
+  z-index: 10;
+  top: 580px;
+  left: 300.5px;
+
+  width: 420px;
+  height: 105px;
+}
+.HitImg2 {
+  transform: rotate(45deg) scale(2);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 105px;
+  height: 105px;
+}
+
+.Effect {
+  z-index: 20;
+  position: absolute;
+  top: 580px;
+  left: 105px;
+  width: 105px;
+  height: 105px;
+  background: url("/public/Effect/Effect51.png");
+  background-size: 420px 420px;
+  transform: scale(2);
+  opacity: 1;
+  margin-left: -10px;
+}
+
+.EffectAnimation {
+  animation: playv 0.4s steps(4) forwards, playh 0.1s steps(4) 4;
+}
+@keyframes playv {
+  from {
+    background-position-y: 0%;
+  }
+
+  to {
+    background-position-y: -400%;
+  }
+}
+
+@keyframes playh {
+  0% {
+    background-position-x: 0%;
+  }
+
+  100% {
+    background-position-x: -400%;
+  }
+}
+
+.play {
+  opacity: 1;
+}
+@keyframes spAni {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+.speedAni {
+  animation: spAni 0.3s ease forwards;
+}
+
+.Container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  top: 5px;
+  left: 160px;
+  width: 1600px;
+  height: 900px;
+  /* background-color: aquamarine; */
+}
+.Bg_Blur {
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  position: absolute;
+  left: 0px;
+  top: 0px;
+
+  width: 100%;
+  height: 100%;
+}
+
+.pushed {
+  display: none;
+}

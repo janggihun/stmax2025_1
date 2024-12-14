@@ -1,0 +1,50 @@
+.MyBox_Container {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(41, 41, 41);
+  border: 1px solid white;
+  box-sizing: border-box;
+  scale: 0.8;
+}
+.MyBox_T {
+  display: flex;
+  width: 100%;
+  height: 93%;
+}
+.MyBox_B {
+  position: relative;
+  background-color: rgba(64, 63, 63, 0.623);
+  width: 100%;
+  height: 7%;
+}
+.MyBox_ExBar {
+  width: 50%;
+  height: 100%;
+  background-color: yellow;
+}
+.MyBox_ImgBox {
+  border: 1px solid white;
+  box-sizing: border-box;
+  width: 18%;
+  height: 100%;
+  /* background-color: rgba(238, 130, 238, 0.72); */
+}
+.MyBox_MyInfo {
+  width: 82%;
+  height: 100%;
+
+  display: flex;
+}
+
+.MyBox_TierBox {
+  width: 25%;
+  height: 100%;
+}
+.MyBox_LevelBox {
+  width: 35%;
+  height: 100%;
+}
+.MyBox_UserInfoBox {
+  width: 40%;
+  height: 100%;
+}

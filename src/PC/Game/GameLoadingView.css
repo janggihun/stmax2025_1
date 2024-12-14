@@ -1,0 +1,61 @@
+.Game_Progress_Container {
+    position: absolute;
+    z-index: 50;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+}
+
+.Game_Progress_StrBox {
+    position: absolute;
+    z-index: 50;
+    top: 75%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+    width: 70%;
+    height: 10%;
+}.Game_Progress_StrBox_Top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50%;
+  }.Game_Progress_StrBox_Top_Str {
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    font-family: "KOTRAHOPE";
+    color: #ffffff;
+    font-size: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }.Game_Progress_StrBox_Bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50%;
+  }
+  .Game_Progress_StrBox_Bar {
+    border-radius: 25px;
+    width: 80%;
+    height: 30px;
+    background-color: #ffffff;
+  }
+  .Game_Progress_StrBox_InsideBar {
+    position: absolute;
+    z-index: 1;
+    left: 10%;
+    top: 75.62%;
+    border-radius: 25px;
+    background: linear-gradient(to right, rgb(243, 236, 135), rgb(116, 3, 255), rgb(3, 209, 255));
+  
+    transform: translate(0%, -50%);
+    width: 0%;
+    height: 30px;
+    transition: all 0.2s ease;
+  }

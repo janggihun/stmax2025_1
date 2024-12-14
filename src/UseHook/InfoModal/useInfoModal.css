@@ -1,0 +1,41 @@
+.useInfoModal_Container {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.689);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 501;
+}
+
+.useInfoModal_Contents {
+  border-radius: 20px;
+  width: 25%;
+  height: 25%;
+  background: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 501;
+  color: black;
+}
+.useInfoModal_Bg {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+}
+.useInfoModal_Contents_Top {
+  font-family: "Freesentation-9Black";
+  width: 100%;
+  height: 60%;
+}
+.useInfoModal_Contents_Bottom {
+  width: 100%;
+  height: 30%;
+}

@@ -1,0 +1,55 @@
+.Footer_Container {
+  width: 100%;
+  height: 10%;
+  position: absolute;
+  bottom: 0px;
+  display: flex;
+  background-color: rgba(51, 51, 51, 0.59);
+}
+.Footer_Row {
+  width: 10%;
+  height: 100%;
+}
+.Footer_ArrowBox {
+  width: 25%;
+  height: 100%;
+}
+.Footer_ArrowBoxString {
+  width: 70%;
+  height: 100%;
+}
+.Footer_ArrowUp {
+  width: 100%;
+  height: 50%;
+  /* background-color: antiquewhite; */
+  margin-top: 15%;
+}
+.Footer_ArrowDown {
+  /* background-color: rgb(93, 73, 47); */
+  width: 100%;
+  height: 50%;
+  margin-top: -30%;
+}
+.Footer_ArrowBox1 {
+  margin-top: 0%;
+  display: flex;
+  scale: 0.5;
+  width: 100%;
+  height: 70%;
+}
+.Footer_ArrowLeft {
+  width: 50%;
+  height: 100%;
+}
+.Footer_ArrowRight {
+  width: 50%;
+  height: 100%;
+}
+.arrowImg {
+  width: 90%;
+  scale: 0.4;
+}
+.arrowImg1 {
+  height: 40%;
+  scale: 0.6;
+}

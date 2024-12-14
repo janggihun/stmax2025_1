@@ -1,0 +1,46 @@
+.Display_Container {
+  width: 100%;
+  height: 45%;
+  background-color: rgba(35, 35, 35, 0.783);
+  position: relative;
+}
+.Display_arrow {
+  width: 30%;
+  height: 40px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  clip-path: polygon(0 0, 93% 0%, 75% 100%, 0% 100%);
+}
+.Display_Img {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.Display_LevelIntBox {
+  position: absolute;
+  left: 0px;
+
+  bottom: 0px;
+  height: 40px;
+  width: 100%;
+
+  background-color: rgba(20, 20, 20, 0.83);
+}
+
+.Display_Star {
+  width: 40px;
+  height: 40px;
+  background-color: rgb(0, 0, 0);
+  scale: 0.4;
+  clip-path: polygon(0 0, 30% 50%, 0 100%, 50% 70%, 100% 100%, 70% 50%, 100% 0, 50% 30%);
+}
+.Display_ClassifyBox {
+  width: 20%;
+  height: 100%;
+  /* font-size: 60px; */
+  background: linear-gradient(to right top, #861657, #ffa69e);
+  color: transparent;
+  -webkit-background-clip: text;
+  /* background-color: aqua; */
+}

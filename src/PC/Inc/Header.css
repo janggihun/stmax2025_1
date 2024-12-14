@@ -1,0 +1,76 @@
+.Header_Container {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 10%;
+  /* background-color: rgba(167, 162, 162, 0.535); */
+  display: flex;
+  border-bottom: 1px solid rgb(238, 132, 132);
+}
+.Header_Row {
+  width: 10%;
+  height: 100%;
+}
+.Header_Row_PageInfo {
+  width: 5%;
+  height: 100%;
+}
+.Header_Row_PageInfo_1 {
+  width: 2%;
+  height: 100%;
+}
+.Header_Row_PageInfo_1 {
+  width: 3%;
+  height: 100%;
+}
+.Header_Toggle_KeyTypeBox {
+  width: 10%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.Header_Row_PageInfoIng {
+  width: 5%;
+  height: 100%;
+  padding: 25px;
+  box-sizing: border-box;
+  scale: 0.7;
+  position: relative;
+}
+.Header_Row_PageInfoIng_triangle {
+  position: absolute;
+  top: -10px;
+  left: 39%;
+  width: 20px;
+  height: 20px;
+  background-color: rgb(238, 255, 0);
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+  animation: bgFadeInd 0.5s forwards;
+}
+@keyframes bgFadeInd {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.Header_Row_PageInfoIng_bg {
+  position: absolute;
+  z-index: -1;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 251, 129, 0.751), transparent 40%);
+  animation: bgFadeInd 0.5s forwards;
+}
+.Header_MyBox {
+  width: 20%;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}

@@ -1,0 +1,51 @@
+.RankContainer {
+  /* background-color: black; */
+  width: 100%;
+  height: 100%;
+  color: white;
+}
+
+.Rank_Top {
+  display: flex;
+  color: white;
+  height: 12.5%;
+  width: 100%;
+}
+.Rank_Bottom {
+  height: 10%;
+  width: 100%;
+}
+.Rank_Body {
+  display: flex;
+  width: 100%;
+  height: 75%;
+  justify-content: space-evenly;
+}
+.Rank_MyInfo {
+  width: 40%;
+  height: 100%;
+}
+.Rank_Music {
+  width: 20%;
+  height: 100%;
+}
+.Rank_Ranking {
+  width: 50%;
+  height: 100%;
+}
+
+.Rank_Top_Row {
+  width: 20%;
+  height: 100%;
+}
+.Rank_Top_Row {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  height: 100%;
+}
+.Rank_Top_Row:hover {
+  color: red;
+}

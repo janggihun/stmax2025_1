@@ -1,0 +1,108 @@
+.NoteInfo_Container {
+  position: relative;
+  display: flex;
+  height: 40%;
+  width: 100%;
+  background-color: rgba(56, 56, 56, 0.833);
+}
+.NoteInfo_classify {
+  left: 0px;
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 15%;
+  background-color: rgba(29, 29, 29, 0.833);
+}
+.NoteInfo_classify1 {
+  display: flex;
+  width: 100%;
+  height: 15%;
+}
+.NoteInfo_Title {
+  color: rgb(255, 226, 189);
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 30%;
+  /* background-color: aqua;  */
+}
+.NoteInfo_Blank {
+  width: 5%;
+  height: 100%;
+}
+.NoteInfo_Contents {
+  position: relative;
+  width: 90%;
+  height: 100%;
+}
+.NoteInfo_time {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 10%;
+}
+.NoteInfo_time1 {
+  display: flex;
+  align-items: center;
+  width: 50%;
+  height: 10%;
+}
+.NoteInfo_updateTme {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 50%;
+  height: 10%;
+}
+.NoteInfo_Bpm {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 10%;
+}
+.NoteInfo_singer {
+  color: rgba(183, 255, 238, 0.853);
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 10%;
+}
+.NoteInfo_Speed {
+  border-radius: 10px;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  width: 150px;
+  height: 50px;
+  background-color: rgb(34, 34, 34);
+}
+.NoteInfo_Speed_L {
+  width: 30%;
+  height: 100%;
+  scale: 0.5;
+}
+.NoteInfo_Speed_M {
+  width: 40%;
+  height: 100%;
+}
+.NoteInfo_Speed_R {
+  width: 30%;
+  height: 100%;
+  scale: 0.5;
+}
+.NoteInfo_Star {
+  width: 40px;
+  height: 40px;
+  background-color: rgb(0, 0, 0);
+  scale: 0.4;
+  clip-path: polygon(0 0, 30% 50%, 0 100%, 50% 70%, 100% 100%, 70% 50%, 100% 0, 50% 30%);
+}
+.NoteInfo_ClassifyBox {
+  width: 20%;
+  height: 100%;
+  /* font-size: 60px; */
+  background: linear-gradient(to right top, #861657, #ffa69e);
+  color: transparent;
+  -webkit-background-clip: text;
+  /* background-color: aqua; */
+}

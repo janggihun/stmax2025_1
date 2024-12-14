@@ -1,0 +1,37 @@
+html {
+  -ms-user-select: none;
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
+}
+
+.glow {
+  background-color: rgba(53, 1, 104, 0.317);
+  border-radius: 15px;
+}
+
+.mouseOver {
+  background-color: blueviolet;
+}
+
+.scrollBar {
+  overflow-y: scroll;
+  outline: none;
+}
+
+/* 아래의 모든 코드는 영역::코드로 사용 */
+.scrollBar::-webkit-scrollbar {
+  width: 10px; /* 스크롤바의 너비 */
+}
+
+.scrollBar::-webkit-scrollbar-thumb {
+  height: 30%; /* 스크롤바의 길이 */
+  background: #217af4; /* 스크롤바의 색상 */
+
+  border-radius: 10px;
+}
+
+.scrollBar::-webkit-scrollbar-track {
+  background: rgba(33, 122, 244, 0.1); /*스크롤바 뒷 배경 색상*/
+}

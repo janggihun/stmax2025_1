@@ -1,0 +1,20 @@
+.StageContainer {
+  z-index: 1;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  margin: 0px;
+  padding: 0px;
+  min-width: 400px;
+  width: 100vw;
+  cursor: context-menu;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.StageBox {
+  width: 100%;
+
+  background-color: aqua;
+}

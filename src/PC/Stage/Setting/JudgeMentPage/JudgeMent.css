@@ -1,0 +1,151 @@
+.JudgeMent_Container {
+  position: absolute;
+
+  z-index: 50;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+}
+.judgeMent_bg {
+  position: absolute;
+
+  z-index: 0;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+
+  background-color: rgba(0, 0, 0, 0.603);
+  width: 100%;
+  height: 100%;
+}
+.judgeMent_contents {
+  padding: 50px;
+  box-sizing: border-box;
+  position: absolute;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  background-color: white;
+  width: 50%;
+  height: 80%;
+}
+.judgeMent_contents_header {
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 10%;
+  background-color: pink;
+}
+.judgeMent_contents_btn {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: 10%;
+}
+.judgeMent_contents_render {
+  display: flex;
+  width: 100%;
+  height: 80%;
+  background-color: rgb(38, 38, 38);
+}
+.judgeMent_contents_render_R {
+  position: relative;
+  background-color: blueviolet;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+}
+.judgeMent_contents_render_L {
+  width: 50%;
+  height: 100%;
+}
+.judgeMent_contents_render_line {
+  position: relative;
+  width: 20%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.703);
+}
+.judgeMent_contents_render_line_note {
+  position: absolute;
+  bottom: 0%;
+  left: 0px;
+  width: 100%;
+  height: 30px;
+  box-sizing: border-box;
+
+  height: 30px;
+  background: linear-gradient(to right, rgb(175, 149, 0), gold, gold, rgb(175, 149, 0));
+}
+.judgeMent_contents_render_judgeMentLine {
+  position: absolute;
+  bottom: 0%;
+
+  width: 100%;
+  height: 30px;
+  background: linear-gradient(to right, gray, white, white, gray);
+
+  box-sizing: border-box;
+  border: 1px solid black;
+}
+.judgeMent_contents_render_info {
+  width: 100%;
+  height: 20%;
+  font-size: 25px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.judgeMent_contents_push {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: 20%;
+  color: white;
+  background-color: aquamarine;
+}
+.judgeMent_contents_push1 {
+  flex-direction: column;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: 50%;
+  color: white;
+  background-color: rgb(55, 55, 55);
+}
+.judgeMent_btn {
+  width: 100px;
+  height: 40px;
+}
+.judgeMent_contents_btnBox {
+  flex-direction: column;
+  color: white;
+  background-color: rgb(24, 24, 24);
+  width: 100%;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.judgeMent_contents_inputBox {
+  width: 90%;
+  height: 50px;
+}
+.judgeMent_contents_List {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: 50%;
+}

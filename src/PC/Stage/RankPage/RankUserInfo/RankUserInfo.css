@@ -1,0 +1,168 @@
+.RankUserInfo_Top {
+  display: flex;
+
+  width: 100%;
+  height: 10%;
+  box-sizing: border-box;
+  border-bottom: 10px solid yellow;
+}
+.RankUserInfo_Bottom {
+  width: 100%;
+  height: 90%;
+}
+.RankUserInfo_MusicInfo1 {
+  font-size: 35px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  width: 10%;
+  height: 100%;
+}
+.RankUserInfo_MusicInfo2 {
+  font-size: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  width: 90%;
+  height: 100%;
+}
+
+.RankUserInfo_level {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  height: 100%;
+}
+.RankUserInfo_Img {
+  position: relative;
+  bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 20%;
+  height: 100%;
+}
+.RankUserInfo_Img1 {
+  position: relative;
+  bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 35%;
+  height: 100%;
+}
+
+.RankUserInfo_Detail1 {
+  box-sizing: border-box;
+
+  width: 100%;
+  height: 70%;
+}
+.RankUserInfo_Detail2 {
+  display: flex;
+  width: 100%;
+  height: 30%;
+  background-color: rgb(58, 58, 58);
+}
+.RankUserInfo_Row {
+  display: flex;
+  width: 100%;
+  height: 10%;
+  padding: 5px;
+  /* background-color: blueviolet; */
+  box-sizing: border-box;
+}
+.RankUserInfo_Row_Point {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: rgb(36, 37, 38);
+  width: 100%;
+  height: 100%;
+}
+.RankUserInfo_JudgeRankBox1 {
+  color: rgb(180, 180, 248);
+  font-size: 50px;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.RankUserInfo_JudgeRankBox2 {
+  color: rgb(232, 225, 130);
+  font-size: 70px;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.RankUserInfo_title {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  height: 100%;
+  color: rgb(255, 233, 107);
+}
+.RankUserInfo_Row_Replay {
+  color: rgb(77, 0, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  transition: all 0.2s;
+  cursor: pointer;
+  background-color: white;
+
+  box-sizing: border-box;
+  animation: replayAni 2s infinite linear;
+}
+
+.RankUserInfo_Row_Replay:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgb(239, 0, 0);
+  border: 2px solid rgb(255, 96, 162);
+}
+.RankUserImg {
+  width: 20px;
+  height: 20px;
+}
+.RankUserImg1 {
+  width: 15px;
+  height: 15px;
+}
+.RankUserInfo_ArrowUpDown {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 10px;
+  height: 30px;
+}
+.RankUserInfo_titleBox {
+  font-size: 20px;
+  position: relative;
+  transform: translate(-50%, -50%);
+  top: 60%;
+  left: 50%;
+  align-items: center;
+  display: flex;
+
+  width: 90%;
+  height: 100%;
+}
+.RankUserInfo_TB {
+  position: relative;
+  transform: translate(-50%, -50%);
+  top: 80%;
+  left: 14%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 10%;
+  height: 100%;
+}

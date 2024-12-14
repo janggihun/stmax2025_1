@@ -373,8 +373,7 @@
 
   height: 100%;
   -webkit-text-stroke: 1px white;
-  background-color: white;
-  background: linear-gradient(to right top, #808080 50%, white);
+
   color: transparent;
   -webkit-background-clip: text;
   font-family: "HSSaemaul-Regular";

@@ -383,10 +383,11 @@
   font-size: 100px;
   height: 100%;
   -webkit-text-stroke: 1px white;
-  background-color: white;
+
   background: linear-gradient(to right top, #808080 50%, white);
-  color: transparent;
+  background-clip: text;
   -webkit-background-clip: text;
+  color: transparent;
 
   animation: ComboInt_Ani 0.1s ease forwards;
 }

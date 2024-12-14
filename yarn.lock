@@ -2989,9 +2989,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001370, caniuse-lite@^1.0.30001373:
-  version "1.0.30001384"
-  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001384.tgz"
-  integrity sha512-BBWt57kqWbc0GYZXb47wTXpmAgqr5LSibPzNjk/AWMdmJMQhLqOl3c/Kd4OAU/tu4NLfYkMx8Tlq3RVBkOBolQ==
+  version "1.0.30001688"
+  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001688.tgz"
+  integrity sha512-Nmqpru91cuABu/DTCXbM2NSRHzM2uVHfPnhJ/1zEAJx/ILBRVmz3pzH4N7DZqbdG0gWClsCC05Oj0mJ/1AWMbA==
 
 case-sensitive-paths-webpack-plugin@^2.4.0:
   version "2.4.0"
@@ -4288,10 +4288,12 @@ events@^3.2.0:
     "@testing-library/react" "^13.3.0"
     "@testing-library/user-event" "^13.5.0"
     axios "^1.7.9"
+    caniuse-lite "^1.0.30001688"
     example-react "file:"
     framer-motion "^11.14.4"
     react "^18.2.0"
     react-dom "^18.2.0"
+    react-redux "^9.2.0"
     react-router-dom "^7.0.2"
     react-scripts "5.0.1"
     react-youtube "^10.1.0"

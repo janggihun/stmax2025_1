@@ -79,7 +79,7 @@ export const Game_4key = () => {
 
   function findEmoticon() {
     const emoticonList = location.state.Group;
-
+    console.log(emoticonList);
     const e_Lenght = emoticonList.length;
 
     const randomNum = Math.floor(Math.random() * e_Lenght + 1) - 1;

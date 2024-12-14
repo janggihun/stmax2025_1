@@ -21,6 +21,7 @@ export const Rank = () => {
   const musicList = data.musicList;
   // const noteList = data.noteList;
   const singerList = data.singerList;
+
   const keyType = fnData("keyType");
   const focusFlag = useRef();
   //로딩모달

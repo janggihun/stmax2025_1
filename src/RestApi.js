@@ -12,7 +12,7 @@ const getUrl = (url) => {
 export const dbCheck = async () => {
   const res = await axios.post(getUrl("/stmax/dbCheck"));
   // const res = await axios.post("http://localhost:8080/api/stmax/dbCheck");
-  console.log(res.data);
+
   return res.data;
 };
 

@@ -49,6 +49,7 @@ export const createLiveMap = () => {
   tempMap.fps = 120;
   ///시즌2
   tempMap.maxScore = 1000000;
+  tempMap.noteCount = 0;
   tempMap.singleNoteScore = 0;
 
   tempMap.score = 0;
@@ -192,7 +193,9 @@ export const createLiveMap = () => {
     tempMap.keyMemoryList.forEach((el, i) => {
       if (el[1] <= audioFrameTime) {
         keyCheckList.push(el);
-
+        el.push(tempMap.nowIndex);
+        el.push(i);
+        tempMap.replayList.push(el);
         tempMap.keyMemoryList.splice(i, 1);
       }
     });
@@ -207,9 +210,6 @@ export const createLiveMap = () => {
       const keyTime = tmpList[1] - tempMap.helpInt;
       const keyIndex = tmpList[2];
 
-      key_el.push(tempMap.nowIndex);
-      key_el.push(i);
-      tempMap.replayList.push(key_el);
       // console.log(gameList);
       tempMap.gameList.forEach((el) => {
         if (keyTime - scope30 <= el[2] && el[2] <= keyTime + scope0 && el[7] === 0) {
@@ -220,9 +220,11 @@ export const createLiveMap = () => {
         pushList.find((el) => {
           if (el[1] === keyIndex) {
             el[7] = 1;
+            const diff = el[2] - keyTime;
 
             if (el[0] === "L") {
               //롱노트인경우
+              el.push(diff); // el[8]
               tempMap.intervalList.push(el);
               el[4] = 1;
             } else {
@@ -231,7 +233,6 @@ export const createLiveMap = () => {
               el[6].style.opacity = 0;
             }
 
-            const diff = el[2] - keyTime;
             // console.log("diff : ", diff);
             tempMap.CheckjudgeMent(diff, el);
             tempMap.LitJudgeMent(diff);
@@ -240,11 +241,18 @@ export const createLiveMap = () => {
           }
         });
       } else {
+        //롱노트 손 땐거 확인
         tempMap.intervalList.findIndex((el, i) => {
           if (el[1] === keyIndex) {
             const diff = el[3] - keyTime;
-            tempMap.CheckjudgeMent(diff, el);
-            tempMap.LitJudgeMent(diff);
+            //미스범위 안에 있는경우 눌렀을때와 같은 결과값을 추가
+            if (diff < scope0) {
+              tempMap.CheckjudgeMent(el[8], el);
+              tempMap.LitJudgeMent(el[8]);
+            } else {
+              //미스범위보다 큰경우 가차없이 미스
+              tempMap.CheckjudgeMent(160, el);
+            }
 
             tempMap.intervalList.splice(i, 1);
             return true;
@@ -265,14 +273,17 @@ export const createLiveMap = () => {
 
     // 롱노트 미스 확인
     tempMap.intervalList.forEach((el, i) => {
+      //정상적으로 누르고 있는 경우
       if (
         audioFrameTime - el[2] - tempMap.helpInt >= el[4] * scope30 &&
         audioFrameTime <= el[3] - scope30 - tempMap.helpInt
       ) {
+        //롱노트 누르고 있기에 해당 시간 만큼 콤보만 추가
         el[4]++;
-        tempMap.CheckjudgeMent(0, el);
+        tempMap.combo++;
       }
 
+      // 계속 누르고 있는 경우
       if (el[3] < audioFrameTime - scope30 - tempMap.helpInt) {
         if (el[0] === "L") {
           el[6].className = "overPushed";
@@ -361,21 +372,22 @@ export const createLiveMap = () => {
         }
       });
       if (keyStatus === 1) {
+        //누른 이펙트
         tempMap.findDownKey_replay(keyIndex);
+
         pushList.find((el) => {
           if (el[1] === keyIndex) {
             el[7] = 1;
-
+            const diff = el[2] - keyTime;
             if (el[0] === "L") {
               //롱노트인경우
+              el.push(diff); // el[8]
               tempMap.intervalList.push(el);
               el[4] = 1;
             } else {
               el[6].style.transition = "all 0.2s";
               el[6].style.opacity = 0;
             }
-
-            const diff = el[2] - keyTime;
 
             tempMap.CheckjudgeMent(diff, el);
             tempMap.LitJudgeMent(diff);
@@ -385,11 +397,18 @@ export const createLiveMap = () => {
         });
       } else {
         tempMap.findUpKey_replay(keyIndex);
+        //롱노트 손 땐거 확인
         tempMap.intervalList.findIndex((el, i) => {
           if (el[1] === keyIndex) {
             const diff = el[3] - keyTime;
-            tempMap.CheckjudgeMent(diff, el);
-            tempMap.LitJudgeMent(diff);
+            //미스범위 안에 있는경우 눌렀을때와 같은 결과값을 추가
+            if (diff < scope0) {
+              tempMap.CheckjudgeMent(el[8], el);
+              tempMap.LitJudgeMent(el[8]);
+            } else {
+              //미스범위보다 큰경우 가차없이 미스
+              tempMap.CheckjudgeMent(160, el);
+            }
 
             tempMap.intervalList.splice(i, 1);
             return true;
@@ -414,8 +433,9 @@ export const createLiveMap = () => {
         audioFrameTime - el[2] - tempMap.helpInt >= el[4] * scope30 &&
         audioFrameTime <= el[3] - scope30 - tempMap.helpInt
       ) {
+        //롱노트 누르고 있기에 해당 시간 만큼 콤보만 추가
         el[4]++;
-        tempMap.CheckjudgeMent(0, el);
+        tempMap.combo++;
       }
 
       if (el[3] < audioFrameTime - scope30 - tempMap.helpInt) {

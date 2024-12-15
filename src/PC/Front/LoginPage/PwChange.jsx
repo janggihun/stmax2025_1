@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 import "./PwChange.css";
 
-import { useLoading } from "../../../UseHook/Loading/Loading";
 import { Login, updateUserPw } from "../../../RestApi";
 import { useInfoModal } from "../../../UseHook/InfoModal/useInfoModal";
+import { useDispatch } from "react-redux";
+import { closeLoading, openLoading } from "../../../Store/LoadingSlice";
 
 export const PwChange = (props) => {
+  const dispatch = useDispatch();
   const [userId, setUserId] = useState();
   const [userPw, setUserPw] = useState();
   const [newuserPw, setNewUserPw] = useState();
   const [newuserPw1, setNewUserPw1] = useState();
 
-  //로딩 모달
-  const { openLoading, closeLoading, renderLoading } = useLoading();
   //정보모달
   const { openInfoModalwithMessage, renderInfo } = useInfoModal();
   /**
@@ -47,7 +47,8 @@ export const PwChange = (props) => {
   };
   const startChangePw = async () => {
     //로딩 띄우기
-    openLoading();
+    dispatch(openLoading());
+
     //비밀번호 변경 시작
     // console.log("비밀번호 변경시작");
     const userParams = { userId: userId, userPw: userPw };
@@ -57,12 +58,12 @@ export const PwChange = (props) => {
 
     if (newuserPw !== newuserPw1) {
       openInfoModalwithMessage("새비밀번호가 일치하지 않습니다.");
-      closeLoading();
+      dispatch(closeLoading());
       return false;
     }
     if (userPw === newuserPw1) {
       openInfoModalwithMessage("현재 비밀번호와 일치합니다. 다른 번호로 변경해주세요");
-      closeLoading();
+      dispatch(closeLoading());
       return false;
     }
     //현재 비밀번호가 맞는지 확인
@@ -73,15 +74,15 @@ export const PwChange = (props) => {
     if (res.loginFlag === "1") {
       const res1 = await updateUserPw(userParams1);
       if (res1 === 1) {
-        closeLoading();
+        dispatch(closeLoading());
         openInfoModalwithMessage("비밀번호 변경완료, 변경된 비밀번호로 접속해주세요");
         props.setFrontPage(0);
       } else {
         openInfoModalwithMessage("에러, 관리자에게 문의하세요");
-        closeLoading();
+        dispatch(closeLoading());
       }
     } else {
-      closeLoading();
+      dispatch(closeLoading());
       openInfoModalwithMessage("현재 비밀번호가 맞지 않습니다.");
     }
   };
@@ -176,8 +177,6 @@ export const PwChange = (props) => {
           <div className="ExtraService"></div>
         </div>
       </div>
-
-      {renderLoading()}
       {renderInfo()}
     </>
   );

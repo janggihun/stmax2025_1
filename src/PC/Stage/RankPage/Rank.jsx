@@ -6,9 +6,10 @@ import { RankUserInfo } from "./RankUserInfo/RankUserInfo";
 import { useDispatch, useSelector } from "react-redux";
 import { fnData } from "../../../common/Base";
 import { getRank } from "../../../RestApi";
-import { useLoading } from "../../../UseHook/Loading/Loading";
+import { closeLoading, openLoading } from "../../../Store/LoadingSlice";
 
 export const Rank = () => {
+  const dispatch = useDispatch();
   const [rankMap, setRankMap] = useState();
   const [rankList, setRankList] = useState();
   const [nowList, setNowList] = useState();
@@ -24,8 +25,7 @@ export const Rank = () => {
 
   const keyType = fnData("keyType");
   const focusFlag = useRef();
-  //로딩모달
-  const { openLoading, closeLoading, renderLoading } = useLoading();
+
   const get_RankList = async () => {
     setRankList(false);
     let musicCnt = 0;
@@ -44,9 +44,9 @@ export const Rank = () => {
   }, [musicMap]);
   useEffect(() => {
     if (rankList) {
-      closeLoading();
+      dispatch(closeLoading());
     } else {
-      openLoading();
+      dispatch(openLoading());
     }
   }, [rankList]);
   useEffect(() => {
@@ -102,8 +102,6 @@ export const Rank = () => {
             </motion.div>
           </div>
         </>
-
-        {renderLoading()}
       </AnimatePresence>
       <div className="Rank_Bottom"></div>
     </div>

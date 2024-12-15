@@ -2,18 +2,19 @@ import { useEffect, useState } from "react";
 import "./Notice.css";
 import { AnimatePresence, motion } from "framer-motion";
 import { getUpdateDetailInfo, getUpdateInfo } from "../../../RestApi";
-import { useLoading } from "../../../UseHook/Loading/Loading";
 import { openModal } from "../../../Store/ModalSlice";
 import { useDispatch } from "react-redux";
 import { timestamp } from "../../../common/Base";
+import { closeLoading, openLoading } from "../../../Store/LoadingSlice";
 export const Notice = () => {
+  const dispatch = useDispatch();
+
   const [updateList, setUpdateList] = useState();
   const [pageMap, setPageMap] = useState();
   const [detailMap, setDetailMap] = useState();
-  const dispatch = useDispatch();
+
   //로딩모달
 
-  const { openLoading, closeLoading, renderLoading } = useLoading();
   const getInit = async (cnt, dir) => {
     if (cnt === -1) {
       dispatch(openModal("가장 최신 업데이트 정보 입니다."));
@@ -27,26 +28,26 @@ export const Notice = () => {
         return false;
       }
     }
-    openLoading();
+    dispatch(openLoading());
+
     if (dir === "right") {
       const res = await getUpdateInfo(Math.ceil(cnt / 10) * 10);
 
       setPageMap(res.page);
       setUpdateList(res.NoticeList);
-
-      closeLoading();
+      dispatch(closeLoading());
     } else if (dir === "left") {
       const res = await getUpdateInfo(Math.floor(cnt / 10) * 10);
 
       setPageMap(res.page);
       setUpdateList(res.NoticeList);
-      closeLoading();
+      dispatch(closeLoading());
     } else {
       const res = await getUpdateInfo(cnt);
 
       setPageMap(res.page);
       setUpdateList(res.NoticeList);
-      closeLoading();
+      dispatch(closeLoading());
     }
   };
   useEffect(() => {
@@ -169,7 +170,6 @@ export const Notice = () => {
           </motion.div>
         </div>
       </div>
-      {renderLoading()}
     </AnimatePresence>
   );
 };

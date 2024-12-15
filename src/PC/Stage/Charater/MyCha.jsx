@@ -4,11 +4,14 @@ import "./MyCha.css";
 import { fnData, get_Src_Img, saveData } from "../../../common/Base";
 import { logicTitle, saveHeaderImg } from "../../../RestApi";
 import { StelliveList } from "../../../common/Array";
-import { useLoading } from "../../../UseHook/Loading/Loading";
+
 import { motion } from "framer-motion";
+import { useDispatch } from "react-redux";
+import { closeLoading, openLoading } from "../../../Store/LoadingSlice";
 export const MyCha = () => {
+  const dispatch = useDispatch();
   const [selectCha, setSelectCha] = useState();
-  const { openLoading, closeLoading, renderLoading } = useLoading();
+
   useEffect(() => {
     const cha = fnData("emoticon");
     setSelectCha(cha);
@@ -28,7 +31,7 @@ export const MyCha = () => {
 
   //캐릭터 적용
   const applyChar = async () => {
-    openLoading();
+    dispatch(openLoading());
     const userId = window.localStorage.getItem("userId");
     // console.log(selectCha);
     if (selectCha === "kanna") {
@@ -55,10 +58,10 @@ export const MyCha = () => {
 
       alert("변경완료, 랭킹에는 5 ~ 10초 반영시간이 걸립니다.");
       window.location.reload();
-      closeLoading();
+      dispatch(closeLoading());
     } else {
       //변경실패
-      closeLoading();
+      dispatch(closeLoading());
     }
   };
 
@@ -239,7 +242,6 @@ export const MyCha = () => {
           </div>
         </div>
       )}
-      {renderLoading()}
     </>
   );
 };

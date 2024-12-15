@@ -1,15 +1,16 @@
 import { useState } from "react";
 
 import "./JoinPage.css";
-import { useLoading } from "../../../UseHook/Loading/Loading";
+
 import { Join } from "../../../RestApi";
 import { useInfoModal } from "../../../UseHook/InfoModal/useInfoModal";
+import { useDispatch } from "react-redux";
+import { closeLoading, openLoading } from "../../../Store/LoadingSlice";
 
 export const JoinPage = (props) => {
+  const dispatch = useDispatch();
   const [userId, setUserId] = useState();
   const [userPw, setUserPw] = useState();
-  //로딩모달
-  const { openLoading, closeLoading, renderLoading } = useLoading();
 
   //정보모달
   const { openInfoModalwithMessage, renderInfo } = useInfoModal();
@@ -24,11 +25,12 @@ export const JoinPage = (props) => {
    * 회원가입
    */
   const join = async () => {
-    openLoading();
+    dispatch(openLoading());
+
     const userParams = { userId: userId, userPw: userPw };
     //서버통신
     const res = await Join(userParams);
-    closeLoading();
+    dispatch(closeLoading());
     openInfoModalwithMessage(res.msg);
     if (res.joinFlag === "1") {
       //회원가입 성공
@@ -106,7 +108,7 @@ export const JoinPage = (props) => {
         </div>
         <div className="ExtraService"></div>
       </div>
-      {renderLoading()}
+
       {renderInfo()}
     </div>
   );

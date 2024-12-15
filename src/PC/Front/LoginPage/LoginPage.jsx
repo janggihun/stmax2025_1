@@ -1,17 +1,17 @@
 import "./LoginPage.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useLoading } from "../../../UseHook/Loading/Loading";
 import { Login } from "../../../RestApi";
 import { useInfoModal } from "../../../UseHook/InfoModal/useInfoModal";
+import { useDispatch } from "react-redux";
+import { closeLoading, openLoading } from "../../../Store/LoadingSlice";
 
 export const LoginPage = (props) => {
+  const dispatch = useDispatch();
   const [userId, setUserId] = useState();
   const [userPw, setUserPw] = useState();
   const navigator = useNavigate();
 
-  //로딩모달
-  const { openLoading, closeLoading, renderLoading } = useLoading();
   //정보모달
   const { openInfoModalwithMessage, renderInfo } = useInfoModal();
   /**
@@ -37,12 +37,14 @@ export const LoginPage = (props) => {
    * id, pw 로그인
    */
   const login = async () => {
-    openLoading();
+    dispatch(openLoading());
+
     const userParams = { userId: userId, userPw: userPw };
 
     //서버통신
     const res = await Login(userParams);
-    closeLoading();
+
+    dispatch(closeLoading());
 
     if (res.loginFlag === "1") {
       //로그인성공
@@ -131,8 +133,8 @@ export const LoginPage = (props) => {
           </button>
         </div>
         <div className="ExtraService"></div>
-      </div>{" "}
-      {renderLoading()}
+      </div>
+
       {renderInfo()}
     </div>
   );

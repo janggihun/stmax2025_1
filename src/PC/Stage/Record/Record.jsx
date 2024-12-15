@@ -5,11 +5,14 @@ import { getRank, getTryInfo, getUserLevel } from "../../../RestApi";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { changeLevel } from "../../../Store/LevelSlice";
-import { useLoading } from "../../../UseHook/Loading/Loading";
 import { get_Src_MusicImg } from "../../../common/Base";
 import { levelList } from "../../../common/Array";
+import { closeLoading, openLoading } from "../../../Store/LoadingSlice";
 export const Record = () => {
+  //초기임포트
   const dispatch = useDispatch();
+
+  //초기값
   const [playList, setPlayList] = useState();
   const [playDetail, setPlayDetail] = useState();
   const [myDetail, setMyDetail] = useState();
@@ -17,8 +20,6 @@ export const Record = () => {
   const [playKeyTypeList, setPlayKeyTypeList] = useState();
   const level = useSelector((state) => state.level.value);
   const keyType = useSelector((state) => state.keyType.value);
-  //로딩모달
-  const { openLoading, closeLoading, renderLoading } = useLoading();
 
   /* 
 
@@ -29,14 +30,14 @@ export const Record = () => {
   //최초 진입
   useEffect(() => {
     const fnMyGameResult = async () => {
-      openLoading();
+      dispatch(openLoading());
       const userId = window.localStorage.getItem("userId");
       const tempList = await getTryInfo(userId);
       const tempMyList = await getUserLevel(userId);
 
       setMyDetail(tempMyList);
       setPlayList(tempList);
-      closeLoading();
+      dispatch(closeLoading());
     };
 
     fnMyGameResult();
@@ -299,7 +300,6 @@ export const Record = () => {
           </div>
         </motion.div>
       </div>
-      {renderLoading()}
     </div>
   );
 };

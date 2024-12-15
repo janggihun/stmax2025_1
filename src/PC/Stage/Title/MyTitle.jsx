@@ -6,7 +6,13 @@ import { getMyTitle, getTitle, logicTitle, setMyTitle, testlogicTitle } from "..
 import { StelliveList } from "../../../common/Array";
 import { get_Src_Img } from "../../../common/Base";
 import { motion } from "framer-motion";
+import { useDispatch } from "react-redux";
+import { closeLoading, openLoading } from "../../../Store/LoadingSlice";
 export const MyTitle = () => {
+  //초기 임포트
+  const dispatch = useDispatch();
+
+  //초기 변수값
   const [data, setData] = useState();
   const [titleList, setTitleList] = useState();
   const [nowMember, setNowMember] = useState();
@@ -19,8 +25,7 @@ export const MyTitle = () => {
   //타이틀 리턴값을 저장
 
   // const [mouseOut, setMouseOut] = useState(true);
-  //로딩모달
-  const { openLoading, closeLoading, renderLoading } = useLoading();
+
   const userId = window.localStorage.getItem("userId");
   const applyStart = async () => {
     if (!applyMap) {
@@ -62,7 +67,7 @@ export const MyTitle = () => {
   };
 
   useEffect(() => {
-    openLoading();
+    dispatch(openLoading());
     const getInit = async () => {
       const userId = window.localStorage.getItem("userId");
       //타이틀 로직체크
@@ -91,7 +96,7 @@ export const MyTitle = () => {
       setMyTitleMap(resMyTitle);
       //전체 타이틀 획득 로직타기
 
-      closeLoading();
+      dispatch(closeLoading());
     };
     getInit();
   }, []);
@@ -274,7 +279,6 @@ export const MyTitle = () => {
           </motion.div>
         </div>
       </div>
-      {renderLoading()}
     </div>
   );
 };

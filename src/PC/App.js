@@ -14,9 +14,11 @@ import { Game_7key } from "./Game/7key/GamePage/Game";
 import { Replay_7key } from "./Game/7key/GamePage/Replay";
 import { Replay_4key } from "./Game/4key/GamePage/Replay";
 import { EndView } from "./Game/End/EndView";
+import { Loading } from "../UseHook/Loading/Loading";
 
 function App() {
   const modal = useSelector((state) => state.modal.value);
+
   //selectMap체크
   check_SelectList();
   //4키 체크
@@ -41,6 +43,8 @@ function App() {
     //누적 접속추가
     Connect();
     //아이디확인
+
+    //test
   }, []);
 
   return (
@@ -64,6 +68,7 @@ function App() {
           </Routes>
         </AnimatePresence>
         {openPopUp && renderPopup()}
+        <Loading />
         {renderInfo()}
       </div>
     </BrowserRouter>

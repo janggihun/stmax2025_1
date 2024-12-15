@@ -26,17 +26,26 @@ import { Tutorial } from "./Tutorial/Tutorial";
 
 import { MyCha } from "./Charater/MyCha";
 import { MyTitle } from "./Title/MyTitle";
+import { closeLoading, openLoading } from "../../Store/LoadingSlice";
 
+//스테이지
 export const Stage = () => {
-  //키보드 푸시 이벤트
-  //로그인 확인후 페이지설정
+  //초기 임포트
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
+
+  // 초기값
+
+  //키타입
   const keyType = useSelector((state) => state.keyType.value);
+
+  //레벨
   const level = useSelector((state) => state.level.value);
-  // const musicMap = useSelector((state) => state.musicMap.value);
+
+  //카테고리
   const category = useSelector((state) => state.category.value);
+
+  //페이지번호
   const page = useSelector((state) => state.page.value);
 
   //데이터 없으면 넣기
@@ -45,8 +54,6 @@ export const Stage = () => {
   if (!category) dispatch(changeCategory(StelliveList[0]));
   if (!page) dispatch(changePage(1));
 
-  //로딩모달
-  const { openLoading, closeLoading, renderLoading } = useLoading();
   //페이지 번호에 따라서 키보드 이벤트발생을 조절한다.
   useKeyBoard();
 
@@ -56,7 +63,7 @@ export const Stage = () => {
   }, []);
 
   const getInitData = async () => {
-    openLoading();
+    dispatch(openLoading());
     if (keyType) {
       const res_Data = await get_initMusic(keyType);
 
@@ -73,7 +80,7 @@ export const Stage = () => {
       dispatch(changeMusicMap(res_Data.musicList[returnIndex]));
     }
 
-    closeLoading();
+    dispatch(closeLoading());
   };
 
   useEffect(() => {
@@ -96,7 +103,6 @@ export const Stage = () => {
         <Header />
         <Footer />
       </div>
-      {renderLoading()}
     </AnimatePresence>
   );
 };

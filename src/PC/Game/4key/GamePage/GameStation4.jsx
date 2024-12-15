@@ -8,7 +8,7 @@ import {
 } from "../../../../common/Game_4key";
 import "../../GameCommon.css";
 import { motion } from "framer-motion";
-import JudgeHighlightPool from "./GameJs/JudgeHighlightPool";
+import JudgeHighlightPool from "../../GameJsCommon/JudgeHighlightPool";
 import { AddrManager } from "../../GameJsCommon/AddrManager";
 import { CreateNote, CreateNote1 } from "./GameJs/CreateNote";
 

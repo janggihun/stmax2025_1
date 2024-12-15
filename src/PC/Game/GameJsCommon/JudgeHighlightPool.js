@@ -8,7 +8,7 @@ class JudgeHighlightPool {
 
     }
 
-    createInitialPool(count) {
+    createInitialPool(count) { 
         for (let i = 0; i < count; i++) {
             const div = document.createElement('div');
             div.classList.add("Game_JudgeSlowFastBeam");

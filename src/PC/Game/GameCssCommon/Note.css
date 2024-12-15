@@ -182,40 +182,36 @@
     transform: scale(0.3);
     opacity: 1;
   }
-  8% {
+  10% {
     transform: scale(0.8);
     opacity: 1;
   }
-  50% {
+  65% {
     transform: scale(1);
-    opacity: 1;
+    opacity: 0.8;
   }
   100% {
-    transform: scale(1);
+    transform: scale(1.1);
     opacity: 0;
   }
 }
 .Acc_Ani {
   animation: AccPercent_Ani 1s ease;
 }
-.AccPercentStella {
+.AccPercent_100 {
   font-size: 35px;
-  /* font-weight: 900; */
   font-family: "RixYeoljeongdo_Regular";
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
   width: 100%;
-  /* background-color: chocolate; */
   color: white;
   -webkit-text-stroke: 2px black;
-  background: linear-gradient(to top, #f3f2ba 40px, #ff0707);
-
+  background: linear-gradient(to top, #f3f2ba 40px, #fc0b0b);
   color: transparent;
   -webkit-background-clip: text;
-
-  animation: AccPercent_Ani 1s ease forwards;
+  animation: AccPercent_Ani 0.5s ease forwards;
 }
 .AccPercent_Str {
   font-size: 25px;
@@ -229,13 +225,13 @@
   transition: all 0.3s ease;
 }
 .AccPercent {
-  font-size: 35px;
+  font-size: 45px;
 
   font-family: "RixYeoljeongdo_Regular";
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 20%;
+  height: 30%;
   width: 100%;
 
   color: white;
@@ -247,63 +243,7 @@
 
   /* animation: AccPercent_Ani 1s ease forwards; */
 }
-.AccPercentPerfect {
-  font-size: 35px;
 
-  font-family: "RixYeoljeongdo_Regular";
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-
-  color: white;
-  -webkit-text-stroke: 2px black;
-  background: linear-gradient(to top, #78ace8 40px, #f055af);
-  /* background-color: rgb(255, 98, 242); */
-  color: transparent;
-  -webkit-background-clip: text;
-
-  animation: AccPercent_Ani 1s ease forwards;
-}
-.AccPercentBad {
-  font-size: 35px;
-
-  font-family: "RixYeoljeongdo_Regular";
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-
-  color: white;
-  -webkit-text-stroke: 2px black;
-  background: linear-gradient(to top, #313131 40px, #65696c);
-  /* background-color: rgb(255, 98, 242); */
-  color: transparent;
-  -webkit-background-clip: text;
-
-  animation: AccPercent_Ani 1s ease forwards;
-}
-.AccPercentGood {
-  font-size: 35px;
-
-  font-family: "RixYeoljeongdo_Regular";
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-
-  color: white;
-  -webkit-text-stroke: 2px black;
-  background: linear-gradient(to top, #ff80ec 40px, #a177f7);
-  /* background-color: rgb(255, 98, 242); */
-  color: transparent;
-  -webkit-background-clip: text;
-
-  animation: AccPercent_Ani 1s ease forwards;
-}
 .AccPercentMiss {
   font-size: 35px;
 
@@ -316,12 +256,12 @@
 
   color: white;
   -webkit-text-stroke: 2px black;
-  background: linear-gradient(to top, #ff0101 40px, #ffc72c);
+
   /* background-color: rgb(255, 98, 242); */
   color: transparent;
   -webkit-background-clip: text;
 
-  animation: AccPercent_Ani 1s ease forwards;
+  animation: AccPercent_Ani 0.5s ease forwards;
 }
 
 .noteTempoLine {
@@ -331,4 +271,164 @@
   width: 430px;
   height: 5px;
   background-color: rgba(255, 255, 255, 0.899);
+}
+.AccPercent_90 {
+  font-size: 35px;
+  font-family: "RixYeoljeongdo_Regular";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  color: white;
+  -webkit-text-stroke: 2px black;
+  background: linear-gradient(to top, rgb(255, 0, 251) 40px, rgb(252, 240, 11));
+
+  color: transparent;
+  -webkit-background-clip: text;
+  animation: AccPercent_Ani 0.5s ease forwards;
+}
+.AccPercent_80 {
+  font-size: 35px;
+  font-family: "RixYeoljeongdo_Regular";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  color: white;
+  -webkit-text-stroke: 2px black;
+
+  background: linear-gradient(to top, rgb(0, 187, 255) 40px, rgb(188, 11, 252));
+  color: transparent;
+  -webkit-background-clip: text;
+  animation: AccPercent_Ani 0.5s ease forwards;
+}
+.AccPercent_70 {
+  font-size: 35px;
+  font-family: "RixYeoljeongdo_Regular";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  color: white;
+  -webkit-text-stroke: 2px black;
+
+  background: linear-gradient(to top, rgb(255, 149, 0) 40px, rgb(252, 212, 11));
+  color: transparent;
+  -webkit-background-clip: text;
+  animation: AccPercent_Ani 0.5s ease forwards;
+}
+.AccPercent_60 {
+  font-size: 35px;
+  font-family: "RixYeoljeongdo_Regular";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  color: white;
+  -webkit-text-stroke: 2px black;
+
+  background: linear-gradient(to top, rgb(238, 255, 0) 40px, rgb(51, 252, 11));
+  color: transparent;
+  -webkit-background-clip: text;
+  animation: AccPercent_Ani 0.5s ease forwards;
+}
+.AccPercent_50 {
+  font-size: 35px;
+  font-family: "RixYeoljeongdo_Regular";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  color: white;
+  -webkit-text-stroke: 2px black;
+
+  background: linear-gradient(to top, rgb(0, 255, 55) 40px, rgb(11, 252, 216));
+  color: transparent;
+  -webkit-background-clip: text;
+  animation: AccPercent_Ani 0.5s ease forwards;
+}
+.AccPercent_40 {
+  font-size: 35px;
+  font-family: "RixYeoljeongdo_Regular";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  color: white;
+  -webkit-text-stroke: 2px black;
+
+  background: linear-gradient(to top, rgb(0, 187, 255) 40px, rgb(11, 115, 252));
+  color: transparent;
+  -webkit-background-clip: text;
+  animation: AccPercent_Ani 0.5s ease forwards;
+}
+.AccPercent_30 {
+  font-size: 35px;
+  font-family: "RixYeoljeongdo_Regular";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  color: white;
+  -webkit-text-stroke: 2px black;
+
+  background: linear-gradient(to top, rgb(55, 0, 255) 40px, rgb(148, 11, 252));
+  color: transparent;
+  -webkit-background-clip: text;
+  animation: AccPercent_Ani 0.5s ease forwards;
+}
+.AccPercent_20 {
+  font-size: 35px;
+  font-family: "RixYeoljeongdo_Regular";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  color: white;
+  -webkit-text-stroke: 2px black;
+
+  background: linear-gradient(to top, rgb(115, 0, 255) 40px, rgb(212, 11, 252));
+  color: transparent;
+  -webkit-background-clip: text;
+  animation: AccPercent_Ani 0.5s ease forwards;
+}
+.AccPercent_10 {
+  font-size: 35px;
+  font-family: "RixYeoljeongdo_Regular";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  color: white;
+  -webkit-text-stroke: 2px black;
+
+  background: linear-gradient(to top, rgb(255, 0, 123) 40px, rgb(252, 11, 11));
+  color: transparent;
+  -webkit-background-clip: text;
+  animation: AccPercent_Ani 0.5s ease forwards;
+}
+.AccPercent_0 {
+  font-size: 35px;
+  font-family: "RixYeoljeongdo_Regular";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  color: white;
+  -webkit-text-stroke: 2px black;
+
+  background: linear-gradient(to top, #ff0101 40px, #ffc72c);
+  color: transparent;
+  -webkit-background-clip: text;
+  animation: AccPercent_Ani 0.5s ease forwards;
 }

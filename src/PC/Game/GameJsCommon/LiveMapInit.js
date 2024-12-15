@@ -5,16 +5,15 @@ import { openModal } from "../../../Store/ModalSlice";
 export const createLiveMap = () => {
   const scope100 = 24; //1프레임 98.5
   const scope90 = 36;
-  const scope80 = 0;
-  const scope70 = 0;
-  const scope60 = 100;
-  const scope50 = 0;
-  const scope40 = 0;
-  const scope30 = 150;
-  const scope20 = 0;
-  const scope10 = 0;
+  const scope80 = 48;
+  const scope70 = 70;
+  const scope60 = 85;
+  const scope50 = 100;
+  const scope40 = 110;
+  const scope30 = 120;
+  const scope20 = 130;
+  const scope10 = 140;
   const scope0 = 155;
-
   const fps = 120;
   const tempMap = {};
   // /
@@ -52,26 +51,20 @@ export const createLiveMap = () => {
   tempMap.singleNoteScore = 0;
 
   tempMap.score = 0;
-  tempMap.stmax100 = 0;
-  tempMap.stmax90 = 0;
-  tempMap.stmax60 = 0;
-  tempMap.stmax30 = 0;
-  tempMap.stmax10 = 0;
-  tempMap.stmax0 = 0;
   tempMap.combo = 0;
   tempMap.maxCombo = 0;
 
-  // tempMap.stmax100 = 0;
-  // tempMap.stmax90 = 0;
-  // tempMap.stmax80 = 0;
-  // tempMap.stmax70 = 0;
-  // tempMap.stmax60 = 0;
-  // tempMap.stmax50 = 0;
-  // tempMap.stmax40 = 0;
-  // tempMap.stmax30 = 0;
-  // tempMap.stmax20 = 0;
-  // tempMap.stmax10 = 0;
-  // tempMap.stmax0 = 0;
+  tempMap.stmax100 = 0;
+  tempMap.stmax90 = 0;
+  tempMap.stmax80 = 0;
+  tempMap.stmax70 = 0;
+  tempMap.stmax60 = 0;
+  tempMap.stmax50 = 0;
+  tempMap.stmax40 = 0;
+  tempMap.stmax30 = 0;
+  tempMap.stmax20 = 0;
+  tempMap.stmax10 = 0;
+  tempMap.stmax0 = 0;
 
   //////////////////
   tempMap.key0 = 0;
@@ -526,7 +519,7 @@ export const createLiveMap = () => {
       tempMap.score = tempMap.score + tempMap.singleNoteScore;
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
 
-      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercentStella">STMAX 100%</div>`;
+      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_100">STMAX 100%</div>`;
 
       tempMap.CheckRecure();
       tempMap.ShowEffect(pos);
@@ -537,7 +530,29 @@ export const createLiveMap = () => {
 
       tempMap.score = tempMap.score + tempMap.singleNoteScore * 0.9;
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
-      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercentPerfect">STMAX 90%</div>`;
+      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_90" style="">STMAX 90%</div>`;
+      // background: linear-gradient(to top, #f3f2ba 40px, #fc0b0b);
+      tempMap.CheckRecure();
+      tempMap.ShowEffect(pos);
+    } else if (abs_diff <= scope80) {
+      // console.log("perfect");
+      tempMap.stmax80++;
+      tempMap.combo++;
+
+      tempMap.score = tempMap.score + tempMap.singleNoteScore * 0.8;
+      tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
+      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_80">STMAX 80%</div>`;
+
+      tempMap.CheckRecure();
+      tempMap.ShowEffect(pos);
+    } else if (abs_diff <= scope70) {
+      // console.log("perfect");
+      tempMap.stmax70++;
+      tempMap.combo++;
+
+      tempMap.score = tempMap.score + tempMap.singleNoteScore * 0.7;
+      tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
+      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_70" >STMAX 70%</div>`;
 
       tempMap.CheckRecure();
       tempMap.ShowEffect(pos);
@@ -547,7 +562,27 @@ export const createLiveMap = () => {
 
       tempMap.score = tempMap.score + tempMap.singleNoteScore * 0.6;
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
-      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercentGood">STMAX 60%</div>`;
+      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_60" >STMAX 60%</div>`;
+
+      tempMap.CheckRecure();
+      tempMap.ShowEffect(pos);
+    } else if (abs_diff <= scope50) {
+      tempMap.stmax50++;
+      tempMap.combo++;
+
+      tempMap.score = tempMap.score + tempMap.singleNoteScore * 0.5;
+      tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
+      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_50">STMAX 50%</div>`;
+
+      tempMap.CheckRecure();
+      tempMap.ShowEffect(pos);
+    } else if (abs_diff <= scope40) {
+      tempMap.stmax40++;
+      tempMap.combo++;
+
+      tempMap.score = tempMap.score + tempMap.singleNoteScore * 0.4;
+      tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
+      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_40" >STMAX 40%</div>`;
 
       tempMap.CheckRecure();
       tempMap.ShowEffect(pos);
@@ -558,13 +593,34 @@ export const createLiveMap = () => {
       tempMap.score = tempMap.score + tempMap.singleNoteScore * 0.3;
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
 
-      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercentBad">STMAX 30%</div>`;
+      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_30" >STMAX 30%</div>`;
 
       tempMap.CheckRecure();
+      tempMap.ShowEffect(pos);
+    } else if (abs_diff <= scope20) {
+      tempMap.stmax20++;
+      tempMap.combo++;
 
+      tempMap.score = tempMap.score + tempMap.singleNoteScore * 0.2;
+      tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
+
+      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_20" >STMAX 20%</div>`;
+
+      tempMap.CheckRecure();
+      tempMap.ShowEffect(pos);
+    } else if (abs_diff <= scope10) {
+      tempMap.stmax10++;
+      tempMap.combo++;
+
+      tempMap.score = tempMap.score + tempMap.singleNoteScore * 0.1;
+      tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
+
+      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_10">STMAX 10%</div>`;
+
+      tempMap.CheckRecure();
       tempMap.ShowEffect(pos);
     } else {
-      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercentMiss">STMAX 0%</div>`;
+      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_0">STMAX 0%</div>`;
 
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
 

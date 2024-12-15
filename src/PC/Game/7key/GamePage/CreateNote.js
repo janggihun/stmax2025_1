@@ -1,4 +1,4 @@
-import { fnData, getNowList, speedTimeHeight } from "../../../../../common/Base";
+import { fnData, getNowList, speedTimeHeight } from "../../../../common/Base";
 export const checkPos = (index) => {
   if (index === 0) {
     return 0;

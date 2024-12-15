@@ -1,4 +1,4 @@
-import { fnData, getNowList, speedTimeHeight } from "../../../../../common/Base";
+import { fnData, getNowList, speedTimeHeight } from "../../../../common/Base";
 
 //왼쪽부터 몇 px인지 확인후 리턴
 const checkPos = (index) => {

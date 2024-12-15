@@ -10,7 +10,7 @@ import "../../GameCommon.css";
 import { motion } from "framer-motion";
 import JudgeHighlightPool from "../../GameJsCommon/JudgeHighlightPool";
 import { AddrManager } from "../../GameJsCommon/AddrManager";
-import { CreateNote, CreateNote1 } from "./GameJs/CreateNote";
+import { CreateNote, CreateNote1 } from "./CreateNote";
 
 export const GameStation7 = (props) => {
   const audioFlag = useRef(true);

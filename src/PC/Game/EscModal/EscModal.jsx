@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { fnData, saveData } from "../../common/Base";
+import { fnData, saveData } from "../../../common/Base";
+import "./EscModal.css";
 
 export const EscModal = (props) => {
   const navigate = useNavigate();

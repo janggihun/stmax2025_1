@@ -271,7 +271,7 @@ export const GameStation4 = (props) => {
           <div className="Game_Combo">
             <div className="Game_ComboDetailBlank"></div>
             <div className="Game_ComboDetail">
-              <div className="Game_ComboStr">Combo x{liveData.feverMultifly}</div>
+              <div className="Game_ComboStr">{Math.floor(liveData.score)}</div>
               <div className="Game_ComboInt_Box" id="Game_ComboInt">
                 0
               </div>
@@ -280,15 +280,6 @@ export const GameStation4 = (props) => {
           <div className="Game_ComboAcc" id="ComboAcc">
             <div className="Game_JudgeSlowFast_4" ref={JudgeSlowFast}></div>
           </div>
-          <div className="Game_Fever">
-            <div className="Game_FeverBar">
-              <div
-                className="Game_ActiveBar"
-                id="ActiveBar"
-                style={{ width: 4 * liveData.feverCnt + "px" }}
-              ></div>
-            </div>
-          </div>
 
           <div className="AccPercent" id="dataStatus">
             Game Start
@@ -296,34 +287,15 @@ export const GameStation4 = (props) => {
 
           <div className="Game_ComboBlank"></div>
         </div>
-        <div className="Game_FeverEffect" id="FeverEffect">
-          <img className="img" src="/Fever/circle.png" />
-        </div>
-        <div className="Game_FeverStr_4" id="FeverStr">
-          x1
-        </div>
+
         <div className="Game_EffectBox_4">
           {[...Array(20)].map((el) => {
             return <div className="Effect_4"></div>;
           })}
         </div>
-        <div className="Game_ScorePannel font30">
-          <div className="Game_ScorePannel_Row sort">Score:{Math.floor(liveData.score)}</div>
-        </div>
-        <div className="Game_FeverPannel sort " id="GameFever"></div>
       </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="Game_Emoticon_MultyBox"
-        key={liveData.feverMultifly}
-        style={gamePos === "Left" ? { left: gameEmoticon_Left } : { left: gameEmoticon_Middle }}
-      >
-        {[...Array(liveData.feverMultifly)].map((el) => {
-          return <img className="emoticonImg" src={get_Src_Img(emoticon.current)} />;
-        })}
-      </motion.div>
+
     </>
   );
 };

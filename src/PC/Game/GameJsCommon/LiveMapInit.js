@@ -3,30 +3,28 @@ import { changeGameSet } from "../../../Store/GameSetSlice";
 import { openModal } from "../../../Store/ModalSlice";
 
 export const createLiveMap = () => {
-  const scope100 = 16.67;
-  const scope90 = 16.67;
-  const scope80 = 16.67;
-  const scope70 = 16.67;
-  const scope60 = 16.67;
-  const scope50 = 16.67;
-  const scope40 = 16.67;
-  const scope30 = 16.67;
-  const scope20 = 16.67;
-  const scope10 = 16.67;
-  const scope0 = 16.67;
+  const scope100 = 24; //1프레임 98.5
+  const scope90 = 36;
+  const scope80 = 0;
+  const scope70 = 0;
+  const scope60 = 100;
+  const scope50 = 0;
+  const scope40 = 0;
+  const scope30 = 150;
+  const scope20 = 0;
+  const scope10 = 0;
+  const scope0 = 155;
 
-  const MissScope = 155;
-  const BadScope = 150;
-  const GoodScope = 100;
-  const PerfectScope = 50;
-  const SetllaScope = 16.67; //1프레임 98.5
   const fps = 120;
   const tempMap = {};
+  // /
+
   /////////////////////////////////////////////
   tempMap.keyList_4 = JSON.parse(window.localStorage.getItem("4keyList"));
   tempMap.keyList_7 = JSON.parse(window.localStorage.getItem("7keyList"));
 
   tempMap.keyMemoryList = [];
+
   ////////////////////////////
   tempMap.gameSet = 0;
   tempMap.keyType = fnData("keyType");
@@ -49,28 +47,30 @@ export const createLiveMap = () => {
   tempMap.gameHeight = 0;
   ///////////////////////
   tempMap.fps = 120;
+  ///시즌2
+  tempMap.maxScore = 1000000;
+  tempMap.singleNoteScore = 0;
 
   tempMap.score = 0;
-  tempMap.stella = 0;
-  tempMap.perfect = 0;
-  tempMap.good = 0;
-  tempMap.bad = 0;
-  tempMap.miss = 0;
+  tempMap.stmax100 = 0;
+  tempMap.stmax90 = 0;
+  tempMap.stmax60 = 0;
+  tempMap.stmax30 = 0;
+  tempMap.stmax0 = 0;
   tempMap.combo = 0;
   tempMap.maxCombo = 0;
 
-  ///시즌2
-  tempMap.stmax100 = 0;
-  tempMap.stmax90 = 0;
-  tempMap.stmax80 = 0;
-  tempMap.stmax70 = 0;
-  tempMap.stmax60 = 0;
-  tempMap.stmax50 = 0;
-  tempMap.stmax40 = 0;
-  tempMap.stmax30 = 0;
-  tempMap.stmax20 = 0;
-  tempMap.stmax10 = 0;
-  tempMap.stmax0 = 0;
+  // tempMap.stmax100 = 0;
+  // tempMap.stmax90 = 0;
+  // tempMap.stmax80 = 0;
+  // tempMap.stmax70 = 0;
+  // tempMap.stmax60 = 0;
+  // tempMap.stmax50 = 0;
+  // tempMap.stmax40 = 0;
+  // tempMap.stmax30 = 0;
+  // tempMap.stmax20 = 0;
+  // tempMap.stmax10 = 0;
+  // tempMap.stmax0 = 0;
 
   //////////////////
   tempMap.key0 = 0;
@@ -84,9 +84,7 @@ export const createLiveMap = () => {
   tempMap.barValue = 98;
   ////////////////////////////////
   tempMap.lifeCnt = 20;
-  tempMap.feverMultifly = 1;
-  tempMap.feverCnt = 0;
-  tempMap.feverLifeRecureCnt = 0;
+  tempMap.LifeRecureCnt = 0;
   tempMap.EffectCnt = 0;
   tempMap.nowIndex = 0;
   //////////////////////////////
@@ -214,7 +212,7 @@ export const createLiveMap = () => {
       tempMap.replayList.push(key_el);
       // console.log(gameList);
       tempMap.gameList.forEach((el) => {
-        if (keyTime - BadScope <= el[2] && el[2] <= keyTime + MissScope && el[7] === 0) {
+        if (keyTime - scope30 <= el[2] && el[2] <= keyTime + scope0 && el[7] === 0) {
           pushList.push(el);
         }
       });
@@ -258,7 +256,7 @@ export const createLiveMap = () => {
     //하단 미스 확인
 
     tempMap.gameList.forEach((el) => {
-      if (el[2] < audioFrameTime - BadScope - tempMap.helpInt && el[7] === 0) {
+      if (el[2] < audioFrameTime - scope30 - tempMap.helpInt && el[7] === 0) {
         el[7] = 1;
         // console.log("미스");
         tempMap.CheckjudgeMent(160, el);
@@ -268,14 +266,14 @@ export const createLiveMap = () => {
     // 롱노트 미스 확인
     tempMap.intervalList.forEach((el, i) => {
       if (
-        audioFrameTime - el[2] - tempMap.helpInt >= el[4] * BadScope &&
-        audioFrameTime <= el[3] - BadScope - tempMap.helpInt
+        audioFrameTime - el[2] - tempMap.helpInt >= el[4] * scope30 &&
+        audioFrameTime <= el[3] - scope30 - tempMap.helpInt
       ) {
         el[4]++;
         tempMap.CheckjudgeMent(0, el);
       }
 
-      if (el[3] < audioFrameTime - BadScope - tempMap.helpInt) {
+      if (el[3] < audioFrameTime - scope30 - tempMap.helpInt) {
         if (el[0] === "L") {
           el[6].className = "overPushed";
         }
@@ -299,8 +297,8 @@ export const createLiveMap = () => {
   };
   tempMap.CheckRecure = () => {
     if (tempMap.lifeCnt <= 20) {
-      if (tempMap.feverLifeRecureCnt === 20) {
-        tempMap.feverLifeRecureCnt = 0;
+      if (tempMap.LifeRecureCnt === 20) {
+        tempMap.LifeRecureCnt = 0;
         if (
           (tempMap.gameSet !== 2 || tempMap.gameSet !== 3) &&
           tempMap.lifeBoxList[19 - tempMap.lifeCnt]
@@ -310,8 +308,7 @@ export const createLiveMap = () => {
           }
         }
       }
-      tempMap.feverLifeRecureCnt++;
-      // console.log("feverLifeRecureCnt : ", feverLifeRecureCnt.current);
+      tempMap.LifeRecureCnt++;
     }
   };
 
@@ -359,7 +356,7 @@ export const createLiveMap = () => {
       const keyIndex = tmpList[2];
       const pushList = [];
       tempMap.gameList.forEach((el) => {
-        if (keyTime - BadScope <= el[2] && el[2] <= keyTime + MissScope && el[7] === 0) {
+        if (keyTime - scope30 <= el[2] && el[2] <= keyTime + scope0 && el[7] === 0) {
           pushList.push(el);
         }
       });
@@ -404,7 +401,7 @@ export const createLiveMap = () => {
     //하단 미스 확인
 
     tempMap.gameList.forEach((el) => {
-      if (el[2] < audioFrameTime - BadScope - tempMap.helpInt && el[7] === 0) {
+      if (el[2] < audioFrameTime - scope30 - tempMap.helpInt && el[7] === 0) {
         el[7] = 1;
         // console.log("미스");
         tempMap.CheckjudgeMent(160, el);
@@ -414,14 +411,14 @@ export const createLiveMap = () => {
     // 롱노트 미스 확인
     tempMap.intervalList.forEach((el, i) => {
       if (
-        audioFrameTime - el[2] - tempMap.helpInt >= el[4] * BadScope &&
-        audioFrameTime <= el[3] - BadScope - tempMap.helpInt
+        audioFrameTime - el[2] - tempMap.helpInt >= el[4] * scope30 &&
+        audioFrameTime <= el[3] - scope30 - tempMap.helpInt
       ) {
         el[4]++;
         tempMap.CheckjudgeMent(0, el);
       }
 
-      if (el[3] < audioFrameTime - BadScope - tempMap.helpInt) {
+      if (el[3] < audioFrameTime - scope30 - tempMap.helpInt) {
         if (el[0] === "L") {
           el[6].className = "overPushed";
         }
@@ -447,27 +444,17 @@ export const createLiveMap = () => {
   };
   tempMap.CheckRecure = () => {
     if (tempMap.lifeCnt <= 20) {
-      if (tempMap.feverLifeRecureCnt === 20) {
-        tempMap.feverLifeRecureCnt = 0;
+      if (tempMap.LifeRecureCnt === 20) {
+        tempMap.LifeRecureCnt = 0;
 
         if (tempMap.lifeCnt < 20) {
           tempMap.lifeCnt++;
         }
       }
-      tempMap.feverLifeRecureCnt++;
+      tempMap.LifeRecureCnt++;
     }
   };
-  //피버 증가
-  tempMap.feverCheck = () => {
-    if (tempMap.feverCnt >= 50) {
-      tempMap.feverCnt = 0;
 
-      if (tempMap.feverMultifly < 5) {
-        tempMap.feverMultifly++;
-        tempMap.addrMap.$GameFever.innerHTML = `<div class="Game_FeverPannel_ani"> x ${tempMap.feverMultifly}</div>`;
-      }
-    }
-  };
   //왼쪽부터 몇 px인지 확인후 리턴
   tempMap.checkPos = (index) => {
     let res = 0;
@@ -498,76 +485,66 @@ export const createLiveMap = () => {
 
     const pos = tempMap.checkPos(el[1]);
     const abs_diff = Math.abs(diff);
-    // console.log(diff);
-    if (abs_diff <= SetllaScope) {
-      // console.log("stella");
-      tempMap.stella++;
+
+    if (abs_diff <= scope100) {
+      tempMap.stmax100++;
       tempMap.combo++;
-      tempMap.feverCnt++;
-      tempMap.score = tempMap.score + 10 * tempMap.feverMultifly;
+
+      tempMap.score = tempMap.score + tempMap.singleNoteScore;
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
 
-      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercentStella">Stella 100%</div>`;
+      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercentStella">STMAX 100%</div>`;
+
       tempMap.CheckRecure();
-      tempMap.feverCheck();
       tempMap.ShowEffect(pos);
-    } else if (abs_diff <= PerfectScope) {
+    } else if (abs_diff <= scope90) {
       // console.log("perfect");
-      tempMap.perfect++;
+      tempMap.stmax90++;
       tempMap.combo++;
-      tempMap.feverCnt++;
-      tempMap.score = tempMap.score + 5 * tempMap.feverMultifly;
+
+      tempMap.score = tempMap.score + tempMap.singleNoteScore * 0.9;
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
-      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercentPerfect">Perfect 90%</div>`;
+      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercentPerfect">STMAX 90%</div>`;
 
       tempMap.CheckRecure();
-      tempMap.feverCheck();
       tempMap.ShowEffect(pos);
-    } else if (abs_diff <= GoodScope) {
-      tempMap.good++;
+    } else if (abs_diff <= scope60) {
+      tempMap.stmax60++;
       tempMap.combo++;
-      tempMap.feverCnt++;
-      tempMap.score = tempMap.score + 3 * tempMap.feverMultifly;
-      tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
 
-      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercentGood">Good 60%</div>`;
+      tempMap.score = tempMap.score + tempMap.singleNoteScore * 0.6;
+      tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
+      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercentGood">STMAX 60%</div>`;
 
       tempMap.CheckRecure();
-      tempMap.feverCheck();
       tempMap.ShowEffect(pos);
-    } else if (abs_diff <= BadScope) {
-      tempMap.bad++;
+    } else if (abs_diff <= scope30) {
+      tempMap.stmax30++;
       tempMap.combo++;
-      tempMap.feverCnt++;
-      tempMap.score = tempMap.score + 1 * tempMap.feverMultifly;
+
+      tempMap.score = tempMap.score + tempMap.singleNoteScore * 0.3;
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
 
-      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercentBad">Bad 30%</div>`;
+      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercentBad">STMAX 30%</div>`;
 
       tempMap.CheckRecure();
-      tempMap.feverCheck();
+
       tempMap.ShowEffect(pos);
     } else {
-      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercentMiss">Miss 0%</div>`;
+      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercentMiss">STMAX 0%</div>`;
 
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
 
       tempMap.minusLife();
 
-      tempMap.miss++;
-
-      tempMap.feverLifeRecureCnt = 0;
-
+      tempMap.stmax0++;
+      tempMap.LifeRecureCnt = 0;
       tempMap.combo = 0;
-
-      tempMap.feverCnt = 0;
-
-      tempMap.feverMultifly = 1;
     }
 
     //fever확인
 
-    if (abs_diff > BadScope && el[0] === "L") {
+    if (abs_diff > scope30 && el[0] === "L") {
       el[6].className = "overPushed";
     }
     tempMap.barValue = 98 - tempBar;

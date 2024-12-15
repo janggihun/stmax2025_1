@@ -22,7 +22,6 @@ export const AddrManager = () => {
   tmpMap.$JudgeSlowFastBar = document.getElementById("JudgeSlowFastBar");
   tmpMap.$LineContainer = document.getElementById("LineContainer");
   tmpMap.$thumnailBefore = document.getElementById("thumnailBefore");
-  tmpMap.$GameFever = document.getElementById("GameFever");
   tmpMap.$youtubeStartBg = document.getElementById("youtubeStartBg");
   tmpMap.LineLightList2 = [...document.getElementsByClassName("LineOne2")];
   tmpMap.LineLightList = [...document.getElementsByClassName("LineOne1")];

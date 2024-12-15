@@ -9,7 +9,7 @@ import {
 import "../../GameCommon.css";
 import { motion } from "framer-motion";
 import JudgeHighlightPool from "./GameJs/JudgeHighlightPool";
-import { AddrManager } from "./GameJs/AddrManager";
+import { AddrManager } from "../../GameJsCommon/AddrManager";
 import { CreateNote, CreateNote1 } from "./GameJs/CreateNote";
 
 export const GameStation4 = (props) => {

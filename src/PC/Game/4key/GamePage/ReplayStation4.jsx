@@ -7,9 +7,9 @@ import {
   gameEmoticon_Middle,
 } from "../../../../common/Game_4key";
 import "../../GameCommon.css";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import JudgeHighlightPool from "./GameJs/JudgeHighlightPool";
-import { AddrManager } from "./GameJs/AddrManager";
+import { AddrManager } from "../../GameJsCommon/AddrManager";
 import { CreateNote, CreateNote1 } from "./GameJs/CreateNote";
 
 export const ReplayStation4 = (props) => {

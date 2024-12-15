@@ -365,7 +365,7 @@ export const GameStation7 = (props) => {
           })}
         </div>
         <div className="Game_ScorePannel_7 font30">
-          <div className="Game_ScorePannel_Row sort">Score:{liveData.score}</div>
+          <div className="Game_ScorePannel_Row sort">Score:{Math.floor(liveData.score)}</div>
         </div>
         <div className="Game_FeverPannel_7 sort " id="GameFever"></div>
       </motion.div>

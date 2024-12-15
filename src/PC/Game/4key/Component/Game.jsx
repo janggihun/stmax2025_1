@@ -160,7 +160,8 @@ export const Game_4key = () => {
         liveMap.current.timingPointList = res1[0];
         liveMap.current.hitList = res1[1];
         liveMap.current.lastTime = res1[2];
-        liveMap.current.version = res1[3];
+        liveMap.current.noteCount = res1[3];
+        liveMap.current.singleNoteScore = liveMap.current.maxScore / liveMap.current.noteCount;
         liveMap.current.speedList = [];
         liveMap.current.gameList = res1[1].map((el) => {
           return el;

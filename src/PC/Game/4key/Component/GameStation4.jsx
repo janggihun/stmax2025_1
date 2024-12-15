@@ -97,7 +97,7 @@ export const GameStation4 = (props) => {
         }
       }, 1);
     }
-    //test  
+    //test
     // setTimeout(() => {
     //   liveMap.current.dispatch(changeGameSet(2));
     // }, 5000);
@@ -308,7 +308,7 @@ export const GameStation4 = (props) => {
           })}
         </div>
         <div className="Game_ScorePannel font30">
-          <div className="Game_ScorePannel_Row sort">Score:{liveData.score}</div>
+          <div className="Game_ScorePannel_Row sort">Score:{Math.floor(liveData.score)}</div>
         </div>
         <div className="Game_FeverPannel sort " id="GameFever"></div>
       </motion.div>

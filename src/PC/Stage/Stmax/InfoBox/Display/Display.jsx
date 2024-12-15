@@ -50,9 +50,9 @@ export const Display = () => {
           <>
             <motion.img
               key={musicCnt}
-              initial={{ opacity: 0.5, size: 1 }}
-              animate={{ opacity: 1, size: 1 }}
-              exit={{ opacity: 0.5, size: 0.8 }}
+              initial={{ opacity: 0.5 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0.5 }}
               transition={{ duration: 0.4 }}
               className="img Display_Img"
               src={get_Src_MusicImg(keyType, lastMusicCnt())}

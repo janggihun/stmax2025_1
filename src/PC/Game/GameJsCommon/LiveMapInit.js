@@ -3,6 +3,18 @@ import { changeGameSet } from "../../../Store/GameSetSlice";
 import { openModal } from "../../../Store/ModalSlice";
 
 export const createLiveMap = () => {
+  const scope100 = 16.67;
+  const scope90 = 16.67;
+  const scope80 = 16.67;
+  const scope70 = 16.67;
+  const scope60 = 16.67;
+  const scope50 = 16.67;
+  const scope40 = 16.67;
+  const scope30 = 16.67;
+  const scope20 = 16.67;
+  const scope10 = 16.67;
+  const scope0 = 16.67;
+
   const MissScope = 155;
   const BadScope = 150;
   const GoodScope = 100;

@@ -268,6 +268,9 @@ export const createLiveMap = () => {
         el[7] = 1;
         // console.log("미스");
         tempMap.CheckjudgeMent(160, el);
+        if (el[0] === "L") {
+          tempMap.stmax0++;
+        }
       }
     });
 
@@ -282,6 +285,8 @@ export const createLiveMap = () => {
         el[4]++;
         tempMap.combo++;
         tempMap.addrMap.$Game_ComboInt_Box.innerHTML = `<div class="Game_ComboInt">${tempMap.combo}</div>`;
+        const pos = tempMap.checkPos(el[1]);
+        tempMap.ShowEffect(pos);
       }
 
       // 계속 누르고 있는 경우
@@ -425,6 +430,9 @@ export const createLiveMap = () => {
         el[7] = 1;
         // console.log("미스");
         tempMap.CheckjudgeMent(160, el);
+        if (el[0] === "L") {
+          tempMap.stmax0++;
+        }
       }
     });
 
@@ -438,6 +446,8 @@ export const createLiveMap = () => {
         el[4]++;
         tempMap.combo++;
         tempMap.addrMap.$Game_ComboInt_Box.innerHTML = `<div class="Game_ComboInt">${tempMap.combo}</div>`;
+        const pos = tempMap.checkPos(el[1]);
+        tempMap.ShowEffect(pos);
       }
 
       if (el[3] < audioFrameTime - scope30 - tempMap.helpInt) {

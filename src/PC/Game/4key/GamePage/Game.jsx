@@ -4,7 +4,7 @@ import "../Style4Key/Global.css";
 import "../Style4Key/Note.css";
 import "../../EscModal.css";
 import "../../../../style/Scroll.css";
-import { NoteReadManager } from "./GameJs/NoteReadManager.js";
+import { NoteReadManager } from "../../GameJsCommon/NoteReadManager.js";
 import { createLiveMap } from "./GameJs/LiveMapInit.js";
 import { useLocation, useNavigate } from "react-router-dom";
 import { endGameSuccess, fnData, makeDailyData, sound3 } from "../../../../common/Base.js";
@@ -79,7 +79,7 @@ export const Game_4key = () => {
 
   function findEmoticon() {
     const emoticonList = location.state.Group;
-    console.log(emoticonList);
+
     const e_Lenght = emoticonList.length;
 
     const randomNum = Math.floor(Math.random() * e_Lenght + 1) - 1;
@@ -155,7 +155,6 @@ export const Game_4key = () => {
       async function get_noteList() {
         const res1 = await NoteReadManager(liveMap.current.musicCnt, liveMap.current.level);
 
-        // const res2 = await AudioManager(musicCnt, audioVolume);
         liveMap.current.timingPointList = res1[0];
         liveMap.current.hitList = res1[1];
         liveMap.current.lastTime = res1[2];

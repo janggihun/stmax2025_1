@@ -4,7 +4,7 @@ import "../Style7Key/Global.css";
 import "../Style7Key/Note.css";
 import "../../EscModal.css";
 import "../../../../style/Scroll.css";
-import { NoteReadManager } from "./GameJs/NoteReadManager.js";
+import { NoteReadManager } from "../../GameJsCommon/NoteReadManager.js";
 import { createLiveMap } from "./GameJs/LiveMapInit.js";
 import { useLocation, useNavigate } from "react-router-dom";
 import { fnData, sound3 } from "../../../../common/Base.js";
@@ -182,7 +182,7 @@ export const Replay_7key = () => {
           liveMap.current.replayMap.musicCnt,
           liveMap.current.replayMap.level
         );
-        // const res2 = await AudioManager(musicCnt, audioVolume);
+
         liveMap.current.timingPointList = res1[0];
         liveMap.current.hitList = res1[1];
         liveMap.current.lastTime = res1[2];

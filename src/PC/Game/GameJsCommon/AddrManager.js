@@ -11,7 +11,7 @@ export const AddrManager = () => {
   tmpMap.$ComboAcc = document.getElementById("ComboAcc");
   tmpMap.$ActiveBar = document.getElementById("ActiveBar");
   tmpMap.$AccPercent = document.getElementById("AccPercent");
-  tmpMap.$Game_ComboInt = document.getElementById("Game_ComboInt");
+  tmpMap.$Game_ComboInt_Box = document.getElementById("Game_ComboInt_Box");
   tmpMap.$dataStatus = document.getElementById("dataStatus");
   tmpMap.$ComboStr = document.getElementById("ComboStr");
   tmpMap.$FeverEffect = document.getElementById("FeverEffect");

@@ -20,7 +20,7 @@ const NoteRead_4key = (musicCnt, level) => {
   let hitList = [];
   let newHitList = [];
   let lastTime = 0;
-  let noteCount = 0;
+
   let content = null;
   let xmlhttp = new XMLHttpRequest();
   xmlhttp.open("GET", `/4key/${musicCnt}/${level}.osu`, false);
@@ -97,10 +97,8 @@ const NoteRead_4key = (musicCnt, level) => {
         newList.push(tmpList[1]);
         if (tmpList[2] === "128") {
           newList.unshift("L");
-          noteCount += 2;
         } else {
           newList.unshift("S");
-          noteCount++;
         }
 
         // newList.push(tmpList[3]);
@@ -159,10 +157,8 @@ const NoteRead_4key = (musicCnt, level) => {
         newList.push(tmpList[1]);
         if (tmpList[2] === "128") {
           newList.unshift("L");
-          noteCount += 2;
         } else {
           newList.unshift("S");
-          noteCount++;
         }
 
         // newList.push(tmpList[3]);
@@ -211,7 +207,7 @@ const NoteRead_4key = (musicCnt, level) => {
     }
   });
 
-  return [timingPointList, newHitList, lastTime, noteCount];
+  return [timingPointList, newHitList, lastTime];
 };
 
 const NoteRead_7key = (musicCnt, level) => {
@@ -219,7 +215,7 @@ const NoteRead_7key = (musicCnt, level) => {
   let hitList = [];
   let newHitList = [];
   let lastTime = 0;
-  let noteCount = 0;
+
   let content = null;
   let xmlhttp = new XMLHttpRequest();
 
@@ -316,10 +312,8 @@ const NoteRead_7key = (musicCnt, level) => {
         newList.push(tmpList[1]);
         if (tmpList[2] === 128) {
           newList.unshift("L");
-          noteCount += 2;
         } else {
           newList.unshift("S");
-          noteCount++;
         }
 
         // newList.push(tmpList[3]);
@@ -393,12 +387,10 @@ const NoteRead_7key = (musicCnt, level) => {
         newList.push(tmpList[1]);
         if (tmpList[2] === 128) {
           newList.unshift("L");
-          noteCount += 2;
         } else {
           newList.unshift("S");
-          noteCount++;
         }
-
+        console.log("newList : ", newList);
         // newList.push(tmpList[3]);
         newList.push(tmpList[4]);
         if (newList[2] === undefined || newList[3] === undefined) {
@@ -443,5 +435,5 @@ const NoteRead_7key = (musicCnt, level) => {
     }
   });
 
-  return [timingPointList, newHitList, lastTime, noteCount];
+  return [timingPointList, newHitList, lastTime];
 };

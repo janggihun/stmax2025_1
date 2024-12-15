@@ -30,7 +30,6 @@ export const createLiveMap = () => {
   tempMap.keyType = fnData("keyType");
   tempMap.timingPointList = [];
   tempMap.hitList = [];
-  tempMap.timingPointList = [];
   tempMap.version = 0;
   tempMap.gameList = [];
 
@@ -57,6 +56,7 @@ export const createLiveMap = () => {
   tempMap.stmax90 = 0;
   tempMap.stmax60 = 0;
   tempMap.stmax30 = 0;
+  tempMap.stmax10 = 0;
   tempMap.stmax0 = 0;
   tempMap.combo = 0;
   tempMap.maxCombo = 0;
@@ -281,6 +281,7 @@ export const createLiveMap = () => {
         //롱노트 누르고 있기에 해당 시간 만큼 콤보만 추가
         el[4]++;
         tempMap.combo++;
+        tempMap.addrMap.$Game_ComboInt_Box.innerHTML = `<div class="Game_ComboInt">${tempMap.combo}</div>`;
       }
 
       // 계속 누르고 있는 경우
@@ -436,6 +437,7 @@ export const createLiveMap = () => {
         //롱노트 누르고 있기에 해당 시간 만큼 콤보만 추가
         el[4]++;
         tempMap.combo++;
+        tempMap.addrMap.$Game_ComboInt_Box.innerHTML = `<div class="Game_ComboInt">${tempMap.combo}</div>`;
       }
 
       if (el[3] < audioFrameTime - scope30 - tempMap.helpInt) {
@@ -458,6 +460,7 @@ export const createLiveMap = () => {
         // 게임종료
 
         tempMap.dispatch(openModal("리플레이가  완료되었습니다. "));
+        console.log(tempMap);
         clearInterval(tempMap.tickerInterval);
       }, 2000);
     }
@@ -563,12 +566,11 @@ export const createLiveMap = () => {
     }
 
     //fever확인
-
     if (abs_diff > scope30 && el[0] === "L") {
       el[6].className = "overPushed";
     }
     tempMap.barValue = 98 - tempBar;
-    tempMap.addrMap.$Game_ComboInt.innerHTML = `<div class="Game_ComboInt">${tempMap.combo}</div>`;
+    tempMap.addrMap.$Game_ComboInt_Box.innerHTML = `<div class="Game_ComboInt">${tempMap.combo}</div>`;
   };
 
   tempMap.minusLife = () => {

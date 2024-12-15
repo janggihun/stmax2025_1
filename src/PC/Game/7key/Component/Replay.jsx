@@ -121,11 +121,7 @@ export const Replay_7key = () => {
       liveMap.current.level = location.state.replayMap.level;
       liveMap.current.speed = location.state.replayMap.speed;
       liveMap.current.dispatch = dispatch;
-      // console.log(liveMap.current.replayMap);
-      // console.log("musicMap : ", liveMap.current.musicMap);
-      // console.log("musicCnt : ", liveMap.current.musicCnt);
-      // console.log("Group : ", liveMap.current.Group);
-      // console.log("replayMap : ", liveMap.current.replayMap);
+
       liveMap.current.setGameSet = setGameSet();
 
       nextStep(2);
@@ -182,7 +178,13 @@ export const Replay_7key = () => {
         liveMap.current.timingPointList = res1[0];
         liveMap.current.hitList = res1[1];
         liveMap.current.lastTime = res1[2];
-        liveMap.current.noteCount = res1[3];
+        res1[1].forEach((el) => {
+          if (el[0] === "S") {
+            liveMap.current.noteCount += 1;
+          } else if (el[0] === "L") {
+            liveMap.current.noteCount += 2;
+          }
+        });
         liveMap.current.singleNoteScore = liveMap.current.maxScore / liveMap.current.noteCount;
         liveMap.current.speedList = [];
         liveMap.current.gameList = res1[1].map((el) => {

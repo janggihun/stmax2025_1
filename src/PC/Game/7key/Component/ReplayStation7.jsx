@@ -247,7 +247,7 @@ export const ReplayStation7 = (props) => {
             <div className="Game_ComboDetailBlank"></div>
             <div className="Game_ComboDetail">
               <div className="Game_ComboStr">{Math.floor(liveData.score)}</div>
-              <div className="Game_ComboInt_Box" id="Game_ComboInt">
+              <div key={liveData} className="Game_ComboInt_Box" id="Game_ComboInt_Box">
                 0
               </div>
             </div>
@@ -255,7 +255,6 @@ export const ReplayStation7 = (props) => {
           <div className="Game_ComboAcc" id="ComboAcc">
             <div className="Game_JudgeSlowFast" ref={JudgeSlowFast}></div>
           </div>
-
 
           <div className="AccPercent" id="dataStatus">
             Game Start

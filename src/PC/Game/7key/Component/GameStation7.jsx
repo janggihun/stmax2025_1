@@ -329,7 +329,7 @@ export const GameStation7 = (props) => {
             <div className="Game_ComboDetailBlank"></div>
             <div className="Game_ComboDetail">
               <div className="Game_ComboStr">{Math.floor(liveData.score)}</div>
-              <div className="Game_ComboInt_Box" id="Game_ComboInt">
+              <div key={liveData} className="Game_ComboInt_Box" id="Game_ComboInt_Box">
                 0
               </div>
             </div>
@@ -338,24 +338,19 @@ export const GameStation7 = (props) => {
             <div className="Game_JudgeSlowFast" ref={JudgeSlowFast}></div>
           </div>
 
-
           <div className="AccPercent" id="dataStatus">
             Game Start
           </div>
 
           <div className="Game_ComboBlank"></div>
         </div>
- 
 
         <div className="Game_EffectBox">
           {[...Array(20)].map((el) => {
             return <div className="Effect"></div>;
           })}
         </div>
-
-    
       </motion.div>
-
     </>
   );
 };

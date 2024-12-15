@@ -272,7 +272,7 @@ export const GameStation4 = (props) => {
             <div className="Game_ComboDetailBlank"></div>
             <div className="Game_ComboDetail">
               <div className="Game_ComboStr">{Math.floor(liveData.score)}</div>
-              <div className="Game_ComboInt_Box" id="Game_ComboInt">
+              <div key={liveData} className="Game_ComboInt_Box" id="Game_ComboInt_Box">
                 0
               </div>
             </div>
@@ -294,8 +294,6 @@ export const GameStation4 = (props) => {
           })}
         </div>
       </motion.div>
-
-
     </>
   );
 };

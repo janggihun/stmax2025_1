@@ -5,8 +5,10 @@ import { RankUserList } from "./RankUserList/RankUserList";
 import { RankUserInfo } from "./RankUserInfo/RankUserInfo";
 import { useDispatch, useSelector } from "react-redux";
 import { fnData } from "../../../common/Base";
-import { getRank } from "../../../RestApi";
+import { getRank, getRank_2 } from "../../../RestApi";
 import { closeLoading, openLoading } from "../../../Store/LoadingSlice";
+import { RankUserInfo2 } from "./RankUserInfo/RankUserInfo2";
+import { RankUserList2 } from "./RankUserList/RankUserList2";
 
 export const Rank = () => {
   const dispatch = useDispatch();
@@ -18,7 +20,7 @@ export const Rank = () => {
   const data = useSelector((state) => state.data.value);
   const level = useSelector((state) => state.level.value);
   const categoryCnt = useSelector((state) => state.category.value);
-
+  const season = useSelector((state) => state.season.value);
   const musicList = data.musicList;
   // const noteList = data.noteList;
   const singerList = data.singerList;
@@ -27,21 +29,30 @@ export const Rank = () => {
   const focusFlag = useRef();
 
   const get_RankList = async () => {
-    setRankList(false);
     let musicCnt = 0;
     if (keyType === 4) {
       musicCnt = fnData("lastMusicCnt_4");
     } else if (keyType === 7) {
       musicCnt = fnData("lastMusicCnt_7");
     }
-    const temp = { keyType: keyType, musicCnt: musicCnt };
-    const res = await getRank(temp);
 
-    setRankList(res);
+    const temp = { keyType: keyType, musicCnt: musicCnt, season: season };
+
+    if (season === 1) {
+      const res = await getRank(temp);
+
+      setRankList(res);
+    } else if (season === 2) {
+      const res = await getRank_2(temp);
+
+      setRankList(res);
+    }
   };
+  //시즌 변경시
+
   useEffect(() => {
     get_RankList();
-  }, [musicMap]);
+  }, [musicMap, season]);
   useEffect(() => {
     if (rankList) {
       dispatch(closeLoading());
@@ -80,15 +91,25 @@ export const Rank = () => {
               exit={{ x: -500 }}
               transition={{ duration: 0.2, type: "spring", stiffness: 100, damping: 20 }}
             >
-              <RankUserInfo
-                rankMap={rankMap}
-                musicMap={musicMap}
-                level={level}
-                keyType={keyType}
-                musicList={musicList}
-                // noteList={noteList}
-                singerList={singerList}
-              />
+              {season === 1 ? (
+                <RankUserInfo
+                  rankMap={rankMap}
+                  musicMap={musicMap}
+                  level={level}
+                  keyType={keyType}
+                  musicList={musicList}
+                  singerList={singerList}
+                />
+              ) : (
+                <RankUserInfo2
+                  rankMap={rankMap}
+                  musicMap={musicMap}
+                  level={level}
+                  keyType={keyType}
+                  musicList={musicList}
+                  singerList={singerList}
+                />
+              )}
             </motion.div>
 
             <motion.div
@@ -98,7 +119,25 @@ export const Rank = () => {
               exit={{ x: 500 }}
               transition={{ duration: 0.2, type: "spring", stiffness: 100, damping: 20 }}
             >
-              <RankUserList nowList={nowList} rankMap={rankMap} setRankMap={setRankMap} />
+              {season === 1 ? (
+                <RankUserList
+                  nowList={nowList}
+                  season={season}
+                  rankMap={rankMap}
+                  setRankMap={setRankMap}
+                  setRankList={setRankList}
+                  setNowList={setNowList}
+                />
+              ) : (
+                <RankUserList2
+                  nowList={nowList}
+                  season={season}
+                  rankMap={rankMap}
+                  setRankMap={setRankMap}
+                  setRankList={setRankList}
+                  setNowList={setNowList}
+                />
+              )}
             </motion.div>
           </div>
         </>

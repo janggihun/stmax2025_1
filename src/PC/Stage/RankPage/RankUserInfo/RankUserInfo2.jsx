@@ -4,9 +4,9 @@ import { fnData, fnLevelColor, fnMember, LevelTransfer, rankCheck } from "../../
 import { levelList } from "../../../../common/Array";
 import { changeLevel } from "../../../../Store/LevelSlice";
 import { useDispatch } from "react-redux";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
-export const RankUserInfo = (props) => {
+export const RankUserInfo2 = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const keyType = props.keyType;
@@ -145,24 +145,24 @@ export const RankUserInfo = (props) => {
                 <div className="RankUserInfo_Row_Point">{rankMap.userId} </div>
               </div>
               <div className="RankUserInfo_Row">
-                <div className="RankUserInfo_Row_Point">Stella </div>
-                <div className="RankUserInfo_Row_Point">{rankMap.stella}</div>
+                <div className="RankUserInfo_Row_Point">STMAX 100 </div>
+                <div className="RankUserInfo_Row_Point">{rankMap.stmax100}</div>
               </div>
               <div className="RankUserInfo_Row">
-                <div className="RankUserInfo_Row_Point">Perfect </div>
-                <div className="RankUserInfo_Row_Point">{rankMap.perfect} </div>
+                <div className="RankUserInfo_Row_Point">STMAX 90 </div>
+                <div className="RankUserInfo_Row_Point">{rankMap.stmax90} </div>
               </div>
               <div className="RankUserInfo_Row">
-                <div className="RankUserInfo_Row_Point">Good </div>
-                <div className="RankUserInfo_Row_Point">{rankMap.good} </div>
+                <div className="RankUserInfo_Row_Point">STMAX 80 </div>
+                <div className="RankUserInfo_Row_Point">{rankMap.stmax80} </div>
               </div>
               <div className="RankUserInfo_Row">
-                <div className="RankUserInfo_Row_Point">Bad</div>
-                <div className="RankUserInfo_Row_Point">{rankMap.bad}</div>
+                <div className="RankUserInfo_Row_Point">STMAX 70 </div>
+                <div className="RankUserInfo_Row_Point">{rankMap.stmax70}</div>
               </div>
               <div className="RankUserInfo_Row">
-                <div className="RankUserInfo_Row_Point">Miss </div>
-                <div className="RankUserInfo_Row_Point">{rankMap.miss} </div>
+                <div className="RankUserInfo_Row_Point">STMAX 0 </div>
+                <div className="RankUserInfo_Row_Point">{rankMap.stmax0} </div>
               </div>
               <div className="RankUserInfo_Row">
                 <div className="RankUserInfo_Row_Point">MaxCombo </div>
@@ -176,7 +176,7 @@ export const RankUserInfo = (props) => {
               </div>
               <div className="RankUserInfo_Row">
                 <div className="RankUserInfo_Row_Point">Date </div>
-                <div className="RankUserInfo_Row_Point">{rankMap.saveDate} </div>
+                <div className="RankUserInfo_Row_Point">{rankMap.insertDate} </div>
               </div>
               <div className="RankUserInfo_Row">
                 <div className="RankUserInfo_Row_Point">Replay </div>

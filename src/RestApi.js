@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const httpUrl = "https://port-0-stellivemusic-9zxht12blqae5mw2.sel4.cloudtype.app/api";
+// const httpUrl = "https://port-0-stellivemusic-9zxht12blqae5mw2.sel4.cloudtype.app/api";
 
-// const httpUrl = "http://localhost:8080/api";
+const httpUrl = "http://localhost:8080/api";
 const getUrl = (url) => {
   return httpUrl + url;
 };
@@ -295,6 +295,15 @@ export const getTryInfo = async (userId) => {
 //랭크 뮤직별로
 export const getRank = async (params) => {
   const res = await axios.post(getUrl("/music/infoRank"), params);
+  // const res = await axios.post("http://localhost:8080/music/infoRank", params);
+  res.data.sort((a, b) => {
+    return b.score - a.score;
+  });
+  return res.data;
+};
+//시즌2
+export const getRank_2 = async (params) => {
+  const res = await axios.post(getUrl("/music/seoson2/infoRank"), params);
   // const res = await axios.post("http://localhost:8080/music/infoRank", params);
   res.data.sort((a, b) => {
     return b.score - a.score;

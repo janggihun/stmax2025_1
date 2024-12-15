@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { changePage } from "../../../../Store/PageSlice";
 import { changeSeason } from "../../../../Store/SeasonSlice";
 
-export const RankUserList = (props) => {
+export const RankUserList2 = (props) => {
   const userId = window.localStorage.getItem("userId");
   const rankMap = props.rankMap;
   const season = props.season;
@@ -100,10 +100,14 @@ export const RankUserList = (props) => {
                       <div className="RankUser_Blank2"></div>
                     )}
 
-                    <div className={el.percent >= 95 ? "RankUser_Judge_S" : "RankUser_Judge"}>
-                      {rankCheck(el.percent)}
+                    <div
+                      className={
+                        el.percent ? el.percent : 0 >= 95 ? "RankUser_Judge_S" : "RankUser_Judge"
+                      }
+                    >
+                      {rankCheck(el.percent ? el.percent : 0)}
                     </div>
-                    <div className="RankUser_date">{el.saveDate.substring(0, 10)}</div>
+                    <div className="RankUser_date">{el.insertDate.substring(0, 10)}</div>
                     <div className="RankUser_Score">{el.score}</div>
                   </div>
                 );

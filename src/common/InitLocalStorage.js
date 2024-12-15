@@ -68,6 +68,8 @@ const tempList = [
   ["noteColor", 0],
   //눌렀을때 소리
   ["effectVol", false],
+  //눌렀을때 소리
+  ["season", 2],
 ];
 
 //selectList를 확인하여 최신이 아니면 최신과 같게 만들어준다.

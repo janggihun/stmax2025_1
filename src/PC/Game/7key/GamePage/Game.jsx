@@ -5,7 +5,7 @@ import "../Style7Key/Note.css";
 import "../../EscModal.css";
 import "../../../../style/Scroll.css";
 import { NoteReadManager } from "../../GameJsCommon/NoteReadManager.js";
-import { createLiveMap } from "./GameJs/LiveMapInit.js";
+import { createLiveMap } from "../../GameJsCommon/LiveMapInit.js";
 import { useLocation, useNavigate } from "react-router-dom";
 import { endGameSuccess, fnData, makeDailyData, sound3 } from "../../../../common/Base.js";
 import { EscModal } from "../../EscModal.jsx";

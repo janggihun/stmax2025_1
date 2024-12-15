@@ -14,7 +14,7 @@ import { CreateNote, CreateNote1 } from "./GameJs/CreateNote";
 
 export const GameStation4 = (props) => {
   const audioFlag = useRef(true);
-  const emoticon = props.emoticon;
+  const emoticon = props.emoticon; 
 
   // 로직용 맵
   const liveMap = props.liveMap;

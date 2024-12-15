@@ -5,7 +5,7 @@ import "../Style4Key/Note.css";
 import "../../EscModal.css";
 import "../../../../style/Scroll.css";
 import { NoteReadManager } from "../../GameJsCommon/NoteReadManager.js";
-import { createLiveMap } from "./GameJs/LiveMapInit.js";
+import { createLiveMap } from "../../GameJsCommon/LiveMapInit.js";
 import { useLocation, useNavigate } from "react-router-dom";
 import { fnData, sound3 } from "../../../../common/Base.js";
 import { EscModal } from "../../EscModal.jsx";
@@ -13,7 +13,7 @@ import { useGameYoutube } from "../../useGameYoutube.jsx";
 import { GameLoadingView } from "../../GameLoadingView.jsx";
 import { GameEndNotice } from "../../GameEndNotice.jsx";
 import { ReplayStation4 } from "./ReplayStation4.jsx";
-import { getReplay_4key, getReplay_7key } from "../../../../RestApi.js";
+import { getReplay_4key } from "../../../../RestApi.js";
 import { AnimatePresence } from "framer-motion";
 import { useDispatch } from "react-redux";
 

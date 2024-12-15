@@ -1,5 +1,6 @@
-import { changeGameSet } from "../../../../../Store/GameSetSlice";
-import { openModal } from "../../../../../Store/ModalSlice";
+import { fnData } from "../../../common/Base";
+import { changeGameSet } from "../../../Store/GameSetSlice";
+import { openModal } from "../../../Store/ModalSlice";
 
 export const createLiveMap = () => {
   const MissScope = 155;
@@ -16,7 +17,7 @@ export const createLiveMap = () => {
   tempMap.keyMemoryList = [];
   ////////////////////////////
   tempMap.gameSet = 0;
-  tempMap.keyType = 0;
+  tempMap.keyType = fnData("keyType");
   tempMap.timingPointList = [];
   tempMap.hitList = [];
   tempMap.timingPointList = [];
@@ -45,6 +46,19 @@ export const createLiveMap = () => {
   tempMap.miss = 0;
   tempMap.combo = 0;
   tempMap.maxCombo = 0;
+
+  ///시즌2
+  tempMap.stmax100 = 0;
+  tempMap.stmax90 = 0;
+  tempMap.stmax80 = 0;
+  tempMap.stmax70 = 0;
+  tempMap.stmax60 = 0;
+  tempMap.stmax50 = 0;
+  tempMap.stmax40 = 0;
+  tempMap.stmax30 = 0;
+  tempMap.stmax20 = 0;
+  tempMap.stmax10 = 0;
+  tempMap.stmax0 = 0;
   //////////////////
   tempMap.key0 = 0;
   tempMap.key1 = 0;
@@ -117,11 +131,7 @@ export const createLiveMap = () => {
 
 
 */
-  tempMap.endGame = (value) => {
-    if (value === "fail") {
-    } else {
-    }
-  };
+
   tempMap.speedPlus = () => {
     //변동스피드
     let gameSpeed = 0;
@@ -129,7 +139,6 @@ export const createLiveMap = () => {
     for (let i = 0; i < speedList.length; i++) {
       if (speedList[i + 1]) {
         if (speedList[i + 1][0] > tempMap.audioTime) {
-          // console.log(speedList[i][1]);
           gameSpeed = speedList[i][1];
           break;
         }
@@ -352,8 +361,8 @@ export const createLiveMap = () => {
               tempMap.intervalList.push(el);
               el[4] = 1;
             } else {
-              // div.style.transition = "all 0.05s";
-              // el[6].style.opacity = 0;
+              el[6].style.transition = "all 0.2s";
+              el[6].style.opacity = 0;
             }
 
             const diff = el[2] - keyTime;
@@ -448,12 +457,35 @@ export const createLiveMap = () => {
   };
   //왼쪽부터 몇 px인지 확인후 리턴
   tempMap.checkPos = (index) => {
-    return 90 * index;
+    let res = 0;
+    if (tempMap.keyType === 4) {
+      res = 90 * index;
+    } else if (tempMap.keyType === 7) {
+      if (index === 0) {
+        res = 0;
+      } else if (index === 1) {
+        res = 60;
+      } else if (index === 2) {
+        res = 60 + 60;
+      } else if (index === 3) {
+        res = 60 + 60 + 60;
+      } else if (index === 4) {
+        res = 60 + 60 + 60 + 70;
+      } else if (index === 5) {
+        res = 60 + 60 + 60 + 70 + 60;
+      } else if (index === 6) {
+        res = 60 + 60 + 60 + 70 + 60 + 60;
+      }
+    }
+    return res;
   };
 
   tempMap.CheckjudgeMent = (diff, el) => {
     const tempBar = diff / 5;
+
     const pos = tempMap.checkPos(el[1]);
+
+    console.log(pos);
     const abs_diff = Math.abs(diff);
     // console.log(diff);
     if (abs_diff <= SetllaScope) {
@@ -548,6 +580,33 @@ export const createLiveMap = () => {
 
   //키 누를때
   tempMap.findDownKey_replay = (keyValue) => {
+    if (tempMap.keyType === 4) {
+      replay_downKey_4(keyValue);
+    } else if (tempMap.keyType === 7) {
+      replay_downKey_7(keyValue);
+    }
+  };
+
+  //키 떌떄
+  tempMap.findUpKey_replay = (keyValue) => {
+    //
+    if (tempMap.keyType === 4) {
+      replay_upKey_4(keyValue);
+    } else if (tempMap.keyType === 7) {
+      replay_upKey_7(keyValue);
+    }
+  };
+
+  /*
+
+
+
+ ****************    4키     ************************
+
+
+
+*/
+  const replay_downKey_4 = (keyValue) => {
     if (keyValue === 0) {
       if (tempMap.key0 === 0) {
         tempMap.key0 = 1;
@@ -566,10 +625,7 @@ export const createLiveMap = () => {
       }
     }
   };
-
-  //키 떌떄
-  tempMap.findUpKey_replay = (keyValue) => {
-    //
+  const replay_upKey_4 = (keyValue) => {
     if (keyValue === 0) {
       tempMap.key0 = 0;
     } else if (keyValue === 1) {
@@ -580,5 +636,64 @@ export const createLiveMap = () => {
       tempMap.key3 = 0;
     }
   };
+  /*
+
+
+
+ ****************    7키     ************************
+
+
+
+*/
+  const replay_downKey_7 = (keyValue) => {
+    if (keyValue === 0) {
+      if (tempMap.key0 === 0) {
+        tempMap.key0 = 1;
+      }
+    } else if (keyValue === 1) {
+      if (tempMap.key1 === 0) {
+        tempMap.key1 = 1;
+      }
+    } else if (keyValue === 2) {
+      if (tempMap.key2 === 0) {
+        tempMap.key2 = 1;
+      }
+    } else if (keyValue === 3) {
+      if (tempMap.key3 === 0) {
+        tempMap.key3 = 1;
+      }
+    } else if (keyValue === 4) {
+      if (tempMap.key4 === 0) {
+        tempMap.key4 = 1;
+      }
+    } else if (keyValue === 5) {
+      if (tempMap.key5 === 0) {
+        tempMap.key5 = 1;
+      }
+    } else if (keyValue === 6) {
+      if (tempMap.key6 === 0) {
+        tempMap.key6 = 1;
+      }
+    }
+  };
+  const replay_upKey_7 = (keyValue) => {
+    if (keyValue === 0) {
+      tempMap.key0 = 0;
+    } else if (keyValue === 1) {
+      tempMap.key1 = 0;
+    } else if (keyValue === 2) {
+      tempMap.key2 = 0;
+    } else if (keyValue === 3) {
+      tempMap.key3 = 0;
+    } else if (keyValue === 4) {
+      tempMap.key4 = 0;
+    } else if (keyValue === 5) {
+      tempMap.key5 = 0;
+    } else if (keyValue === 6) {
+      tempMap.key6 = 0;
+    }
+  };
   return tempMap;
 };
+
+///4키

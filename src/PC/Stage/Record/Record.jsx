@@ -84,7 +84,8 @@ export const Record = () => {
 
   //데이터 - 곡 선택 변경
   const clickMusicRow = async (value) => {
-    openLoading();
+    dispatch(openLoading());
+
     const userId = window.localStorage.getItem("userId");
 
     const temp = { keyType: keyType, musicCnt: value.musicCnt };
@@ -98,7 +99,7 @@ export const Record = () => {
 
     setMusicRank(returnValue);
     setPlayDetail(value);
-    closeLoading();
+    dispatch(closeLoading());
   };
 
   /* 

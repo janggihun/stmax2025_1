@@ -326,7 +326,7 @@ export const Game_7key = () => {
         if (saveFlag.current) {
           Game_EndCommenBox.current.innerHTML = `<div>데이터 저장을 시작합니다.</div><div> 2초후 엔딩페이지로 넘어갑니다.</div>`;
           endGameSuccess(liveMap);
-          endGameSuccess2(liveMap);
+          // endGameSuccess2(liveMap);
           endgo();
         }
       }, 3500);

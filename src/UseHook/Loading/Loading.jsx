@@ -1,4 +1,4 @@
-import "./Loading.css";
+import style from "./Loading.module.css";
 import { useSelector } from "react-redux";
 
 export const Loading = () => {
@@ -6,9 +6,9 @@ export const Loading = () => {
 
   if (isLoading) {
     return (
-      <div className="Loading_Container3">
-        <div className="Loading_App">
-          <img className="Loading_status1" src="/Loading/loading2.gif" alt="없음" />
+      <div className={style.Loading_Container}>
+        <div className={style.Loading_App}>
+          <img className={style.Loading_App} src="/Loading/loading2.gif" alt="없음" />
         </div>
       </div>
     );

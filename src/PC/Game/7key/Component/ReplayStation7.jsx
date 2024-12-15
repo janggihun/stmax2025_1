@@ -11,6 +11,7 @@ import { motion } from "framer-motion";
 import JudgeHighlightPool from "../../GameJsCommon/JudgeHighlightPool";
 import { AddrManager } from "../../GameJsCommon/AddrManager";
 import { CreateNote, CreateNote1 } from "../Scripts/CreateNote";
+import { GameScoreBoard } from "../../GameComponentCommon/GameScoreBoard";
 
 export const ReplayStation7 = (props) => {
   const audioFlag = useRef(true);
@@ -262,7 +263,7 @@ export const ReplayStation7 = (props) => {
 
           <div className="Game_ComboBlank"></div>
         </div>
-
+        <GameScoreBoard liveData={liveData} />
         <div className="Game_EffectBox">
           {[...Array(20)].map((el) => {
             return <div className="Effect"></div>;

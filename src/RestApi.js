@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const httpUrl = "https://port-0-stellivemusic-9zxht12blqae5mw2.sel4.cloudtype.app/api";
+// const httpUrl = "https://port-0-stellivemusic-9zxht12blqae5mw2.sel4.cloudtype.app/api";
 
-// const httpUrl = "http://localhost:8080/api";
+const httpUrl = "http://localhost:8080/api";
 const getUrl = (url) => {
   return httpUrl + url;
 };
@@ -367,4 +367,35 @@ export const delReplay_4 = async (cnt) => {
     },
   });
   return res.data;
+};
+
+///시즌2///
+
+export const sendResultData_4key_2 = async (tmpMap, replayList) => {
+  const limitCnt = 400;
+  const tmpList = chunk(replayList, limitCnt);
+  const res = await axios.post(getUrl("/music/key4/saveEndData"), tmpMap);
+  const recordCnt = res.data;
+  console.log("recordCnt :", recordCnt);
+  tmpList.forEach(async (elList) => {
+    await axios.post(getUrl("/music/key4/saveReplayData"), {
+      recordCnt: recordCnt,
+      replayData: JSON.stringify(elList),
+    });
+  });
+};
+
+export const sendResultData_7key_2 = async (tmpMap, replayList) => {
+  const limitCnt = 400;
+  const tmpList = chunk(replayList, limitCnt);
+  //기존 스코어보다 더 높은경우
+  const res = await axios.post(getUrl("/music/key7/saveEndData"), tmpMap);
+  const recordCnt = res.data;
+
+  tmpList.forEach(async (elList) => {
+    await axios.post(getUrl("/music/key7/saveReplayData"), {
+      recordCnt: recordCnt,
+      replayData: JSON.stringify(elList),
+    });
+  });
 };

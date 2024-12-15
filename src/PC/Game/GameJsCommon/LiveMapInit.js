@@ -59,6 +59,7 @@ export const createLiveMap = () => {
   tempMap.stmax20 = 0;
   tempMap.stmax10 = 0;
   tempMap.stmax0 = 0;
+
   //////////////////
   tempMap.key0 = 0;
   tempMap.key1 = 0;
@@ -484,8 +485,6 @@ export const createLiveMap = () => {
     const tempBar = diff / 5;
 
     const pos = tempMap.checkPos(el[1]);
-
-    console.log(pos);
     const abs_diff = Math.abs(diff);
     // console.log(diff);
     if (abs_diff <= SetllaScope) {

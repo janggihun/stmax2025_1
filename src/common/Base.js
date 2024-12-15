@@ -1,4 +1,11 @@
-import { addConnectUs, saveDaily, sendResultData_4key, sendResultData_7key } from "../RestApi";
+import {
+  addConnectUs,
+  saveDaily,
+  sendResultData_4key,
+  sendResultData_4key_2,
+  sendResultData_7key,
+  sendResultData_7key_2,
+} from "../RestApi";
 import { levelList } from "./Array";
 export const checkId = () => {
   if (window.localStorage.getItem("userId")) {
@@ -254,6 +261,43 @@ export const endGameSuccess = (liveMap) => {
     sendResultData_4key(tmpMap, liveMap.current.replayList);
   } else if (fnData("keyType") === 7) {
     sendResultData_7key(tmpMap, liveMap.current.replayList);
+  }
+};
+//시즌2 연습용
+export const endGameSuccess2 = (liveMap) => {
+  const tmpMap = {
+    recordCnt: 0,
+    season: 2,
+    musicCnt: liveMap.current.musicCnt,
+    userId: window.localStorage.getItem("userId"),
+    level: liveMap.current.level,
+    speed: liveMap.current.speed,
+    score: liveMap.current.score,
+
+    stmax100: liveMap.current.stella,
+    stmax90: liveMap.current.perfect,
+    stmax60: liveMap.current.good,
+    stmax30: liveMap.current.bad,
+    stmax0: liveMap.current.miss,
+
+    maxCombo: liveMap.current.maxCombo,
+
+    helpInt: liveMap.current.helpInt,
+    userAudioOffset: liveMap.current.userAudioOffset,
+    insertDate: timestamp(),
+  };
+
+  function timestamp() {
+    var today = new Date();
+    // 미국시간 기준이니까 9를 더해주면 대한민국 시간됨
+    today.setHours(today.getHours() + 9);
+    // 문자열로 바꿔주고 T를 빈칸으로 바꿔주면 yyyy-mm-dd hh:mm:ss 이런 형식 나옴
+    return today.toISOString().replace("T", " ").substring(0, 19);
+  }
+  if (fnData("keyType") === 4) {
+    sendResultData_4key_2(tmpMap, liveMap.current.replayList);
+  } else if (fnData("keyType") === 7) {
+    sendResultData_7key_2(tmpMap, liveMap.current.replayList);
   }
 };
 

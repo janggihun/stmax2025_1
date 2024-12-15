@@ -5,15 +5,16 @@ import {
   allPosition_Middle,
   gameEmoticon_Left,
   gameEmoticon_Middle,
-} from "../../../../common/Game_7key";
+} from "../../../../common/Game_4key";
 import "../../GameCssCommon/GameCommon.css";
 import { motion } from "framer-motion";
 import JudgeHighlightPool from "../../GameJsCommon/JudgeHighlightPool";
 import { AddrManager } from "../../GameJsCommon/AddrManager";
-import { CreateNote, CreateNote1 } from "./CreateNote";
+import { CreateNote, CreateNote1 } from "../Scripts/CreateNote";
 
-export const ReplayStation7 = (props) => {
+export const ReplayStation4 = (props) => {
   const audioFlag = useRef(true);
+
   const emoticon = props.emoticon;
 
   // 로직용 맵
@@ -21,6 +22,7 @@ export const ReplayStation7 = (props) => {
 
   //렌더용 데이터
   const [liveData, setLiveData] = useState(liveMap.current);
+
   //오디오
 
   const JudgeSlowFast = useRef();
@@ -112,6 +114,40 @@ export const ReplayStation7 = (props) => {
     };
   }, []);
 
+  const checkHeight = (time) => {
+    let index = 0;
+    let returnValue = 0;
+    const speedList = liveMap.current.speedList;
+    for (let i = 0; i < time; i++) {
+      if (speedList[index][0] < i && speedList.length > index + 1) {
+        index++;
+      }
+
+      returnValue += speedList[index - 1] ? speedList[index - 1][1] : speedList[0][1];
+    }
+
+    return returnValue;
+  };
+  const fnNoteLIneBackGround = () => {
+    const gijun = 100;
+
+    if (liveData.combo > 10 * gijun) {
+      return "#290000ef";
+    } else if (liveData.combo > 6 * gijun) {
+      return "#2e0f05f0";
+    } else if (liveData.combo > 5 * gijun) {
+      return "#400c36f0";
+    } else if (liveData.combo > 4 * gijun) {
+      return "#2b0c40f1";
+    } else if (liveData.combo > 3 * gijun) {
+      return "#0c2340f0";
+    } else if (liveData.combo > 2 * gijun) {
+      return "#062c13ef";
+    } else if (liveData.combo > 1 * gijun) {
+      return "#29240bef";
+    }
+  };
+
   return (
     <>
       <motion.div
@@ -128,71 +164,54 @@ export const ReplayStation7 = (props) => {
         }
       >
         <div className="GamePlay_Container">
-          <div className="Game_NoteContainer">
-            <div className="Game_JudgeBar" id="judgeBar"></div>
-            <div className="NoteBox" id="noteBox">
+          <div className="Game_NoteContainer_4">
+            <div className="Game_JudgeBar_4" id="judgeBar"></div>
+            <div className="NoteBox_4" id="noteBox">
               <div className="ScrollBox" id="scrollBox"></div>
             </div>
           </div>
         </div>
 
-        <div className="LineContainer" id="LineContainer"></div>
-        <div className="Game_KeyBoardPushBox">
-          <div className="KeyBtnBox1">
+        {/* <div className="LineContainer_4" style={{ backgroundColor: fnNoteLIneBackGround() }}></div> */}
+        <div className="LineContainer_4" id="LineContainer"></div>
+        <div className="Game_KeyBoardPushBox_4">
+          <div className="KeyBtnBox1_4">
             {liveData.key0 === 0 ? (
               <img className="Keyimg1" src="/Gear7K/KL_White_off.png" />
             ) : (
               <img className="Keyimg1" src="/Gear7K/KL_White_on.png" />
             )}
           </div>
-          <div className="KeyBtnBox1">
+
+          <div className="KeyBtnBox1_4">
             {liveData.key1 === 0 ? (
-              <img className="Keyimg1" src="/Gear7K/KL_Blue_off.png" />
+              <img className="Keyimg1" src="/Gear7K/KL_White_off.png" />
             ) : (
-              <img className="Keyimg1" src="/Gear7K/KL_Blue_on.png" />
+              <img className="Keyimg1" src="/Gear7K/KL_White_on.png" />
             )}
           </div>
-          <div className="KeyBtnBox1">
+
+          <div className="KeyBtnBox1_4">
             {liveData.key2 === 0 ? (
               <img className="Keyimg1" src="/Gear7K/KL_White_off.png" />
             ) : (
               <img className="Keyimg1" src="/Gear7K/KL_White_on.png" />
             )}
           </div>
-          <div className="KeyBtnBox3">
+
+          <div className="KeyBtnBox1_4">
             {liveData.key3 === 0 ? (
-              <img className="Keyimg2" src="/Gear7K/KL_Yellow_off.png" />
-            ) : (
-              <img className="Keyimg2" src="/Gear7K/KL_Yellow_on.png" />
-            )}
-          </div>
-          <div className="KeyBtnBox1">
-            {liveData.key4 === 0 ? (
-              <img className="Keyimg1" src="/Gear7K/KL_White_off.png" />
-            ) : (
-              <img className="Keyimg1" src="/Gear7K/KL_White_on.png" />
-            )}
-          </div>
-          <div className="KeyBtnBox1">
-            {liveData.key5 === 0 ? (
-              <img className="Keyimg1" src="/Gear7K/KL_Blue_off.png" />
-            ) : (
-              <img className="Keyimg1" src="/Gear7K/KL_Blue_on.png" />
-            )}
-          </div>
-          <div className="KeyBtnBox1">
-            {liveData.key6 === 0 ? (
               <img className="Keyimg1" src="/Gear7K/KL_White_off.png" />
             ) : (
               <img className="Keyimg1" src="/Gear7K/KL_White_on.png" />
             )}
           </div>
         </div>
-        <div className="Game_ImgContainer">
-          <img src="/Gear7K/frame.png" />
+        <div className="Game_ImgContainer_4">
+          <img style={{ width: "643px", height: "100%" }} src="/Gear7K/frame.png" />
         </div>
 
-        <div className="Game_LifeBoxContainer_7">
+        <div className="Game_LifeBoxContainer_4">
           <div className="Game_LifeBoxContainer_4_Box">
             <div
               className="Game_LifeBoxContainer_4_Box_grid"
@@ -205,44 +224,32 @@ export const ReplayStation7 = (props) => {
             </div>
           </div>
         </div>
-        <div className="Game_LightGraBox">
+        <div className="Game_LightGraBox_4">
           {liveData.key0 === 0 ? (
-            <div className="Game_LightGraOff1"></div>
+            <div className="Game_LightGraOff1_4"></div>
           ) : (
-            <div className="Game_LightGraOn1"></div>
+            <div className="Game_LightGraOn1_4"></div>
           )}
+
           {liveData.key1 === 0 ? (
-            <div className="Game_LightGraOff1"></div>
+            <div className="Game_LightGraOff1_4"></div>
           ) : (
-            <div className="Game_LightGraOn1"></div>
+            <div className="Game_LightGraOn1_4"></div>
           )}
+
           {liveData.key2 === 0 ? (
-            <div className="Game_LightGraOff1"></div>
+            <div className="Game_LightGraOff1_4"></div>
           ) : (
-            <div className="Game_LightGraOn1"></div>
+            <div className="Game_LightGraOn1_4"></div>
           )}
+
           {liveData.key3 === 0 ? (
-            <div className="Game_LightGraOff3"></div>
+            <div className="Game_LightGraOff1_4"></div>
           ) : (
-            <div className="Game_LightGraOn3"></div>
-          )}
-          {liveData.key4 === 0 ? (
-            <div className="Game_LightGraOff1"></div>
-          ) : (
-            <div className="Game_LightGraOn1"></div>
-          )}
-          {liveData.key5 === 0 ? (
-            <div className="Game_LightGraOff1"></div>
-          ) : (
-            <div className="Game_LightGraOn1"></div>
-          )}
-          {liveData.key6 === 0 ? (
-            <div className="Game_LightGraOff1"></div>
-          ) : (
-            <div className="Game_LightGraOn1"></div>
+            <div className="Game_LightGraOn1_4"></div>
           )}
         </div>
-        <div className="Game_ComboDisplay">
+        <div className="Game_ComboDisplay_4">
           <div className="Game_Combo">
             <div className="Game_ComboDetailBlank"></div>
             <div className="Game_ComboDetail">
@@ -253,7 +260,7 @@ export const ReplayStation7 = (props) => {
             </div>
           </div>
           <div className="Game_ComboAcc" id="ComboAcc">
-            <div className="Game_JudgeSlowFast" ref={JudgeSlowFast}></div>
+            <div className="Game_JudgeSlowFast_4" ref={JudgeSlowFast}></div>
           </div>
           <div className="Game_Fever">
             <div className="Game_FeverBar">
@@ -274,20 +281,22 @@ export const ReplayStation7 = (props) => {
         <div className="Game_FeverEffect" id="FeverEffect">
           <img className="img" src="/Fever/circle.png" />
         </div>
-        <div className="Game_FeverStr" id="FeverStr">
+        <div className="Game_FeverStr_4" id="FeverStr">
           x1
         </div>
-        <div className="Game_EffectBox">
+        <div className="Game_EffectBox_4">
           {[...Array(20)].map((el) => {
-            return <div className="Effect"></div>;
+            return <div className="Effect_4"></div>;
           })}
         </div>
-        <div className="Game_ScorePannel_7 font30">
+        <div className="Game_ScorePannel font30">
           <div className="Game_ScorePannel_Row sort">Score:{liveData.score}</div>
         </div>
-        <div className="Game_FeverPannel_7 sort " id="GameFever"></div>
+        <div className="Game_FeverPannel sort " id="GameFever"></div>
       </motion.div>
       <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         className="Game_Emoticon_MultyBox"
         key={liveData.feverMultifly}
         style={gamePos === "Left" ? { left: gameEmoticon_Left } : { left: gameEmoticon_Middle }}

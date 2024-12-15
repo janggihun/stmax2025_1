@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./Game7key.css";
 import "./../../GameCssCommon/Note.css";
 import { NoteReadManager } from "../../GameJsCommon/NoteReadManager.js";
 import { createLiveMap } from "../../GameJsCommon/LiveMapInit.js";
@@ -10,14 +9,13 @@ import { useGameYoutube } from "../../GameComponentCommon/useGameYoutube.jsx";
 import { GameLoadingView } from "../../GameComponentCommon/GameLoadingView.jsx";
 import { GameEndNotice } from "../../GameComponentCommon/GameEndNotice.jsx";
 import { AnimatePresence } from "framer-motion";
-import { GameStation7 } from "./GameStation7.jsx";
+import { GameStation4 } from "./GameStation4.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { changeGameSet } from "../../../../Store/GameSetSlice.jsx";
-import { logicTitle } from "../../../../RestApi.js";
 
 //
 
-export const Game_7key = () => {
+export const Game_4key = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -124,6 +122,7 @@ export const Game_7key = () => {
       liveMap.current.helpInt = fnData("helpInt");
       liveMap.current.level = fnData("level");
       liveMap.current.speed = fnData("speed");
+      liveMap.current.keyType = fnData("keyType");
       liveMap.current.dispatch = dispatch;
       // console.log("Group : ", liveMap.current.Group);
       // console.log("replayMap : ", liveMap.current.replayMap);
@@ -192,6 +191,26 @@ export const Game_7key = () => {
         // bpm리스트와 스피드 리스트가 잘 들어갔는지 체크 후 실행하는 메서드
         await check_bpmListAndSpeedList();
 
+        // const checkHeight = (time) => {
+        //   let index = 0;
+        //   let returnValue = 0;
+        //   const speedList = liveMap.current.speedList;
+        //   for (let i = 0; i < time; i++) {
+        //     if (speedList[index][0] < i && speedList.length > index + 1) {
+        //       index++;
+        //     }
+
+        //     returnValue += speedList[index - 1] ? speedList[index - 1][1] : speedList[0][1];
+        //   }
+
+        //   return returnValue;
+        // };
+
+        // liveMap.current.speedGameList = liveMap.current.gameList.map((el) => {
+        //   return [el[0], el[1], checkHeight(el[2]), checkHeight(el[3]), el[4], el[5]];
+        // });
+        // console.log("liveMap.current.speedGameList : ", liveMap.current.speedGameList);
+
         nextStep(4);
       }
     } else if (progressCnt === 4) {
@@ -201,12 +220,12 @@ export const Game_7key = () => {
 
         const loadAudio = async () => {
           try {
-            const response = await fetch(`/7key/${liveMap.current.musicCnt}/audio.mp3`); // public 폴더의 경로로 접근
+            const response = await fetch(`/4key/${liveMap.current.musicCnt}/audio.mp3`); // public 폴더의 경로로 접근
             const arrayBuffer = await response.arrayBuffer();
             const decodedData = await audioContextRef.current.decodeAudioData(arrayBuffer);
 
             audioBufferRef.current = decodedData;
-            //확인용
+
             const gainNode = audioContextRef.current.createGain();
             gainNode.gain.value = fnData("audioVolume"); // ** 볼륨 설정
             const extendedBuffer = audioContextRef.current.createBuffer(
@@ -335,16 +354,7 @@ export const Game_7key = () => {
       }, 2000);
     }
   }, [gameSet]);
-  const checkFailLogic = () => {
-    if (
-      liveMap.current.stella >= 100 &&
-      liveMap.current.musicCnt === 2 &&
-      liveMap.current.level === "stella"
-    ) {
-      logicTitle(53);
-      // testlogicTitle(53);
-    }
-  };
+  const checkFailLogic = () => {};
   //esc모달 관련 시작//
   useEffect(() => {
     const escKeyModalClose = (e) => {
@@ -367,7 +377,7 @@ export const Game_7key = () => {
       <div className="Game_Container">
         {renderGameYoutube()}
         {progressCnt === 8 && (
-          <GameStation7 emoticon={emoticon} youtubeStart={youtubeStart} liveMap={liveMap} />
+          <GameStation4 emoticon={emoticon} youtubeStart={youtubeStart} liveMap={liveMap} />
         )}
         {progressCnt !== 8 && (
           <GameLoadingView

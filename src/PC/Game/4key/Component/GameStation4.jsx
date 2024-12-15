@@ -10,7 +10,7 @@ import "../../GameCssCommon/GameCommon.css";
 import { motion } from "framer-motion";
 import JudgeHighlightPool from "../../GameJsCommon/JudgeHighlightPool";
 import { AddrManager } from "../../GameJsCommon/AddrManager";
-import { CreateNote, CreateNote1 } from "./CreateNote";
+import { CreateNote, CreateNote1 } from "../Scripts/CreateNote";
 
 export const GameStation4 = (props) => {
   const audioFlag = useRef(true);
@@ -182,7 +182,7 @@ export const GameStation4 = (props) => {
         }
       >
         <div className="GamePlay_Container">
-          <div className="Game_NoteContainer">
+          <div className="Game_NoteContainer_4">
             <div className="Game_JudgeBar_4" id="judgeBar"></div>
             <div className="NoteBox_4" id="noteBox">
               <div className="ScrollBox" id="scrollBox"></div>
@@ -298,7 +298,7 @@ export const GameStation4 = (props) => {
         <div className="Game_FeverEffect" id="FeverEffect">
           <img className="img" src="/Fever/circle.png" />
         </div>
-        <div className="Game_FeverStr" id="FeverStr">
+        <div className="Game_FeverStr_4" id="FeverStr">
           x1
         </div>
         <div className="Game_EffectBox_4">

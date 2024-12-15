@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./Game7key.css";
 import "./../../GameCssCommon/Note.css";
 import { NoteReadManager } from "../../GameJsCommon/NoteReadManager.js";
 import { createLiveMap } from "../../GameJsCommon/LiveMapInit.js";

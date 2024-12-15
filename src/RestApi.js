@@ -355,3 +355,16 @@ export const getUserLevel = async (userId) => {
 
   return res.data;
 };
+
+export const getReplay_4 = async (cnt) => {
+  const res = await axios.post(getUrl("/music/getReplay"), cnt);
+  return res.data;
+};
+export const delReplay_4 = async (cnt) => {
+  const res = await axios.delete(getUrl("/music/delReplay"), {
+    params: {
+      replayCnt: cnt,
+    },
+  });
+  return res.data;
+};

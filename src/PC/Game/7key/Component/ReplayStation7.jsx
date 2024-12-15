@@ -10,11 +10,10 @@ import "../../GameCssCommon/GameCommon.css";
 import { motion } from "framer-motion";
 import JudgeHighlightPool from "../../GameJsCommon/JudgeHighlightPool";
 import { AddrManager } from "../../GameJsCommon/AddrManager";
-import { CreateNote, CreateNote1 } from "./CreateNote";
+import { CreateNote, CreateNote1 } from "../Scripts/CreateNote";
 
-export const GameStation7 = (props) => {
+export const ReplayStation7 = (props) => {
   const audioFlag = useRef(true);
-
   const emoticon = props.emoticon;
 
   // 로직용 맵
@@ -76,7 +75,6 @@ export const GameStation7 = (props) => {
 
       liveMap.current.tickerInterval = setInterval(() => {
         const diffTime = Date.now() - liveMap.current.startTime;
-
         //1000ms
         if (audioFlag.current) {
           if (diffTime > 1000 - userAudioOffset) {
@@ -84,12 +82,11 @@ export const GameStation7 = (props) => {
             liveMap.current.audio.start(0, 1);
           }
         }
-
+        // 화면만들기
         if (diffTime > (1000 / fps) * liveMap.current.nowIndex) {
-          // 화면만들기
           liveMap.current.audioTime = Math.floor((1000 / fps) * liveMap.current.nowIndex);
 
-          liveMap.current.judgeMent();
+          liveMap.current.replayjudgeMent();
           liveMap.current.speedPlus();
           // CreateNote(liveMap);
           const tmpLiveMap = { ...liveMap.current };
@@ -98,100 +95,20 @@ export const GameStation7 = (props) => {
         }
       }, 1);
     }
-    //test
-    // setTimeout(() => {
-    //   liveMap.current.dispatch(changeGameSet(2));
-    // }, 5000);
     return () => {
       cancelAnimationFrame(liveMap.current.requestAni);
       clearInterval(liveMap.current.tickerInterval);
     };
   }, []);
-  //키 누를때
 
-  const findDownKey = (e) => {
-    const diffTime = Date.now() - liveMap.current.startTime;
-
-    if (e.keyCode === liveMap.current.keyList_7[0]) {
-      if (liveMap.current.key0 === 0) {
-        // audioPlaySound();
-        liveMap.current.key0 = 1;
-        liveMap.current.keyMemoryList.push([1, diffTime, 0]);
-      }
-    } else if (e.keyCode === liveMap.current.keyList_7[1]) {
-      if (liveMap.current.key1 === 0) {
-        // audioPlaySound();
-        liveMap.current.key1 = 1;
-        liveMap.current.keyMemoryList.push([1, diffTime, 1]);
-      }
-    } else if (e.keyCode === liveMap.current.keyList_7[2]) {
-      if (liveMap.current.key2 === 0) {
-        // audioPlaySound();
-        liveMap.current.key2 = 1;
-        liveMap.current.keyMemoryList.push([1, diffTime, 2]);
-      }
-    } else if (e.keyCode === liveMap.current.keyList_7[3]) {
-      if (liveMap.current.key3 === 0) {
-        // audioPlaySound();
-        liveMap.current.key3 = 1;
-        liveMap.current.keyMemoryList.push([1, diffTime, 3]);
-      }
-    } else if (e.keyCode === liveMap.current.keyList_7[4]) {
-      if (liveMap.current.key4 === 0) {
-        // audioPlaySound();
-        liveMap.current.key4 = 1;
-        liveMap.current.keyMemoryList.push([1, diffTime, 4]);
-      }
-    } else if (e.keyCode === liveMap.current.keyList_7[5]) {
-      if (liveMap.current.key5 === 0) {
-        // audioPlaySound();
-        liveMap.current.key5 = 1;
-        liveMap.current.keyMemoryList.push([1, diffTime, 5]);
-      }
-    } else if (e.keyCode === liveMap.current.keyList_7[6]) {
-      if (liveMap.current.key6 === 0) {
-        // audioPlaySound();
-        liveMap.current.key6 = 1;
-        liveMap.current.keyMemoryList.push([1, diffTime, 6]);
-      }
-    }
-  };
-
-  //키 떌떄
-  const findUpKey = (e) => {
-    //
-    const diffTime = Date.now() - liveMap.current.startTime;
-    if (e.keyCode === liveMap.current.keyList_7[0]) {
-      liveMap.current.key0 = 0;
-      liveMap.current.keyMemoryList.push([0, diffTime, 0]);
-    } else if (e.keyCode === liveMap.current.keyList_7[1]) {
-      liveMap.current.key1 = 0;
-      liveMap.current.keyMemoryList.push([0, diffTime, 1]);
-    } else if (e.keyCode === liveMap.current.keyList_7[2]) {
-      liveMap.current.key2 = 0;
-      liveMap.current.keyMemoryList.push([0, diffTime, 2]);
-    } else if (e.keyCode === liveMap.current.keyList_7[3]) {
-      liveMap.current.key3 = 0;
-      liveMap.current.keyMemoryList.push([0, diffTime, 3]);
-    } else if (e.keyCode === liveMap.current.keyList_7[4]) {
-      liveMap.current.key4 = 0;
-      liveMap.current.keyMemoryList.push([0, diffTime, 4]);
-    } else if (e.keyCode === liveMap.current.keyList_7[5]) {
-      liveMap.current.key5 = 0;
-      liveMap.current.keyMemoryList.push([0, diffTime, 5]);
-    } else if (e.keyCode === liveMap.current.keyList_7[6]) {
-      liveMap.current.key6 = 0;
-      liveMap.current.keyMemoryList.push([0, diffTime, 6]);
-    }
-  };
   //키 바인딩
   useEffect(() => {
     // esc 모달창
-    document.addEventListener("keydown", findDownKey);
-    document.addEventListener("keyup", findUpKey);
+    document.addEventListener("keydown", liveMap.findDownKey);
+    document.addEventListener("keyup", liveMap.findUpKey);
     return () => {
-      document.removeEventListener("keydown", findDownKey);
-      document.removeEventListener("keyup", findUpKey);
+      document.removeEventListener("keydown", liveMap.findDownKey);
+      document.removeEventListener("keyup", liveMap.findUpKey);
     };
   }, []);
 
@@ -218,6 +135,7 @@ export const GameStation7 = (props) => {
             </div>
           </div>
         </div>
+
         <div className="LineContainer" id="LineContainer"></div>
         <div className="Game_KeyBoardPushBox">
           <div className="KeyBtnBox1">
@@ -273,6 +191,7 @@ export const GameStation7 = (props) => {
         <div className="Game_ImgContainer">
           <img src="/Gear7K/frame.png" />
         </div>
+
         <div className="Game_LifeBoxContainer_7">
           <div className="Game_LifeBoxContainer_4_Box">
             <div
@@ -369,8 +288,6 @@ export const GameStation7 = (props) => {
         <div className="Game_FeverPannel_7 sort " id="GameFever"></div>
       </motion.div>
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
         className="Game_Emoticon_MultyBox"
         key={liveData.feverMultifly}
         style={gamePos === "Left" ? { left: gameEmoticon_Left } : { left: gameEmoticon_Middle }}

@@ -9,10 +9,10 @@ import { useEffect } from "react";
 import { Stage } from "./Stage/Stage";
 import { useInfoModal } from "../UseHook/InfoModal/useInfoModal";
 import { useSelector } from "react-redux";
-import { Game_4key } from "./Game/4key/GamePage/Game";
-import { Game_7key } from "./Game/7key/GamePage/Game";
-import { Replay_7key } from "./Game/7key/GamePage/Replay";
-import { Replay_4key } from "./Game/4key/GamePage/Replay";
+import { Game_4key } from "./Game/4key/Component/Game";
+import { Game_7key } from "./Game/7key/Component/Game";
+import { Replay_7key } from "./Game/7key/Component/Replay";
+import { Replay_4key } from "./Game/4key/Component/Replay";
 import { EndView } from "./Game/End/EndView";
 import { Loading } from "../UseHook/Loading/Loading";
 

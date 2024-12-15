@@ -5,14 +5,14 @@ import {
   allPosition_Middle,
   gameEmoticon_Left,
   gameEmoticon_Middle,
-} from "../../../../common/Game_4key";
+} from "../../../../common/Game_7key";
 import "../../GameCssCommon/GameCommon.css";
 import { motion } from "framer-motion";
 import JudgeHighlightPool from "../../GameJsCommon/JudgeHighlightPool";
 import { AddrManager } from "../../GameJsCommon/AddrManager";
-import { CreateNote, CreateNote1 } from "./CreateNote";
+import { CreateNote, CreateNote1 } from "../Scripts/CreateNote";
 
-export const ReplayStation4 = (props) => {
+export const GameStation7 = (props) => {
   const audioFlag = useRef(true);
 
   const emoticon = props.emoticon;
@@ -22,7 +22,6 @@ export const ReplayStation4 = (props) => {
 
   //렌더용 데이터
   const [liveData, setLiveData] = useState(liveMap.current);
-
   //오디오
 
   const JudgeSlowFast = useRef();
@@ -77,6 +76,7 @@ export const ReplayStation4 = (props) => {
 
       liveMap.current.tickerInterval = setInterval(() => {
         const diffTime = Date.now() - liveMap.current.startTime;
+
         //1000ms
         if (audioFlag.current) {
           if (diffTime > 1000 - userAudioOffset) {
@@ -84,11 +84,12 @@ export const ReplayStation4 = (props) => {
             liveMap.current.audio.start(0, 1);
           }
         }
-        // 화면만들기
+
         if (diffTime > (1000 / fps) * liveMap.current.nowIndex) {
+          // 화면만들기
           liveMap.current.audioTime = Math.floor((1000 / fps) * liveMap.current.nowIndex);
 
-          liveMap.current.replayjudgeMent();
+          liveMap.current.judgeMent();
           liveMap.current.speedPlus();
           // CreateNote(liveMap);
           const tmpLiveMap = { ...liveMap.current };
@@ -97,56 +98,102 @@ export const ReplayStation4 = (props) => {
         }
       }, 1);
     }
+    //test
+    // setTimeout(() => {
+    //   liveMap.current.dispatch(changeGameSet(2));
+    // }, 5000);
     return () => {
       cancelAnimationFrame(liveMap.current.requestAni);
       clearInterval(liveMap.current.tickerInterval);
     };
   }, []);
+  //키 누를때
 
+  const findDownKey = (e) => {
+    const diffTime = Date.now() - liveMap.current.startTime;
+
+    if (e.keyCode === liveMap.current.keyList_7[0]) {
+      if (liveMap.current.key0 === 0) {
+        // audioPlaySound();
+        liveMap.current.key0 = 1;
+        liveMap.current.keyMemoryList.push([1, diffTime, 0]);
+      }
+    } else if (e.keyCode === liveMap.current.keyList_7[1]) {
+      if (liveMap.current.key1 === 0) {
+        // audioPlaySound();
+        liveMap.current.key1 = 1;
+        liveMap.current.keyMemoryList.push([1, diffTime, 1]);
+      }
+    } else if (e.keyCode === liveMap.current.keyList_7[2]) {
+      if (liveMap.current.key2 === 0) {
+        // audioPlaySound();
+        liveMap.current.key2 = 1;
+        liveMap.current.keyMemoryList.push([1, diffTime, 2]);
+      }
+    } else if (e.keyCode === liveMap.current.keyList_7[3]) {
+      if (liveMap.current.key3 === 0) {
+        // audioPlaySound();
+        liveMap.current.key3 = 1;
+        liveMap.current.keyMemoryList.push([1, diffTime, 3]);
+      }
+    } else if (e.keyCode === liveMap.current.keyList_7[4]) {
+      if (liveMap.current.key4 === 0) {
+        // audioPlaySound();
+        liveMap.current.key4 = 1;
+        liveMap.current.keyMemoryList.push([1, diffTime, 4]);
+      }
+    } else if (e.keyCode === liveMap.current.keyList_7[5]) {
+      if (liveMap.current.key5 === 0) {
+        // audioPlaySound();
+        liveMap.current.key5 = 1;
+        liveMap.current.keyMemoryList.push([1, diffTime, 5]);
+      }
+    } else if (e.keyCode === liveMap.current.keyList_7[6]) {
+      if (liveMap.current.key6 === 0) {
+        // audioPlaySound();
+        liveMap.current.key6 = 1;
+        liveMap.current.keyMemoryList.push([1, diffTime, 6]);
+      }
+    }
+  };
+
+  //키 떌떄
+  const findUpKey = (e) => {
+    //
+    const diffTime = Date.now() - liveMap.current.startTime;
+    if (e.keyCode === liveMap.current.keyList_7[0]) {
+      liveMap.current.key0 = 0;
+      liveMap.current.keyMemoryList.push([0, diffTime, 0]);
+    } else if (e.keyCode === liveMap.current.keyList_7[1]) {
+      liveMap.current.key1 = 0;
+      liveMap.current.keyMemoryList.push([0, diffTime, 1]);
+    } else if (e.keyCode === liveMap.current.keyList_7[2]) {
+      liveMap.current.key2 = 0;
+      liveMap.current.keyMemoryList.push([0, diffTime, 2]);
+    } else if (e.keyCode === liveMap.current.keyList_7[3]) {
+      liveMap.current.key3 = 0;
+      liveMap.current.keyMemoryList.push([0, diffTime, 3]);
+    } else if (e.keyCode === liveMap.current.keyList_7[4]) {
+      liveMap.current.key4 = 0;
+      liveMap.current.keyMemoryList.push([0, diffTime, 4]);
+    } else if (e.keyCode === liveMap.current.keyList_7[5]) {
+      liveMap.current.key5 = 0;
+      liveMap.current.keyMemoryList.push([0, diffTime, 5]);
+    } else if (e.keyCode === liveMap.current.keyList_7[6]) {
+      liveMap.current.key6 = 0;
+      liveMap.current.keyMemoryList.push([0, diffTime, 6]);
+    }
+  };
   //키 바인딩
   useEffect(() => {
     // esc 모달창
-    document.addEventListener("keydown", liveMap.findDownKey);
-    document.addEventListener("keyup", liveMap.findUpKey);
+    document.addEventListener("keydown", findDownKey);
+    document.addEventListener("keyup", findUpKey);
     return () => {
-      document.removeEventListener("keydown", liveMap.findDownKey);
-      document.removeEventListener("keyup", liveMap.findUpKey);
+      document.removeEventListener("keydown", findDownKey);
+      document.removeEventListener("keyup", findUpKey);
     };
   }, []);
-
-  const checkHeight = (time) => {
-    let index = 0;
-    let returnValue = 0;
-    const speedList = liveMap.current.speedList;
-    for (let i = 0; i < time; i++) {
-      if (speedList[index][0] < i && speedList.length > index + 1) {
-        index++;
-      }
-
-      returnValue += speedList[index - 1] ? speedList[index - 1][1] : speedList[0][1];
-    }
-
-    return returnValue;
-  };
-  const fnNoteLIneBackGround = () => {
-    const gijun = 100;
-
-    if (liveData.combo > 10 * gijun) {
-      return "#290000ef";
-    } else if (liveData.combo > 6 * gijun) {
-      return "#2e0f05f0";
-    } else if (liveData.combo > 5 * gijun) {
-      return "#400c36f0";
-    } else if (liveData.combo > 4 * gijun) {
-      return "#2b0c40f1";
-    } else if (liveData.combo > 3 * gijun) {
-      return "#0c2340f0";
-    } else if (liveData.combo > 2 * gijun) {
-      return "#062c13ef";
-    } else if (liveData.combo > 1 * gijun) {
-      return "#29240bef";
-    }
-  };
 
   return (
     <>
@@ -165,53 +212,68 @@ export const ReplayStation4 = (props) => {
       >
         <div className="GamePlay_Container">
           <div className="Game_NoteContainer">
-            <div className="Game_JudgeBar_4" id="judgeBar"></div>
-            <div className="NoteBox_4" id="noteBox">
+            <div className="Game_JudgeBar" id="judgeBar"></div>
+            <div className="NoteBox" id="noteBox">
               <div className="ScrollBox" id="scrollBox"></div>
             </div>
           </div>
         </div>
-
-        {/* <div className="LineContainer_4" style={{ backgroundColor: fnNoteLIneBackGround() }}></div> */}
-        <div className="LineContainer_4" id="LineContainer"></div>
-        <div className="Game_KeyBoardPushBox_4">
-          <div className="KeyBtnBox1_4">
+        <div className="LineContainer" id="LineContainer"></div>
+        <div className="Game_KeyBoardPushBox">
+          <div className="KeyBtnBox1">
             {liveData.key0 === 0 ? (
               <img className="Keyimg1" src="/Gear7K/KL_White_off.png" />
             ) : (
               <img className="Keyimg1" src="/Gear7K/KL_White_on.png" />
             )}
           </div>
-
-          <div className="KeyBtnBox1_4">
+          <div className="KeyBtnBox1">
             {liveData.key1 === 0 ? (
-              <img className="Keyimg1" src="/Gear7K/KL_White_off.png" />
+              <img className="Keyimg1" src="/Gear7K/KL_Blue_off.png" />
             ) : (
-              <img className="Keyimg1" src="/Gear7K/KL_White_on.png" />
+              <img className="Keyimg1" src="/Gear7K/KL_Blue_on.png" />
             )}
           </div>
-
-          <div className="KeyBtnBox1_4">
+          <div className="KeyBtnBox1">
             {liveData.key2 === 0 ? (
               <img className="Keyimg1" src="/Gear7K/KL_White_off.png" />
             ) : (
               <img className="Keyimg1" src="/Gear7K/KL_White_on.png" />
             )}
           </div>
-
-          <div className="KeyBtnBox1_4">
+          <div className="KeyBtnBox3">
             {liveData.key3 === 0 ? (
+              <img className="Keyimg2" src="/Gear7K/KL_Yellow_off.png" />
+            ) : (
+              <img className="Keyimg2" src="/Gear7K/KL_Yellow_on.png" />
+            )}
+          </div>
+          <div className="KeyBtnBox1">
+            {liveData.key4 === 0 ? (
+              <img className="Keyimg1" src="/Gear7K/KL_White_off.png" />
+            ) : (
+              <img className="Keyimg1" src="/Gear7K/KL_White_on.png" />
+            )}
+          </div>
+          <div className="KeyBtnBox1">
+            {liveData.key5 === 0 ? (
+              <img className="Keyimg1" src="/Gear7K/KL_Blue_off.png" />
+            ) : (
+              <img className="Keyimg1" src="/Gear7K/KL_Blue_on.png" />
+            )}
+          </div>
+          <div className="KeyBtnBox1">
+            {liveData.key6 === 0 ? (
               <img className="Keyimg1" src="/Gear7K/KL_White_off.png" />
             ) : (
               <img className="Keyimg1" src="/Gear7K/KL_White_on.png" />
             )}
           </div>
         </div>
-        <div className="Game_ImgContainer_4">
-          <img style={{ width: "643px", height: "100%" }} src="/Gear7K/frame.png" />
+        <div className="Game_ImgContainer">
+          <img src="/Gear7K/frame.png" />
         </div>
-
-        <div className="Game_LifeBoxContainer_4">
+        <div className="Game_LifeBoxContainer_7">
           <div className="Game_LifeBoxContainer_4_Box">
             <div
               className="Game_LifeBoxContainer_4_Box_grid"
@@ -224,32 +286,44 @@ export const ReplayStation4 = (props) => {
             </div>
           </div>
         </div>
-        <div className="Game_LightGraBox_4">
+        <div className="Game_LightGraBox">
           {liveData.key0 === 0 ? (
-            <div className="Game_LightGraOff1_4"></div>
+            <div className="Game_LightGraOff1"></div>
           ) : (
-            <div className="Game_LightGraOn1_4"></div>
+            <div className="Game_LightGraOn1"></div>
           )}
-
           {liveData.key1 === 0 ? (
-            <div className="Game_LightGraOff1_4"></div>
+            <div className="Game_LightGraOff1"></div>
           ) : (
-            <div className="Game_LightGraOn1_4"></div>
+            <div className="Game_LightGraOn1"></div>
           )}
-
           {liveData.key2 === 0 ? (
-            <div className="Game_LightGraOff1_4"></div>
+            <div className="Game_LightGraOff1"></div>
           ) : (
-            <div className="Game_LightGraOn1_4"></div>
+            <div className="Game_LightGraOn1"></div>
           )}
-
           {liveData.key3 === 0 ? (
-            <div className="Game_LightGraOff1_4"></div>
+            <div className="Game_LightGraOff3"></div>
           ) : (
-            <div className="Game_LightGraOn1_4"></div>
+            <div className="Game_LightGraOn3"></div>
+          )}
+          {liveData.key4 === 0 ? (
+            <div className="Game_LightGraOff1"></div>
+          ) : (
+            <div className="Game_LightGraOn1"></div>
+          )}
+          {liveData.key5 === 0 ? (
+            <div className="Game_LightGraOff1"></div>
+          ) : (
+            <div className="Game_LightGraOn1"></div>
+          )}
+          {liveData.key6 === 0 ? (
+            <div className="Game_LightGraOff1"></div>
+          ) : (
+            <div className="Game_LightGraOn1"></div>
           )}
         </div>
-        <div className="Game_ComboDisplay_4">
+        <div className="Game_ComboDisplay">
           <div className="Game_Combo">
             <div className="Game_ComboDetailBlank"></div>
             <div className="Game_ComboDetail">
@@ -260,7 +334,7 @@ export const ReplayStation4 = (props) => {
             </div>
           </div>
           <div className="Game_ComboAcc" id="ComboAcc">
-            <div className="Game_JudgeSlowFast_4" ref={JudgeSlowFast}></div>
+            <div className="Game_JudgeSlowFast" ref={JudgeSlowFast}></div>
           </div>
           <div className="Game_Fever">
             <div className="Game_FeverBar">
@@ -284,15 +358,15 @@ export const ReplayStation4 = (props) => {
         <div className="Game_FeverStr" id="FeverStr">
           x1
         </div>
-        <div className="Game_EffectBox_4">
+        <div className="Game_EffectBox">
           {[...Array(20)].map((el) => {
-            return <div className="Effect_4"></div>;
+            return <div className="Effect"></div>;
           })}
         </div>
-        <div className="Game_ScorePannel font30">
+        <div className="Game_ScorePannel_7 font30">
           <div className="Game_ScorePannel_Row sort">Score:{liveData.score}</div>
         </div>
-        <div className="Game_FeverPannel sort " id="GameFever"></div>
+        <div className="Game_FeverPannel_7 sort " id="GameFever"></div>
       </motion.div>
       <motion.div
         initial={{ opacity: 0 }}

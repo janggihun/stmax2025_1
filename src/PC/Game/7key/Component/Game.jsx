@@ -1,24 +1,22 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./Game4key.css";
-
 import "./../../GameCssCommon/Note.css";
-
 import { NoteReadManager } from "../../GameJsCommon/NoteReadManager.js";
 import { createLiveMap } from "../../GameJsCommon/LiveMapInit.js";
 import { useLocation, useNavigate } from "react-router-dom";
-import { fnData, sound3 } from "../../../../common/Base.js";
+import { endGameSuccess, fnData, makeDailyData, sound3 } from "../../../../common/Base.js";
 import { EscModal } from "../../EscModal/EscModal.jsx";
 import { useGameYoutube } from "../../GameComponentCommon/useGameYoutube.jsx";
 import { GameLoadingView } from "../../GameComponentCommon/GameLoadingView.jsx";
 import { GameEndNotice } from "../../GameComponentCommon/GameEndNotice.jsx";
-import { ReplayStation4 } from "./ReplayStation4.jsx";
-import { getReplay_4key } from "../../../../RestApi.js";
 import { AnimatePresence } from "framer-motion";
-import { useDispatch } from "react-redux";
+import { GameStation7 } from "./GameStation7.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import { changeGameSet } from "../../../../Store/GameSetSlice.jsx";
+import { logicTitle } from "../../../../RestApi.js";
 
 //
 
-export const Replay_4key = () => {
+export const Game_7key = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -34,11 +32,9 @@ export const Replay_4key = () => {
   const audio1 = useRef();
   const effectVolume = useRef(fnData("effectVol"));
   //키확인
-  //
-  const keyList_4 = useRef(JSON.parse(window.localStorage.getItem("4keyList")));
 
   const duration = useRef(0);
-
+  const Game_EndCommenBox = useRef();
   const silenceDuration = 3; // 무음
 
   const startTime = useRef(0);
@@ -50,10 +46,12 @@ export const Replay_4key = () => {
   // 진행도 표시
   const [progressCnt, setProgressCnt] = useState(0);
 
-  const [gameSet, setGameSet] = useState(0); // 0 : 준비중 , 1 : 게임중 , 2: 게임종료(완주) 3 : 게임 완주실패
-
+  // 0 : 준비중 , 1 : 게임중 , 2: 게임종료(완주) 3 : 게임 완주실패
+  const gameSet = useSelector((state) => state.gameSet.value);
   const liveMap = useRef(createLiveMap());
   const emoticon = useRef(findEmoticon());
+  if (gameSet !== 0 && progressCnt === 0) dispatch(changeGameSet(0));
+  useEffect(() => {}, []);
 
   //이번 프레임 회차에서 필요한 모든 것
 
@@ -118,18 +116,16 @@ export const Replay_4key = () => {
     if (progressCnt === 1) {
       //백그라운드 확인
       //데이터 주입
-      liveMap.current.replayMap = location.state.replayMap;
       liveMap.current.Group = location.state.Group;
       liveMap.current.musicMap = location.state.musicMap;
-      liveMap.current.musicCnt = location.state.replayMap.musicCnt;
+      liveMap.current.musicCnt = location.state.musicMap.musicCnt;
       liveMap.current.userAudioOffset = fnData("userAudioOffset");
-      liveMap.current.helpInt = location.state.replayMap.helpInt;
-      liveMap.current.level = location.state.replayMap.level;
-      liveMap.current.speed = location.state.replayMap.speed;
+      liveMap.current.helpInt = fnData("helpInt");
+      liveMap.current.level = fnData("level");
+      liveMap.current.speed = fnData("speed");
       liveMap.current.dispatch = dispatch;
       // console.log("Group : ", liveMap.current.Group);
       // console.log("replayMap : ", liveMap.current.replayMap);
-      liveMap.current.setGameSet = setGameSet();
 
       nextStep(2);
     } else if (progressCnt === 2) {
@@ -146,40 +142,14 @@ export const Replay_4key = () => {
       //
       audio1.current = tempAudioSoundList;
 
-      getReplayData();
-      async function getReplayData() {
-        const data = await getReplay_4key(liveMap.current.replayMap.recordCnt);
-
-        let tmpList = [];
-        data.forEach((el) => {
-          const tmp = JSON.parse(el.replayData);
-          // console.log(tmp);
-          tmpList = [...tmpList, ...tmp];
-        });
-
-        tmpList.sort((a, b) => {
-          return a[1] - b[1];
-        });
-        // console.log(tmpList);
-        if (data.length === 0) {
-          alert("리플레이 패치 이전 데이터 입니다.");
-          window.location.replace("/stage");
-        }
-
-        liveMap.current.replayList = tmpList;
-        // console.log(replayList.current);
-        nextStep(3);
-      }
+      nextStep(3);
     } else if (progressCnt === 3) {
       //노트 읽고 생성
 
       get_noteList();
 
       async function get_noteList() {
-        const res1 = await NoteReadManager(
-          liveMap.current.replayMap.musicCnt,
-          liveMap.current.replayMap.level
-        );
+        const res1 = await NoteReadManager(liveMap.current.musicCnt, liveMap.current.level);
 
         liveMap.current.timingPointList = res1[0];
         liveMap.current.hitList = res1[1];
@@ -221,26 +191,6 @@ export const Replay_4key = () => {
         // bpm리스트와 스피드 리스트가 잘 들어갔는지 체크 후 실행하는 메서드
         await check_bpmListAndSpeedList();
 
-        // const checkHeight = (time) => {
-        //   let index = 0;
-        //   let returnValue = 0;
-        //   const speedList = liveMap.current.speedList;
-        //   for (let i = 0; i < time; i++) {
-        //     if (speedList[index][0] < i && speedList.length > index + 1) {
-        //       index++;
-        //     }
-
-        //     returnValue += speedList[index - 1] ? speedList[index - 1][1] : speedList[0][1];
-        //   }
-
-        //   return returnValue;
-        // };
-
-        // liveMap.current.speedGameList = liveMap.current.gameList.map((el) => {
-        //   return [el[0], el[1], checkHeight(el[2]), checkHeight(el[3]), el[4], el[5]];
-        // });
-        // console.log("liveMap.current.speedGameList : ", liveMap.current.speedGameList);
-
         nextStep(4);
       }
     } else if (progressCnt === 4) {
@@ -250,12 +200,12 @@ export const Replay_4key = () => {
 
         const loadAudio = async () => {
           try {
-            const response = await fetch(`/4key/${liveMap.current.musicCnt}/audio.mp3`); // public 폴더의 경로로 접근
+            const response = await fetch(`/7key/${liveMap.current.musicCnt}/audio.mp3`); // public 폴더의 경로로 접근
             const arrayBuffer = await response.arrayBuffer();
             const decodedData = await audioContextRef.current.decodeAudioData(arrayBuffer);
 
             audioBufferRef.current = decodedData;
-
+            //확인용
             const gainNode = audioContextRef.current.createGain();
             gainNode.gain.value = fnData("audioVolume"); // ** 볼륨 설정
             const extendedBuffer = audioContextRef.current.createBuffer(
@@ -341,7 +291,59 @@ export const Replay_4key = () => {
     } else if (progressCnt === 8) {
     }
   }, [progressCnt]);
+  const endgo = () => {
+    setTimeout(() => {
+      const tmpMap = {
+        score: liveMap.current.score,
+        stella: liveMap.current.stella,
+        perfect: liveMap.current.perfect,
+        good: liveMap.current.good,
+        bad: liveMap.current.bad,
+        miss: liveMap.current.miss,
+        combo: liveMap.current.combo,
+        maxCombo: liveMap.current.maxCombo,
+        musicCnt: liveMap.current.musicCnt,
+        level: liveMap.current.level,
+        userId: window.localStorage.getItem("userId"),
+        speed: liveMap.current.speed,
+      };
+      navigate("/End", { state: { resultMap: tmpMap, musicMap: liveMap.current.musicMap } });
+    }, 2000);
+  };
 
+  useEffect(() => {
+    if (gameSet === 2) {
+      setTime.current = setTimeout(() => {
+        makeDailyData(liveMap.current, 1);
+
+        //저장중입니다.
+        if (saveFlag.current) {
+          Game_EndCommenBox.current.innerHTML = `<div>데이터 저장을 시작합니다.</div><div> 2초후 엔딩페이지로 넘어갑니다.</div>`;
+          endGameSuccess(liveMap);
+          endgo();
+        }
+      }, 3500);
+    } else if (gameSet === 3) {
+      // 완주 실패
+      clearInterval(liveMap.current.tickerInterval);
+      //실패했을때 타는 타이틀 로직
+      checkFailLogic();
+      makeDailyData(liveMap.current, 0);
+      setTimeout(() => {
+        navigate("/stage", { replace: true });
+      }, 2000);
+    }
+  }, [gameSet]);
+  const checkFailLogic = () => {
+    if (
+      liveMap.current.stella >= 100 &&
+      liveMap.current.musicCnt === 2 &&
+      liveMap.current.level === "stella"
+    ) {
+      logicTitle(53);
+      // testlogicTitle(53);
+    }
+  };
   //esc모달 관련 시작//
   useEffect(() => {
     const escKeyModalClose = (e) => {
@@ -364,16 +366,16 @@ export const Replay_4key = () => {
       <div className="Game_Container">
         {renderGameYoutube()}
         {progressCnt === 8 && (
-          <ReplayStation4 emoticon={emoticon} youtubeStart={youtubeStart} liveMap={liveMap} />
+          <GameStation7 emoticon={emoticon} youtubeStart={youtubeStart} liveMap={liveMap} />
         )}
         {progressCnt !== 8 && (
           <GameLoadingView
             emoticon={emoticon}
             progressCnt={progressCnt}
-            musicMap={location.state.replayMap}
+            musicMap={location.state.musicMap}
           />
         )}
-        <GameEndNotice gameSet={gameSet} />
+        <GameEndNotice gameSet={gameSet} Game_EndCommenBox={Game_EndCommenBox} />
         {isEscModal && <EscModal setIsEscModal={setIsEscModal} />}
       </div>
     </AnimatePresence>

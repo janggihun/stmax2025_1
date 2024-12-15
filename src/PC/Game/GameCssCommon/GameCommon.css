@@ -1,3 +1,97 @@
+.Effect {
+  z-index: 20;
+  position: absolute;
+  top: 580px;
+  left: 105px;
+  width: 105px;
+  height: 105px;
+  background: url("/public/Effect/Effect51.png");
+  background-size: 420px 420px;
+  transform: scale(2);
+  opacity: 1;
+  margin-left: -10px;
+}
+
+.Effect_4 {
+  z-index: 20;
+  position: absolute;
+  top: 580px;
+  left: 105px;
+  width: 105px;
+  height: 105px;
+  background: url("/public/Effect/Effect51.png");
+  background-size: 420px 420px;
+  transform: scale(2);
+  opacity: 1;
+  margin-left: 5px;
+}
+
+.EffectAnimation {
+  animation: playv 0.4s steps(4) forwards, playh 0.1s steps(4) 4;
+}
+@keyframes playv {
+  from {
+    background-position-y: 0%;
+  }
+
+  to {
+    background-position-y: -400%;
+  }
+}
+
+@keyframes playh {
+  0% {
+    background-position-x: 0%;
+  }
+
+  100% {
+    background-position-x: -400%;
+  }
+}
+.play {
+  opacity: 1;
+}
+@keyframes spAni {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+.speedAni {
+  animation: spAni 0.3s ease forwards;
+}
+
+.Container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  top: 5px;
+  left: 160px;
+  width: 1600px;
+  height: 900px;
+  /* background-color: aquamarine; */
+}
+.Bg_Blur {
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  position: absolute;
+  left: 0px;
+  top: 0px;
+
+  width: 100%;
+  height: 100%;
+}
+
+.pushed {
+  display: none;
+}
 .Game_ScorePannel {
   position: absolute;
   left: 680px;

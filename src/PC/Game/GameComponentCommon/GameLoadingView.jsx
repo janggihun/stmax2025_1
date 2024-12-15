@@ -1,8 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 
 import "./GameLoadingView.css";
-import { fnData, get_Src_Img, get_Src_MusicImg } from "../../common/Base";
-
+import { fnData, get_Src_Img, get_Src_MusicImg } from "../../../common/Base";
 export const GameLoadingView = (props) => {
   const progressCnt = props.progressCnt;
   const keyType = fnData("keyType");

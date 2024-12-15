@@ -1,17 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Game4key.css";
-import "../Style4Key/Global.css";
-import "../Style4Key/Note.css";
 
-import "../../../../style/Scroll.css";
+import "./../../GameCssCommon/Note.css";
+
 import { NoteReadManager } from "../../GameJsCommon/NoteReadManager.js";
 import { createLiveMap } from "../../GameJsCommon/LiveMapInit.js";
 import { useLocation, useNavigate } from "react-router-dom";
 import { fnData, sound3 } from "../../../../common/Base.js";
 import { EscModal } from "../../EscModal/EscModal.jsx";
-import { useGameYoutube } from "../../useGameYoutube.jsx";
-import { GameLoadingView } from "../../GameLoadingView.jsx";
-import { GameEndNotice } from "../../GameEndNotice.jsx";
+import { useGameYoutube } from "../../GameComponentCommon/useGameYoutube.jsx";
+import { GameLoadingView } from "../../GameComponentCommon/GameLoadingView.jsx";
+import { GameEndNotice } from "../../GameComponentCommon/GameEndNotice.jsx";
 import { ReplayStation4 } from "./ReplayStation4.jsx";
 import { getReplay_4key } from "../../../../RestApi.js";
 import { AnimatePresence } from "framer-motion";

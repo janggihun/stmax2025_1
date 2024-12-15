@@ -6,7 +6,7 @@ import {
   gameEmoticon_Left,
   gameEmoticon_Middle,
 } from "../../../../common/Game_4key";
-import "../../GameCommon.css";
+import "../../GameCssCommon/GameCommon.css";
 import { motion } from "framer-motion";
 import JudgeHighlightPool from "../../GameJsCommon/JudgeHighlightPool";
 import { AddrManager } from "../../GameJsCommon/AddrManager";

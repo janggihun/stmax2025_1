@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./useGameYoutube.css";
 import YouTube from "react-youtube";
-import { fnData, get_Src_MusicImg } from "../../common/Base";
+import { fnData, get_Src_MusicImg } from "../../../common/Base";
 
 export const useGameYoutube = (musicMap) => {
   //유튜브 플레이어

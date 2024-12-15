@@ -8,6 +8,7 @@ import { EscModal } from "../../EscModal/EscModal.jsx";
 import { useGameYoutube } from "../../GameComponentCommon/useGameYoutube.jsx";
 import { GameLoadingView } from "../../GameComponentCommon/GameLoadingView.jsx";
 import { GameEndNotice } from "../../GameComponentCommon/GameEndNotice.jsx";
+
 import { getReplay_4key } from "../../../../RestApi.js";
 import { AnimatePresence } from "framer-motion";
 import { useDispatch } from "react-redux";
@@ -183,6 +184,7 @@ export const Replay_4key = () => {
         liveMap.current.lastTime = res1[2];
         liveMap.current.noteCount = res1[3];
         liveMap.current.singleNoteScore = liveMap.current.maxScore / liveMap.current.noteCount;
+
         liveMap.current.speedList = [];
         liveMap.current.gameList = res1[1].map((el) => {
           return el;

@@ -1,11 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { fnData, get_Src_Img } from "../../../../common/Base";
-import {
-  allPosition_Left,
-  allPosition_Middle,
-  gameEmoticon_Left,
-  gameEmoticon_Middle,
-} from "../../../../common/Game_4key";
+import { fnData } from "../../../../common/Base";
+import { allPosition_Left, allPosition_Middle } from "../../../../common/Game_4key";
 import "../../GameCssCommon/GameCommon.css";
 import { motion } from "framer-motion";
 import JudgeHighlightPool from "../../GameJsCommon/JudgeHighlightPool";

@@ -681,6 +681,7 @@ export const createLiveMap = () => {
       tempMap.key6 = 0;
     }
   };
+
   return tempMap;
 };
 

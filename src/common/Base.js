@@ -263,7 +263,7 @@ export const endGameSuccess = (liveMap) => {
     sendResultData_7key(tmpMap, liveMap.current.replayList);
   }
 };
-//시즌2 연습용
+//시즌2
 export const endGameSuccess2 = (liveMap) => {
   const tmpMap = {
     recordCnt: 0,
@@ -274,11 +274,17 @@ export const endGameSuccess2 = (liveMap) => {
     speed: liveMap.current.speed,
     score: liveMap.current.score,
 
-    stmax100: liveMap.current.stella,
-    stmax90: liveMap.current.perfect,
-    stmax60: liveMap.current.good,
-    stmax30: liveMap.current.bad,
-    stmax0: liveMap.current.miss,
+    stmax100: liveMap.current.stmax100,
+    stmax90: liveMap.current.stmax90,
+    stmax80: liveMap.current.stmax80,
+    stmax70: liveMap.current.stmax70,
+    stmax60: liveMap.current.stmax60,
+    stmax50: liveMap.current.stmax50,
+    stmax40: liveMap.current.stmax40,
+    stmax30: liveMap.current.stmax30,
+    stmax20: liveMap.current.stmax20,
+    stmax10: liveMap.current.stmax10,
+    stmax0: liveMap.current.stmax0,
 
     maxCombo: liveMap.current.maxCombo,
 

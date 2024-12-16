@@ -9,7 +9,7 @@ import { useGameYoutube } from "../../GameComponentCommon/useGameYoutube.jsx";
 import { GameLoadingView } from "../../GameComponentCommon/GameLoadingView.jsx";
 import { GameEndNotice } from "../../GameComponentCommon/GameEndNotice.jsx";
 
-import { getReplay_4key } from "../../../../RestApi.js";
+import { getReplay_4key, getReplay_4key_season } from "../../../../RestApi.js";
 import { AnimatePresence } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { ReplayStation4 } from "./ReplayStation4.jsx";
@@ -146,7 +146,13 @@ export const Replay_4key = () => {
 
       getReplayData();
       async function getReplayData() {
-        const data = await getReplay_4key(liveMap.current.replayMap.recordCnt);
+        const season = fnData("season");
+        let data = null;
+        if (season === 1) {
+          data = await getReplay_4key(liveMap.current.replayMap.recordCnt);
+        } else {
+          data = await getReplay_4key_season(liveMap.current.replayMap.recordCnt);
+        }
 
         let tmpList = [];
         data.forEach((el) => {

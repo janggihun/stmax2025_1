@@ -185,10 +185,22 @@ export const getReplay_4key = async (recordCnt) => {
   const res = await axios.post(getUrl("/key4/music/getReplay"), recordCnt);
 
   return res.data;
+}; //리플레이 데이터 취득
+export const getReplay_4key_season = async (recordCnt) => {
+  // const res = await axios.post("http://localhost:8080/music7/getReplay", recordCnt);
+  const res = await axios.post(getUrl("/music/getReplay/4key"), recordCnt);
+
+  return res.data;
 };
 export const getReplay_7key = async (recordCnt) => {
   // const res = await axios.post("http://localhost:8080/music7/getReplay", recordCnt);
   const res = await axios.post(getUrl("/music7/getReplay"), recordCnt); //실행
+
+  return res.data;
+};
+export const getReplay_7key_season = async (recordCnt) => {
+  // const res = await axios.post("http://localhost:8080/music7/getReplay", recordCnt);
+  const res = await axios.post(getUrl("/music/getReplay/7key"), recordCnt); //실행
 
   return res.data;
 };

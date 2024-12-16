@@ -8,7 +8,7 @@ import { EscModal } from "../../EscModal/EscModal.jsx";
 import { useGameYoutube } from "../../GameComponentCommon/useGameYoutube.jsx";
 import { GameLoadingView } from "../../GameComponentCommon/GameLoadingView.jsx";
 import { GameEndNotice } from "../../GameComponentCommon/GameEndNotice.jsx";
-import { getReplay_7key } from "../../../../RestApi.js";
+import { getReplay_7key, getReplay_7key_season } from "../../../../RestApi.js";
 import { AnimatePresence } from "framer-motion";
 import { ReplayStation7 } from "./ReplayStation7.jsx";
 import { useDispatch } from "react-redux";
@@ -141,8 +141,13 @@ export const Replay_7key = () => {
 
       getReplayData();
       async function getReplayData() {
-        const data = await getReplay_7key(liveMap.current.replayMap.recordCnt);
-
+        const season = fnData("season");
+        let data = null;
+        if (season === 1) {
+          data = await getReplay_7key(liveMap.current.replayMap.recordCnt);
+        } else {
+          data = await getReplay_7key_season(liveMap.current.replayMap.recordCnt);
+        }
         let tmpList = [];
         data.forEach((el) => {
           const tmp = JSON.parse(el.replayData);

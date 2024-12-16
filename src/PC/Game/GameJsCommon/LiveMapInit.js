@@ -277,7 +277,9 @@ export const createLiveMap = () => {
         //롱노트 누르고 있기에 해당 시간 만큼 콤보만 추가
         el[4]++;
         tempMap.combo++;
+        const returnValue = tempMap.diffJudge(el[8]);
         tempMap.addrMap.$Game_ComboInt_Box.innerHTML = `<div class="Game_ComboInt">${tempMap.combo}</div>`;
+        tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_${returnValue}">STMAX ${returnValue}%</div>`;
         const pos = tempMap.checkPos(el[1]);
         tempMap.ShowEffect(pos);
       }
@@ -439,6 +441,9 @@ export const createLiveMap = () => {
         el[4]++;
         tempMap.combo++;
         tempMap.addrMap.$Game_ComboInt_Box.innerHTML = `<div class="Game_ComboInt">${tempMap.combo}</div>`;
+        tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_100">STMAX ${tempMap.diffJudge(
+          el[8]
+        )}%</div>`;
         const pos = tempMap.checkPos(el[1]);
         tempMap.ShowEffect(pos);
       }
@@ -505,7 +510,32 @@ export const createLiveMap = () => {
     }
     return res;
   };
-
+  tempMap.diffJudge = (diff) => {
+    const abs_diff = Math.abs(diff);
+    if (abs_diff <= scope100) {
+      return 100;
+    } else if (abs_diff <= scope90) {
+      return 90;
+    } else if (abs_diff <= scope80) {
+      return 80;
+    } else if (abs_diff <= scope70) {
+      return 70;
+    } else if (abs_diff <= scope60) {
+      return 60;
+    } else if (abs_diff <= scope50) {
+      return 50;
+    } else if (abs_diff <= scope40) {
+      return 40;
+    } else if (abs_diff <= scope30) {
+      return 30;
+    } else if (abs_diff <= scope20) {
+      return 20;
+    } else if (abs_diff <= scope10) {
+      return 10;
+    } else {
+      return 0;
+    }
+  };
   tempMap.CheckjudgeMent = (diff, el) => {
     const tempBar = diff / 5;
 

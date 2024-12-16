@@ -139,62 +139,96 @@ export const RankUserInfo2 = (props) => {
         {!rankMap && <div>데이터가 없습니다.</div>}
         {rankMap && (
           <>
-            <div className="RankUserInfo_Detail1">
-              <div className="RankUserInfo_Row">
-                <div className="RankUserInfo_Row_Point">Id </div>
-                <div className="RankUserInfo_Row_Point">{rankMap.userId} </div>
-              </div>
-              <div className="RankUserInfo_Row">
-                <div className="RankUserInfo_Row_Point">STMAX 100 </div>
-                <div className="RankUserInfo_Row_Point">{rankMap.stmax100}</div>
-              </div>
-              <div className="RankUserInfo_Row">
-                <div className="RankUserInfo_Row_Point">STMAX 90 </div>
-                <div className="RankUserInfo_Row_Point">{rankMap.stmax90} </div>
-              </div>
-              <div className="RankUserInfo_Row">
-                <div className="RankUserInfo_Row_Point">STMAX 80 </div>
-                <div className="RankUserInfo_Row_Point">{rankMap.stmax80} </div>
-              </div>
-              <div className="RankUserInfo_Row">
-                <div className="RankUserInfo_Row_Point">STMAX 70 </div>
-                <div className="RankUserInfo_Row_Point">{rankMap.stmax70}</div>
-              </div>
-              <div className="RankUserInfo_Row">
-                <div className="RankUserInfo_Row_Point">STMAX 0 </div>
-                <div className="RankUserInfo_Row_Point">{rankMap.stmax0} </div>
-              </div>
-              <div className="RankUserInfo_Row">
-                <div className="RankUserInfo_Row_Point">MaxCombo </div>
-                <div className="RankUserInfo_Row_Point">{rankMap.maxCombo} </div>
-              </div>
-              <div className="RankUserInfo_Row">
-                <div className="RankUserInfo_Row_Point">Score </div>
-                <div className="RankUserInfo_Row_Point">
-                  <div>{rankMap.score}</div>
+            <div className="RankUserInfo_Detail1" style={{ height: "80%" }}>
+              <div style={{ display: "flex", height: "90%" }}>
+                <div style={{ width: "50%", height: "100%" }}>
+                  <div className="RankUserInfo_Row">
+                    <div className="RankUserInfo_Row_Point">STMAX 100 </div>
+                    <div className="RankUserInfo_Row_Point">{rankMap.stmax100}</div>
+                  </div>
+                  <div className="RankUserInfo_Row">
+                    <div className="RankUserInfo_Row_Point">STMAX 90 </div>
+                    <div className="RankUserInfo_Row_Point">{rankMap.stmax90} </div>
+                  </div>
+                  <div className="RankUserInfo_Row">
+                    <div className="RankUserInfo_Row_Point">STMAX 80 </div>
+                    <div className="RankUserInfo_Row_Point">{rankMap.stmax80} </div>
+                  </div>
+                  <div className="RankUserInfo_Row">
+                    <div className="RankUserInfo_Row_Point">STMAX 70 </div>
+                    <div className="RankUserInfo_Row_Point">{rankMap.stmax70}</div>
+                  </div>
+                  <div className="RankUserInfo_Row">
+                    <div className="RankUserInfo_Row_Point">STMAX 60 </div>
+                    <div className="RankUserInfo_Row_Point">{rankMap.stmax70}</div>
+                  </div>
+                  <div className="RankUserInfo_Row">
+                    <div className="RankUserInfo_Row_Point">STMAX 50 </div>
+                    <div className="RankUserInfo_Row_Point">{rankMap.stmax70}</div>
+                  </div>
+                  <div className="RankUserInfo_Row">
+                    <div className="RankUserInfo_Row_Point">STMAX 40 </div>
+                    <div className="RankUserInfo_Row_Point">{rankMap.stmax70}</div>
+                  </div>
+                  <div className="RankUserInfo_Row">
+                    <div className="RankUserInfo_Row_Point">STMAX 30 </div>
+                    <div className="RankUserInfo_Row_Point">{rankMap.stmax70}</div>
+                  </div>
+                  <div className="RankUserInfo_Row">
+                    <div className="RankUserInfo_Row_Point">STMAX 20 </div>
+                    <div className="RankUserInfo_Row_Point">{rankMap.stmax0}</div>
+                  </div>
+                  <div className="RankUserInfo_Row">
+                    <div className="RankUserInfo_Row_Point">STMAX 10 </div>
+                    <div className="RankUserInfo_Row_Point">{rankMap.stmax10}</div>
+                  </div>
+                  <div className="RankUserInfo_Row">
+                    <div className="RankUserInfo_Row_Point">STMAX 0 </div>
+                    <div className="RankUserInfo_Row_Point">{rankMap.stmax0} </div>
+                  </div>
                 </div>
-              </div>
-              <div className="RankUserInfo_Row">
-                <div className="RankUserInfo_Row_Point">Date </div>
-                <div className="RankUserInfo_Row_Point">{rankMap.insertDate} </div>
-              </div>
-              <div className="RankUserInfo_Row">
-                <div className="RankUserInfo_Row_Point">Replay </div>
-                <div className="RankUserInfo_Row_Point">
-                  <div
-                    className="RankUserInfo_Row_Replay"
-                    onClick={() => {
-                      replay(rankMap.recordCnt);
-                    }}
-                  >
-                    {rankMap.userId}님의 리플레이 보기 [클릭!]
+                <div style={{ width: "50%", height: "100%" }}>
+                  <div className="RankUserInfo_Row">
+                    <div className="RankUserInfo_Row_Point">Id </div>
+                    <div className="RankUserInfo_Row_Point">{rankMap.userId} </div>
+                  </div>
+                  <div className="RankUserInfo_Row">
+                    <div className="RankUserInfo_Row_Point">MaxCombo </div>
+                    <div className="RankUserInfo_Row_Point">{rankMap.maxCombo} </div>
+                  </div>
+                  <div className="RankUserInfo_Row">
+                    <div className="RankUserInfo_Row_Point">SPEED </div>
+                    <div className="RankUserInfo_Row_Point">{rankMap.speed} </div>
+                  </div>
+                  <div className="RankUserInfo_Row">
+                    <div className="RankUserInfo_Row_Point">Score </div>
+                    <div className="RankUserInfo_Row_Point">
+                      <div>{rankMap.score}</div>
+                    </div>
+                  </div>
+                  <div className="RankUserInfo_Row">
+                    <div className="RankUserInfo_Row_Point">Date </div>
+                    <div className="RankUserInfo_Row_Point">{rankMap.insertDate} </div>
+                  </div>
+                  <div className="RankUserInfo_Row">
+                    <div className="RankUserInfo_Row_Point">Replay </div>
+                    <div className="RankUserInfo_Row_Point">
+                      <div
+                        className="RankUserInfo_Row_Replay"
+                        onClick={() => {
+                          replay(rankMap.recordCnt);
+                        }}
+                      >
+                        {rankMap.userId} 리플레이 [클릭!]
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="RankUserInfo_Detail2">
+            <div className="RankUserInfo_Detail2" style={{ height: "20%" }}>
               <div className="RankUserInfo_JudgeRankBox1"> {rankMap.percent}%</div>
-              <div className="RankUserInfo_JudgeRankBox2">{rankCheck(rankMap.percent)}</div>
+              <div className="RankUserInfo_JudgeRankBox2">{rankMap.rank}</div>
             </div>
           </>
         )}

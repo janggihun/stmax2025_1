@@ -258,7 +258,7 @@ export const ReplayStation4 = (props) => {
           <div className="Game_ComboAcc" id="ComboAcc">
             <div className="Game_JudgeSlowFast_4" ref={JudgeSlowFast}></div>
           </div>
-          <div style={{ height: "30%", width: "100%" }}></div>
+          <div style={{ height: "40%", width: "100%" }}></div>
           <div className="AccPercent" id="dataStatus">
             Game Start
           </div>

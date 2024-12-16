@@ -42,7 +42,7 @@ export const Rank = () => {
     }
 
     const temp = { keyType: keyType, musicCnt: musicCnt, season: season };
-    console.log(temp);
+
     if (season === 1) {
       const res = await getRank(temp);
 

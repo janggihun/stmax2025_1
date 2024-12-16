@@ -9,6 +9,7 @@ import { getRank, getRank_2 } from "../../../RestApi";
 import { closeLoading, openLoading } from "../../../Store/LoadingSlice";
 import { RankUserInfo2 } from "./RankUserInfo/RankUserInfo2";
 import { RankUserList2 } from "./RankUserList/RankUserList2";
+import { changeSeason } from "../../../Store/SeasonSlice";
 
 export const Rank = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,10 @@ export const Rank = () => {
   const level = useSelector((state) => state.level.value);
   const categoryCnt = useSelector((state) => state.category.value);
   const season = useSelector((state) => state.season.value);
+
+  if (!season) {
+    dispatch(changeSeason(fnData("season")));
+  }
   const musicList = data.musicList;
   // const noteList = data.noteList;
   const singerList = data.singerList;
@@ -37,7 +42,7 @@ export const Rank = () => {
     }
 
     const temp = { keyType: keyType, musicCnt: musicCnt, season: season };
-
+    console.log(temp);
     if (season === 1) {
       const res = await getRank(temp);
 

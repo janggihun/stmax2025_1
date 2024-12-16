@@ -440,10 +440,9 @@ export const createLiveMap = () => {
         //롱노트 누르고 있기에 해당 시간 만큼 콤보만 추가
         el[4]++;
         tempMap.combo++;
+        const returnValue = tempMap.diffJudge(el[8]);
         tempMap.addrMap.$Game_ComboInt_Box.innerHTML = `<div class="Game_ComboInt">${tempMap.combo}</div>`;
-        tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_100">STMAX ${tempMap.diffJudge(
-          el[8]
-        )}%</div>`;
+        tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_${returnValue}">STMAX ${returnValue}%</div>`;
         const pos = tempMap.checkPos(el[1]);
         tempMap.ShowEffect(pos);
       }

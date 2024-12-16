@@ -3,7 +3,7 @@ import { fnData, saveData } from "../common/Base";
 
 export const seasonSlice = createSlice({
   name: "season",
-  initialState: { value: fnData("season") },
+  initialState: { value: "" },
   reducers: {
     changeSeason: (state, action) => {
       state.value = action.payload;

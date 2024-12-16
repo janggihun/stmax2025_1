@@ -73,6 +73,7 @@ const tempList = [
 ];
 
 //selectList를 확인하여 최신이 아니면 최신과 같게 만들어준다.
+
 export const check_SelectList = () => {
   const selectList = JSON.parse(window.localStorage.getItem("selectList"));
 

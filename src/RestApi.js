@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const httpUrl = "https://port-0-stellivemusic-9zxht12blqae5mw2.sel4.cloudtype.app/api";
+// const httpUrl = "https://port-0-stellivemusic-9zxht12blqae5mw2.sel4.cloudtype.app/api";
 //
-// const httpUrl = "http://localhost:8080/api";
+const httpUrl = "http://localhost:8080/api";
 const getUrl = (url) => {
   return httpUrl + url;
 };

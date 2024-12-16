@@ -3,7 +3,6 @@ import "../../../../style/Scroll.css";
 import { useEffect, useRef } from "react";
 import { get_Src_Img, rankCheck, saveData } from "../../../../common/Base";
 import { useDispatch } from "react-redux";
-import { changePage } from "../../../../Store/PageSlice";
 import { changeSeason } from "../../../../Store/SeasonSlice";
 
 export const RankUserList = (props) => {

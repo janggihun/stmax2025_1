@@ -20,7 +20,7 @@ export const ReplayStation4 = (props) => {
   const [liveData, setLiveData] = useState(liveMap.current);
 
   //오디오
-
+  console.log("audio" + liveMap.current.audio);
   const JudgeSlowFast = useRef();
 
   const gamePos = fnData("gamePosition");

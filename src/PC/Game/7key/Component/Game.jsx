@@ -309,11 +309,17 @@ export const Game_7key = () => {
     setTimeout(() => {
       const tmpMap = {
         score: liveMap.current.score,
-        stella: liveMap.current.stella,
-        perfect: liveMap.current.perfect,
-        good: liveMap.current.good,
-        bad: liveMap.current.bad,
-        miss: liveMap.current.miss,
+        stmax100: liveMap.current.stmax100,
+        stmax90: liveMap.current.stmax90,
+        stmax80: liveMap.current.stmax80,
+        stmax70: liveMap.current.stmax70,
+        stmax60: liveMap.current.stmax60,
+        stmax50: liveMap.current.stmax50,
+        stmax40: liveMap.current.stmax40,
+        stmax30: liveMap.current.stmax30,
+        stmax20: liveMap.current.stmax20,
+        stmax10: liveMap.current.stmax10,
+        stmax0: liveMap.current.stmax0,
         combo: liveMap.current.combo,
         maxCombo: liveMap.current.maxCombo,
         musicCnt: liveMap.current.musicCnt,
@@ -333,7 +339,6 @@ export const Game_7key = () => {
         //저장중입니다.
         if (saveFlag.current) {
           Game_EndCommenBox.current.innerHTML = `<div>데이터 저장을 시작합니다.</div><div> 2초후 엔딩페이지로 넘어갑니다.</div>`;
-          // endGameSuccess(liveMap);
           endGameSuccess2(liveMap);
           endgo();
         }

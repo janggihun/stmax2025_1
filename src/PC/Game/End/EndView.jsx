@@ -13,11 +13,17 @@ export const EndView = () => {
   const level = location.state.level;
 
   const score = resultMap.score;
-  const stella = resultMap.stella;
-  const perfect = resultMap.perfect;
-  const good = resultMap.good;
-  const bad = resultMap.bad;
-  const miss = resultMap.miss;
+  const stmax100 = resultMap.stmax100;
+  const stmax90 = resultMap.stmax90;
+  const stmax80 = resultMap.stmax80;
+  const stmax70 = resultMap.stmax70;
+  const stmax60 = resultMap.stmax60;
+  const stmax50 = resultMap.stmax50;
+  const stmax40 = resultMap.stmax40;
+  const stmax30 = resultMap.stmax30;
+  const stmax20 = resultMap.stmax20;
+  const stmax10 = resultMap.stmax10;
+  const stmax0 = resultMap.stmax0;
 
   const maxCombo = resultMap.maxCombo;
 
@@ -53,9 +59,7 @@ export const EndView = () => {
       return "red";
     }
   };
-  const percent =
-    (stella * 100 + perfect * 90 + good * 60 + bad * 30) /
-    (stella + perfect + good + bad + miss).toFixed(2);
+  const percent = (score / 1000000) * 100;
 
   return (
     <AnimatePresence>
@@ -117,18 +121,18 @@ export const EndView = () => {
             <div className="End_Result_ScoreBox">
               <div className="End_Result_ScoreBox_Detail">
                 <div className="EndResultRow_L">
-                  <div className="EndResultRow">Stella</div>
-                  <div className="EndResultRow">PerFect</div>
-                  <div className="EndResultRow">Good</div>
-                  <div className="EndResultRow">Bad</div>
-                  <div className="EndResultRow">Miss</div>
+                  <div className="EndResultRow">STMAX 100</div>
+                  <div className="EndResultRow">STMAX 90</div>
+                  <div className="EndResultRow">STMAX 80</div>
+                  <div className="EndResultRow">STMAX 70</div>
+                  <div className="EndResultRow">STMAX 60</div>
                 </div>
                 <div className="EndResultRow_R">
-                  <div className="EndResultRow">{stella}</div>
-                  <div className="EndResultRow">{perfect}</div>
-                  <div className="EndResultRow">{good}</div>
-                  <div className="EndResultRow">{bad}</div>
-                  <div className="EndResultRow">{miss}</div>
+                  <div className="EndResultRow">{stmax100}</div>
+                  <div className="EndResultRow">{stmax90}</div>
+                  <div className="EndResultRow">{stmax80}</div>
+                  <div className="EndResultRow">{stmax70}</div>
+                  <div className="EndResultRow">{stmax60}</div>
                 </div>
               </div>
             </div>
@@ -160,7 +164,7 @@ export const EndView = () => {
                 <img className="img" src="/Icon/STMAX.png" />
               </div>
 
-              <div className="End_Result_Stella_Int">{stella}</div>
+              <div className="End_Result_Stella_Int">{}</div>
               <div className="End_Result_Stella">
                 <div className="End_Result_Stella_Str">Stella Max</div>
               </div>
@@ -170,7 +174,7 @@ export const EndView = () => {
                 <div className="End_Result_MaxCombo_Str"> Max Combo</div>
               </div>
 
-              <div className="End_Result_Miss_Int">{miss}</div>
+              <div className="End_Result_Miss_Int">{}</div>
               <div className="End_Result_Miss">
                 <div className="End_Result_Miss_Str"> Miss</div>
               </div>
@@ -178,13 +182,7 @@ export const EndView = () => {
             <div className="End_Result_Middle_Bottom">
               <div className="End_Result_Middle_Bottom_Blank"></div>
               <div className="End_Result_Middle_Bottom_Detail">
-                <div className="End_Result_Acc">
-                  {(
-                    (stella * 100 + perfect * 90 + good * 60 + bad * 30) /
-                    (stella + perfect + good + bad + miss)
-                  ).toFixed(2)}
-                  %
-                </div>
+                <div className="End_Result_Acc">{percent}%</div>
                 <div className="End_Result_Score">
                   <div className="End_Result_ScoreBox_1">
                     <div className="End_Result_ScoreBox_object">

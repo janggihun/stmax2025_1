@@ -209,11 +209,7 @@ export const rankCheck = (percent) => {
     return "B";
   } else if (percent >= 70) {
     return "C";
-  } else if (percent >= 60) {
-    return "D";
-  } else if (percent >= 50) {
-    return "E";
-  } else if (percent >= 40) {
+  } else {
     return "F";
   }
 };

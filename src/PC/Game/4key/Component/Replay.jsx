@@ -345,6 +345,7 @@ export const Replay_4key = () => {
     } else if (progressCnt === 7) {
       //게임 시작 준비중
       // 이상확인 메서드만들기, 다 준비되어있는지 체크
+
       nextStep(8);
     } else if (progressCnt === 8) {
     }

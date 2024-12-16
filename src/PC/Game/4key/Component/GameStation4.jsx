@@ -98,9 +98,9 @@ export const GameStation4 = (props) => {
       }, 1);
     }
     //test
-    // setTimeout(() => {
-    //   liveMap.current.dispatch(changeGameSet(2));
-    // }, 5000);
+    setTimeout(() => {
+      liveMap.current.dispatch(changeGameSet(2));
+    }, 5000);
     return () => {
       cancelAnimationFrame(liveMap.current.requestAni);
       clearInterval(liveMap.current.tickerInterval);

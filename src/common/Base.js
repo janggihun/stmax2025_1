@@ -268,7 +268,7 @@ export const endGameSuccess2 = (liveMap) => {
     userId: window.localStorage.getItem("userId"),
     level: liveMap.current.level,
     speed: liveMap.current.speed,
-    score: liveMap.current.score,
+    score: parseInt(liveMap.current.score),
 
     stmax100: liveMap.current.stmax100,
     stmax90: liveMap.current.stmax90,

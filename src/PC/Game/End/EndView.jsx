@@ -164,7 +164,7 @@ export const EndView = () => {
                 <img className="img" src="/Icon/STMAX.png" />
               </div>
 
-              <div className="End_Result_Stella_Int">{}</div>
+              <div className="End_Result_Stella_Int">{stmax100}</div>
               <div className="End_Result_Stella">
                 <div className="End_Result_Stella_Str">Stella Max</div>
               </div>
@@ -174,7 +174,7 @@ export const EndView = () => {
                 <div className="End_Result_MaxCombo_Str"> Max Combo</div>
               </div>
 
-              <div className="End_Result_Miss_Int">{}</div>
+              <div className="End_Result_Miss_Int">{stmax0}</div>
               <div className="End_Result_Miss">
                 <div className="End_Result_Miss_Str"> Miss</div>
               </div>
@@ -182,14 +182,14 @@ export const EndView = () => {
             <div className="End_Result_Middle_Bottom">
               <div className="End_Result_Middle_Bottom_Blank"></div>
               <div className="End_Result_Middle_Bottom_Detail">
-                <div className="End_Result_Acc">{percent}%</div>
+                <div className="End_Result_Acc">{percent.toFixed(2)}%</div>
                 <div className="End_Result_Score">
                   <div className="End_Result_ScoreBox_1">
                     <div className="End_Result_ScoreBox_object">
                       <div className="End_Result_ScoreBox_object_Str">Score</div>
                     </div>
                   </div>
-                  <div className="End_Result_ScoreInt">{score}</div>
+                  <div className="End_Result_ScoreInt">{score.toFixed(0)}</div>
                 </div>
               </div>
               <div className="End_Result_Middle_Bottom_Blank"></div>
@@ -224,6 +224,7 @@ export const EndView = () => {
           <div className="End_Bottom_Right">
             <button
               className="End_Bottom_Btn"
+              style={{ color: "white" }}
               onClick={() => {
                 GoMain();
               }}

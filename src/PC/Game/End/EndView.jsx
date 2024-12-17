@@ -23,6 +23,7 @@ export const EndView = () => {
   const stmax30 = resultMap.stmax30;
   const stmax20 = resultMap.stmax20;
   const stmax10 = resultMap.stmax10;
+  const stmax1 = resultMap.stmax1;
   const stmax0 = resultMap.stmax0;
 
   const maxCombo = resultMap.maxCombo;
@@ -126,6 +127,13 @@ export const EndView = () => {
                   <div className="EndResultRow">STMAX 80</div>
                   <div className="EndResultRow">STMAX 70</div>
                   <div className="EndResultRow">STMAX 60</div>
+                  <div className="EndResultRow">STMAX 50</div>
+                  <div className="EndResultRow">STMAX 40</div>
+                  <div className="EndResultRow">STMAX 30</div>
+                  <div className="EndResultRow">STMAX 20</div>
+                  <div className="EndResultRow">STMAX 10</div>
+                  <div className="EndResultRow">STMAX 1</div>
+                  <div className="EndResultRow">STMAX 0</div>
                 </div>
                 <div className="EndResultRow_R">
                   <div className="EndResultRow">{stmax100}</div>
@@ -133,6 +141,13 @@ export const EndView = () => {
                   <div className="EndResultRow">{stmax80}</div>
                   <div className="EndResultRow">{stmax70}</div>
                   <div className="EndResultRow">{stmax60}</div>
+                  <div className="EndResultRow">{stmax50}</div>
+                  <div className="EndResultRow">{stmax40}</div>
+                  <div className="EndResultRow">{stmax30}</div>
+                  <div className="EndResultRow">{stmax20}</div>
+                  <div className="EndResultRow">{stmax10}</div>
+                  <div className="EndResultRow">{stmax1}</div>
+                  <div className="EndResultRow">{stmax0}</div>
                 </div>
               </div>
             </div>

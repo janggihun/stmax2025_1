@@ -65,7 +65,7 @@ export const createLiveMap = () => {
   tempMap.stmax30 = 0;
   tempMap.stmax20 = 0;
   tempMap.stmax10 = 0;
-  tempMap.stmax1= 0;
+  tempMap.stmax1 = 0;
   tempMap.stmax0 = 0;
 
   //////////////////
@@ -245,8 +245,8 @@ export const createLiveMap = () => {
               tempMap.CheckjudgeMent(el[8], el);
               tempMap.LitJudgeMent(el[8]);
             } else {
-            //미스범위보다 큰경우 1%를 랜더링
-            tempMap.CheckjudgeMent(scope1, el);
+              //미스범위보다 큰경우
+              tempMap.CheckjudgeMent(160, el); // 강제미스
             }
 
             tempMap.intervalList.splice(i, 1);
@@ -290,7 +290,7 @@ export const createLiveMap = () => {
       if (el[3] < audioFrameTime - scope30 - tempMap.helpInt) {
         if (el[0] === "L") {
           el[6].className = "overPushed";
-          tempMap.CheckjudgeMent(160, el); //강제미스
+          tempMap.CheckjudgeMent(scope1, el); //강제1%
         }
         tempMap.intervalList.splice(i, 1);
       }
@@ -403,14 +403,13 @@ export const createLiveMap = () => {
         tempMap.intervalList.findIndex((el, i) => {
           if (el[1] === keyIndex) {
             const diff = Math.abs(el[3] - keyTime);
-            
+
             //미스범위 안에 있는경우 눌렀을때와 같은 결과값을 추가
             if (diff < scope0) {
               tempMap.CheckjudgeMent(el[8], el);
               tempMap.LitJudgeMent(el[8]);
-            } else{
-                //미스범위보다 큰경우 1%를 랜더링
-                tempMap.CheckjudgeMent(scope1, el);
+            } else {
+              tempMap.CheckjudgeMent(160, el); // 강제미스
             }
             tempMap.intervalList.splice(i, 1);
             return true;
@@ -451,7 +450,7 @@ export const createLiveMap = () => {
       if (el[3] < audioFrameTime - scope30 - tempMap.helpInt) {
         if (el[0] === "L") {
           el[6].className = "overPushed";
-          tempMap.CheckjudgeMent(160, el); //강제미스
+          tempMap.CheckjudgeMent(scope1, el); //강제 1%
         }
         tempMap.intervalList.splice(i, 1);
       }
@@ -532,12 +531,10 @@ export const createLiveMap = () => {
       return 10;
     } else if (abs_diff <= scope1) {
       return 1;
-    }  else {
+    } else {
       return 0;
     }
   };
-
-
 
   tempMap.CheckjudgeMent = (diff, el) => {
     const tempBar = diff / 5;
@@ -659,9 +656,7 @@ export const createLiveMap = () => {
       tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_1">STMAX 1%</div>`;
       tempMap.CheckRecure();
       tempMap.ShowEffect(pos);
-    } 
-
-    else {
+    } else {
       tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_0">STMAX 0%</div>`;
 
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);

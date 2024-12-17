@@ -140,7 +140,7 @@ export const RankUserInfo2 = (props) => {
         {rankMap && (
           <>
             <div className="RankUserInfo_Detail1" style={{ height: "80%" }}>
-              <div style={{ display: "flex", height: "90%" }}>
+              <div style={{ display: "flex", height: "82%" }}>
                 <div style={{ width: "50%", height: "100%" }}>
                   <div className="RankUserInfo_Row">
                     <div className="RankUserInfo_Row_Point">STMAX 100 </div>
@@ -160,27 +160,31 @@ export const RankUserInfo2 = (props) => {
                   </div>
                   <div className="RankUserInfo_Row">
                     <div className="RankUserInfo_Row_Point">STMAX 60 </div>
-                    <div className="RankUserInfo_Row_Point">{rankMap.stmax70}</div>
+                    <div className="RankUserInfo_Row_Point">{rankMap.stmax60}</div>
                   </div>
                   <div className="RankUserInfo_Row">
                     <div className="RankUserInfo_Row_Point">STMAX 50 </div>
-                    <div className="RankUserInfo_Row_Point">{rankMap.stmax70}</div>
+                    <div className="RankUserInfo_Row_Point">{rankMap.stmax50}</div>
                   </div>
                   <div className="RankUserInfo_Row">
                     <div className="RankUserInfo_Row_Point">STMAX 40 </div>
-                    <div className="RankUserInfo_Row_Point">{rankMap.stmax70}</div>
+                    <div className="RankUserInfo_Row_Point">{rankMap.stmax40}</div>
                   </div>
                   <div className="RankUserInfo_Row">
                     <div className="RankUserInfo_Row_Point">STMAX 30 </div>
-                    <div className="RankUserInfo_Row_Point">{rankMap.stmax70}</div>
+                    <div className="RankUserInfo_Row_Point">{rankMap.stmax30}</div>
                   </div>
                   <div className="RankUserInfo_Row">
                     <div className="RankUserInfo_Row_Point">STMAX 20 </div>
-                    <div className="RankUserInfo_Row_Point">{rankMap.stmax0}</div>
+                    <div className="RankUserInfo_Row_Point">{rankMap.stmax20}</div>
                   </div>
                   <div className="RankUserInfo_Row">
                     <div className="RankUserInfo_Row_Point">STMAX 10 </div>
                     <div className="RankUserInfo_Row_Point">{rankMap.stmax10}</div>
+                  </div>
+                  <div className="RankUserInfo_Row">
+                    <div className="RankUserInfo_Row_Point">STMAX 1 </div>
+                    <div className="RankUserInfo_Row_Point">{rankMap.stmax1}</div>
                   </div>
                   <div className="RankUserInfo_Row">
                     <div className="RankUserInfo_Row_Point">STMAX 0 </div>

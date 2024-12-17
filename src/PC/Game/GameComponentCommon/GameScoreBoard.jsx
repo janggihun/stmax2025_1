@@ -44,6 +44,10 @@ export const GameScoreBoard = (props) => {
         <div className="Game_ScoreBord_row_R sort">{liveData.stmax10}</div>
       </div>
       <div className="Game_ScoreBord_row">
+        <div className="Game_ScoreBord_row_L sort">STMAX 1 : </div>
+        <div className="Game_ScoreBord_row_R sort">{liveData.stmax1}</div>
+      </div>
+      <div className="Game_ScoreBord_row">
         <div className="Game_ScoreBord_row_L sort">STMAX 0 : </div>
         <div className="Game_ScoreBord_row_R sort">{liveData.stmax0}</div>
       </div>
@@ -73,6 +77,7 @@ export const GameScoreBoard = (props) => {
             liveData.stmax30 +
             liveData.stmax20 +
             liveData.stmax10 +
+            liveData.stmax1 +
             liveData.stmax0}
         </div>
       </div>

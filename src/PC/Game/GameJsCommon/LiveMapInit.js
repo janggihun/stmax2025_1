@@ -13,6 +13,7 @@ export const createLiveMap = () => {
   const scope30 = 120;
   const scope20 = 130;
   const scope10 = 140;
+  const scope1 = 150;
   const scope0 = 155;
   const fps = 120;
   const tempMap = {};
@@ -64,6 +65,7 @@ export const createLiveMap = () => {
   tempMap.stmax30 = 0;
   tempMap.stmax20 = 0;
   tempMap.stmax10 = 0;
+  tempMap.stmax1= 0;
   tempMap.stmax0 = 0;
 
   //////////////////
@@ -243,8 +245,8 @@ export const createLiveMap = () => {
               tempMap.CheckjudgeMent(el[8], el);
               tempMap.LitJudgeMent(el[8]);
             } else {
-              //미스범위보다 큰경우 가차없이 미스
-              tempMap.CheckjudgeMent(160, el);
+            //미스범위보다 큰경우 1%를 랜더링
+            tempMap.CheckjudgeMent(scope1, el);
             }
 
             tempMap.intervalList.splice(i, 1);
@@ -288,9 +290,8 @@ export const createLiveMap = () => {
       if (el[3] < audioFrameTime - scope30 - tempMap.helpInt) {
         if (el[0] === "L") {
           el[6].className = "overPushed";
+          tempMap.CheckjudgeMent(160, el); //강제미스
         }
-
-        tempMap.CheckjudgeMent(160, el); // 미스
         tempMap.intervalList.splice(i, 1);
       }
     });
@@ -401,16 +402,16 @@ export const createLiveMap = () => {
         //롱노트 손 땐거 확인
         tempMap.intervalList.findIndex((el, i) => {
           if (el[1] === keyIndex) {
-            const diff = el[3] - keyTime;
+            const diff = Math.abs(el[3] - keyTime);
+            
             //미스범위 안에 있는경우 눌렀을때와 같은 결과값을 추가
             if (diff < scope0) {
               tempMap.CheckjudgeMent(el[8], el);
               tempMap.LitJudgeMent(el[8]);
-            } else {
-              //미스범위보다 큰경우 가차없이 미스
-              tempMap.CheckjudgeMent(160, el);
+            } else{
+                //미스범위보다 큰경우 1%를 랜더링
+                tempMap.CheckjudgeMent(scope1, el);
             }
-
             tempMap.intervalList.splice(i, 1);
             return true;
           }
@@ -450,9 +451,8 @@ export const createLiveMap = () => {
       if (el[3] < audioFrameTime - scope30 - tempMap.helpInt) {
         if (el[0] === "L") {
           el[6].className = "overPushed";
+          tempMap.CheckjudgeMent(160, el); //강제미스
         }
-
-        tempMap.CheckjudgeMent(160, el); // 미스
         tempMap.intervalList.splice(i, 1);
       }
     });
@@ -467,7 +467,6 @@ export const createLiveMap = () => {
         // 게임종료
 
         tempMap.dispatch(openModal("리플레이가  완료되었습니다. "));
-        console.log(tempMap);
         clearInterval(tempMap.tickerInterval);
       }, 2000);
     }
@@ -531,10 +530,15 @@ export const createLiveMap = () => {
       return 20;
     } else if (abs_diff <= scope10) {
       return 10;
-    } else {
+    } else if (abs_diff <= scope1) {
+      return 1;
+    }  else {
       return 0;
     }
   };
+
+
+
   tempMap.CheckjudgeMent = (diff, el) => {
     const tempBar = diff / 5;
 
@@ -648,7 +652,16 @@ export const createLiveMap = () => {
 
       tempMap.CheckRecure();
       tempMap.ShowEffect(pos);
-    } else {
+    } else if (abs_diff <= scope1) {
+      tempMap.stmax1++;
+      tempMap.combo++;
+      tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
+      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_1">STMAX 1%</div>`;
+      tempMap.CheckRecure();
+      tempMap.ShowEffect(pos);
+    } 
+
+    else {
       tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_0">STMAX 0%</div>`;
 
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);

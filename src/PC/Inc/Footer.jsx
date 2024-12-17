@@ -55,10 +55,10 @@ export const Footer = () => {
         <div className="Footer_Row sort ">
           <div className="Footer_ArrowBox">
             <div className="Footer_ArrowUp">
-              <img className="img arrowImg" src="/arrow/keyboardArrow_top.png" alt="사진없음" />
+              <img className="img " src="/arrow/keyboardArrow_top.png" alt="사진없음" />
             </div>
             <div className="Footer_ArrowDown">
-              <img className="img arrowImg" src="/arrow/keyboardArrow_bottom.png" alt="사진없음" />
+              <img className="img " src="/arrow/keyboardArrow_bottom.png" alt="사진없음" />
             </div>
           </div>
           <div className="Footer_ArrowBoxString sort">뮤직 변경</div>
@@ -66,10 +66,10 @@ export const Footer = () => {
         <div className="Footer_Row sort ">
           <div className="Footer_ArrowBox1">
             <div className="Footer_ArrowLeft">
-              <img className="img arrowImg1" src="/arrow/keyboardArrow_left.png" alt="사진없음" />
+              <img className="img " src="/arrow/keyboardArrow_left.png" alt="사진없음" />
             </div>
             <div className="Footer_ArrowRight">
-              <img className="img arrowImg1" src="/arrow/keyboardArrow_right.png" alt="사진없음" />
+              <img className="img " src="/arrow/keyboardArrow_right.png" alt="사진없음" />
             </div>
           </div>
           <div className="Footer_ArrowBoxString sort">난이도 변경</div>

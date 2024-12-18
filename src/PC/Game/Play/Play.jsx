@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import Phaser from "phaser";
 import { get_noteList } from "./JS/Note";
 import { getAudio } from "./JS/Audio";
-import { CreateNote, RenderingNoteBox } from "./JS/RenderNote";
+import { RenderingNoteBox } from "./JS/RenderNote";
 
 export const Play = () => {
   const gameRef = useRef(null);
@@ -12,10 +12,13 @@ export const Play = () => {
   const speedList = useRef(null);
   const intervalList = useRef([]);
   const nowNoteRenderList = useRef([]);
+
+  //조건
   const speed = 1.5;
   const musicCnt = 1;
   const keyType = 4;
   const level = "stella";
+
   useEffect(() => {
     const config = {
       type: Phaser.AUTO,
@@ -47,6 +50,10 @@ export const Play = () => {
       const noteMap = await get_noteList(musicCnt, level);
       gameList.current = noteMap.gameList;
       speedList.current = noteMap.speedList;
+      //   speedList.current = noteMap.speedList ? noteMap.speedList : [0, 1, 4, 0];
+
+      console.log(speedList.current);
+
       //오디오 로딩
       const source = await getAudio(keyType, musicCnt);
       audio.current = source;

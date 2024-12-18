@@ -33,8 +33,6 @@ export function RenderingNoteBox(
   let bpmIndex = 0;
   let j = 0;
 
-  const noteColorFlag = fnData("noteColor");
-
   const CopyHitList = gameList.map((el) => {
     //숏노트인경우, 천천히 사라지게 만듬
     return el;
@@ -101,8 +99,8 @@ export function RenderingNoteBox(
       const NoteType = nowNote[0];
       const NotePos = checkPos(nowNote[1]);
 
-      const StartTime = nowNote[2];
-      const EndTime = nowNote[3];
+      const StartTime = nowNote[2] * speed;
+      const EndTime = nowNote[3] * speed;
 
       //색 조건
 
@@ -117,27 +115,26 @@ export function RenderingNoteBox(
           )
         );
       } else {
-        const LongHeight = EndTime * speed - StartTime * speed;
-        const LongHeight2 = EndTime * speed - audioTime * speed;
-
-        const returnValue = intervalList.find((el_i, index) => {
-          if (el_i[5] === el[5]) {
-            // liveMap.current.intervalList[index][3] = audioTime;
-            return true;
-          }
-        });
-        if (returnValue) {
-        } else {
-          nowNoteRenderList.push(
-            that.add.rectangle(
-              marginLeft + NotePos,
-              -EndTime + audioTime + 710 + LongHeight / 2 + noteHeight / 2,
-              noteWidth,
-              LongHeight + noteHeight,
-              0xffffff
-            )
-          );
-        }
+        const LongHeight = EndTime - StartTime;
+        const LongHeight2 = EndTime - audioTime;
+        nowNoteRenderList.push(
+          that.add.rectangle(
+            marginLeft + NotePos,
+            -EndTime + audioTime + 710 + LongHeight / 2 + noteHeight / 2,
+            noteWidth,
+            LongHeight + noteHeight,
+            0xffffff
+          )
+        );
+        // const returnValue = intervalList.find((el_i, index) => {
+        //   if (el_i[5] === el[5]) {
+        //     // liveMap.current.intervalList[index][3] = audioTime;
+        //     return true;
+        //   }
+        // });
+        // if (returnValue) {
+        // } else {
+        // }
       }
     });
   }

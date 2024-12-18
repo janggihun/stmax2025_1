@@ -1,4 +1,5 @@
-import { fnData, getNowList, speedTimeHeight_play } from "../../../../common/Base";
+import Phaser from "phaser";
+import { getNowList, speedTimeHeight_play } from "../../../../common/Base";
 //숏노트 눌렀을때 효과
 const noteHeight = 30;
 const noteWidth = 90;
@@ -6,7 +7,6 @@ const marginLeft = 340;
 //왼쪽부터 몇 px인지 확인후 리턴
 const checkPos = (index) => {
   //간격
-
   return index * noteWidth + index * 15;
 };
 /*노트 색깔별 */
@@ -16,20 +16,21 @@ const blue =
 const gold = "linear-gradient(to right, rgb(175, 149, 0), gold, gold, rgb(175, 149, 0))";
 
 export function RenderingNoteBox(
-  that,
+  graphics_short,
+  graphics_long,
   allGameList,
   audioTime1,
   speed,
   speedList,
   intervalList,
-  nowNoteRenderList
+  renderList_short,
+  renderList_long
 ) {
   const gameList = getNowList(allGameList, audioTime1);
 
   //전체 화면을 지운다.
-  nowNoteRenderList.forEach((el) => {
-    el.destroy();
-  });
+  //   graphics_short.clear();
+  //   graphics_long.clear();
   let bpmIndex = 0;
   let j = 0;
 
@@ -50,13 +51,12 @@ export function RenderingNoteBox(
       const EndTime = speedTimeHeight_play(nowNote[3], speedList, speed);
 
       if (NoteType === "S") {
-        nowNoteRenderList.push(
-          that.add.rectangle(
+        renderList_short.push(
+          new Phaser.Geom.Rectangle(
             marginLeft + NotePos,
             -EndTime + audioTime + 710 + noteHeight / 2,
             noteWidth,
-            noteHeight,
-            0xebcc34
+            noteHeight
           )
         );
       } else {
@@ -66,13 +66,12 @@ export function RenderingNoteBox(
         const LongHeight2 = EndTime - audioTime;
         // div.style.left = NotePos + "px";
         // div.style.top = -EndTime + audioTime + 710 + "px";
-        nowNoteRenderList.push(
-          that.add.rectangle(
+        renderList_long.push(
+          new Phaser.Geom.Rectangle(
             marginLeft + NotePos,
             -EndTime + audioTime + 710 + LongHeight / 2 + noteHeight / 2,
             noteWidth,
-            LongHeight + noteHeight,
-            0xffffff
+            noteHeight
           )
         );
         if (StartTime > audioTime) {
@@ -105,25 +104,23 @@ export function RenderingNoteBox(
       //색 조건
 
       if (NoteType === "S") {
-        nowNoteRenderList.push(
-          that.add.rectangle(
+        renderList_short.push(
+          new Phaser.Geom.Rectangle(
             marginLeft + NotePos,
             -EndTime + audioTime + 710 + noteHeight / 2,
             noteWidth,
-            noteHeight,
-            0xebcc34
+            noteHeight
           )
         );
       } else {
         const LongHeight = EndTime - StartTime;
         const LongHeight2 = EndTime - audioTime;
-        nowNoteRenderList.push(
-          that.add.rectangle(
+        renderList_long.push(
+          new Phaser.Geom.Rectangle(
             marginLeft + NotePos,
             -EndTime + audioTime + 710 + LongHeight / 2 + noteHeight / 2,
             noteWidth,
-            LongHeight + noteHeight,
-            0xffffff
+            noteHeight
           )
         );
         // const returnValue = intervalList.find((el_i, index) => {
@@ -138,5 +135,8 @@ export function RenderingNoteBox(
       }
     });
   }
-  console.log(nowNoteRenderList);
+  renderList_short.forEach((el) => {
+    graphics_short.fillRectShape(el);
+  });
+  console.log(renderList_short);
 }

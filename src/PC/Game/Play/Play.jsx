@@ -11,7 +11,10 @@ export const Play = () => {
   const gameList = useRef(null);
   const speedList = useRef(null);
   const intervalList = useRef([]);
-  const nowNoteRenderList = useRef([]);
+  const renderList_short = useRef([]);
+  const renderList_long = useRef([]);
+  const graphics_short = useRef();
+  const graphics_long = useRef();
 
   //조건
   const speed = 1.5;
@@ -65,6 +68,8 @@ export const Play = () => {
     }
 
     function create() {
+      graphics_short.current = this.add.graphics({ fillStyle: { color: 0xebcc34 } });
+      graphics_long.current = this.add.graphics({ fillStyle: { color: 0xffffff } });
       //   gameState.music = this.sound.add("theme");
       //   gameState.music.play();
       console.log("크리에이트 시작");
@@ -85,13 +90,15 @@ export const Play = () => {
       if (startTime.current) {
         const audioTime = now - startTime.current;
         RenderingNoteBox(
-          this,
+          graphics_short.current,
+          graphics_long.current,
           gameList.current,
           audioTime,
           speed,
           speedList.current,
           intervalList.current,
-          nowNoteRenderList.current
+          renderList_short.current,
+          renderList_long.current
         );
       }
 

@@ -186,12 +186,12 @@ export const createLiveMap = () => {
     //키체크 리스트 만들기
 
     tempMap.keyMemoryList.forEach((el, i) => {
-        keyCheckList.push(el);
-        el.push(tempMap.nowIndex);
-        el.push(i);
-        tempMap.replayList.push(el);
+      keyCheckList.push(el);
+      el.push(tempMap.nowIndex);
+      el.push(i);
+      tempMap.replayList.push(el);
     });
-    tempMap.keyMemoryList = []
+    tempMap.keyMemoryList = [];
     //키 판정 시작
     keyCheckList.forEach((key_el, i) => {
       const pushList = [];
@@ -267,6 +267,7 @@ export const createLiveMap = () => {
     });
 
     // 롱노트 미스 확인
+    const temp1List = [];
     tempMap.intervalList.forEach((el, i) => {
       //정상적으로 누르고 있는 경우
       if (
@@ -285,14 +286,12 @@ export const createLiveMap = () => {
 
       // 계속 누르고 있는 경우
       if (el[3] < audioFrameTime - scope30 - tempMap.helpInt) {
-        if (el[0] === "L") {
-          el[6].className = "overPushed";
-          tempMap.CheckjudgeMent(scope1, el); //강제1%
-        }
-        tempMap.intervalList.splice(i, 1);
+        tempMap.CheckjudgeMent(scope1, el); //강제 1%
+      } else {
+        temp1List.push(el);
       }
     });
-
+    tempMap.intervalList = temp1List;
     //마지막 시간 구하기
     if (tempMap.lastTime < audioFrameTime) {
       tempMap.lastTime = 9999999;
@@ -345,16 +344,16 @@ export const createLiveMap = () => {
 
     //리플레이 리스트 만들기
     if (tempMap.replayList[0]) {
-      const tempReplayList  = [];
+      const tempReplayList = [];
       tempMap.replayList.forEach((el, i) => {
         if (el[3] === tempMap.nowIndex) {
           keyCheckList.push(el);
-        }else {
-          tempReplayList.push(el)
+        } else {
+          tempReplayList.push(el);
         }
       });
 
-      tempMap.replayList = tempReplayList
+      tempMap.replayList = tempReplayList;
     }
     keyCheckList.sort((a, b) => {
       return a[4] - b[4];
@@ -432,6 +431,7 @@ export const createLiveMap = () => {
     });
 
     // 롱노트 미스 확인
+    const temp1List = [];
     tempMap.intervalList.forEach((el, i) => {
       if (
         audioFrameTime - el[2] - tempMap.helpInt >= el[4] * scope30 &&
@@ -446,15 +446,14 @@ export const createLiveMap = () => {
         const pos = tempMap.checkPos(el[1]);
         tempMap.ShowEffect(pos);
       }
-
+      // 계속 누르고 있는 경우
       if (el[3] < audioFrameTime - scope30 - tempMap.helpInt) {
-        if (el[0] === "L") {
-          el[6].className = "overPushed";
-          tempMap.CheckjudgeMent(scope1, el); //강제 1%
-        }
-        tempMap.intervalList.splice(i, 1);
+        tempMap.CheckjudgeMent(scope1, el); //강제 1%
+      } else {
+        temp1List.push(el);
       }
     });
+    tempMap.intervalList = temp1List;
 
     //마지막 시간 구하기
     if (tempMap.lastTime < audioFrameTime) {

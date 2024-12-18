@@ -15,6 +15,7 @@ import { Replay_7key } from "./Game/7key/Component/Replay";
 import { Replay_4key } from "./Game/4key/Component/Replay";
 import { EndView } from "./Game/End/EndView";
 import { Loading } from "../UseHook/Loading/Loading";
+import { Play } from "./Game/Play/Play";
 
 function App() {
   const modal = useSelector((state) => state.modal.value);
@@ -25,6 +26,9 @@ function App() {
   check_KEY4();
   //7키체크
   check_KEY7();
+
+  //라스트 뮤직 번호 확인
+
   // //공지 체크
   const { checkVersion, renderPopup, openPopUp } = usePopUp();
   //정보모달
@@ -65,6 +69,7 @@ function App() {
             <Route path="/End" element={<EndView />} />
             <Route path="/Replay/4key" element={<Replay_4key />} />
             <Route path="/Replay/7key" element={<Replay_7key />} />
+            <Route path="/test" element={<Play />} />
           </Routes>
         </AnimatePresence>
         {openPopUp && renderPopup()}

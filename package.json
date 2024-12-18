@@ -11,6 +11,7 @@
     "example-react": "file:",
     "framer-motion": "^11.14.4",
     "npm": "^10.9.2",
+    "phaser": "^3.87.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-redux": "^9.2.0",

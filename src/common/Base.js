@@ -377,3 +377,31 @@ export const speedTimeHeight = (time, liveMap, userSpeed) => {
   }
   return returnHeight;
 };
+
+//speed 에 대한 높이 구하는 메서드
+export const speedTimeHeight_play = (time, speedList, userSpeed) => {
+  let returnHeight = 0;
+  //speedList 0번째 : 구간 , 1번째 : 속도
+
+  for (let i = 0; i < speedList.length; i++) {
+    const iSpeed = speedList[i];
+
+    const iNextSpeed = speedList[i + 1];
+    if (iNextSpeed) {
+      //항상 다음구간이 있음speedTimeHeight
+      if (iNextSpeed[0] < time) {
+        //이번 구간 전체값
+        returnHeight += (iNextSpeed[0] - iSpeed[0]) * iSpeed[1] * userSpeed;
+      } else {
+        //이번구간내에서 값구하고 종료
+        returnHeight += (time - iSpeed[0]) * iSpeed[1] * userSpeed;
+        break;
+      }
+    } else {
+      //다음구간이 없음 == 초과 구간
+      returnHeight += (time - speedList[speedList.length - 1][0]) * iSpeed[1] * userSpeed;
+      break;
+    }
+  }
+  return returnHeight;
+};

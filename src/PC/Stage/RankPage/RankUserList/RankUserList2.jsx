@@ -1,9 +1,8 @@
 import "./RankUserList.css";
 import "../../../../style/Scroll.css";
 import { useEffect, useRef } from "react";
-import { get_Src_Img, rankCheck, saveData } from "../../../../common/Base";
+import { get_Src_Img, rankCheck } from "../../../../common/Base";
 import { useDispatch } from "react-redux";
-import { changePage } from "../../../../Store/PageSlice";
 import { changeSeason } from "../../../../Store/SeasonSlice";
 
 export const RankUserList2 = (props) => {
@@ -45,7 +44,7 @@ export const RankUserList2 = (props) => {
           </div>
           <div
             className="RankUserList_MusicSeasonBox_detail sort"
-            style={season === 2 ? { color: "white" } : {}}
+            style={season === 2 ? { color: "rgb(206, 255, 247)" } : {}}
             onClick={() => {
               clickSeason(2);
             }}
@@ -100,11 +99,7 @@ export const RankUserList2 = (props) => {
                       <div className="RankUser_Blank2"></div>
                     )}
 
-                    <div
-                      className={
-                        el.percent ? el.percent : 0 >= 95 ? "RankUser_Judge_S" : "RankUser_Judge"
-                      }
-                    >
+                    <div className={el.percent >= 95 ? "RankUser_Judge_S" : "RankUser_Judge"}>
                       {rankCheck(el.percent ? el.percent : 0)}
                     </div>
                     <div className="RankUser_date">{el.insertDate.substring(0, 10)}</div>

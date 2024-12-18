@@ -5,6 +5,7 @@ import { levelList } from "../../../../common/Array";
 import { changeLevel } from "../../../../Store/LevelSlice";
 import { useDispatch } from "react-redux";
 import { motion } from "framer-motion";
+import { openModal } from "../../../../Store/ModalSlice";
 
 export const RankUserInfo = (props) => {
   const navigate = useNavigate();
@@ -17,6 +18,8 @@ export const RankUserInfo = (props) => {
 
   const replay = () => {
     //리플데이터 만들기
+    dispatch(openModal("시즌1 리플은 준비중입니다."));
+    return false;
 
     const temp_replayMap = {
       recordCnt: rankMap.recordCnt,

@@ -44,7 +44,7 @@ export const RankUserList = (props) => {
           </div>
           <div
             className="RankUserList_MusicSeasonBox_detail sort"
-            style={season === 2 ? { color: "white" } : {}}
+            style={season === 2 ? { color: "rgb(206, 255, 247)" } : {}}
             onClick={() => {
               clickSeason(2);
             }}
@@ -93,7 +93,7 @@ export const RankUserList = (props) => {
                       {el.titleName && el.titleName}
                     </div>
                     <div className="RankUser_UserId">{el.userId}</div>
-                    {el.miss === 0 ? (
+                    {el.stmax0 === 0 ? (
                       <div className="RankUser_Blank2 ShowRank_AllCombo"> All Combo</div>
                     ) : (
                       <div className="RankUser_Blank2"></div>

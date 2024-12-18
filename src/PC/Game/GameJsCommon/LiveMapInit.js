@@ -186,15 +186,12 @@ export const createLiveMap = () => {
     //키체크 리스트 만들기
 
     tempMap.keyMemoryList.forEach((el, i) => {
-      if (el[1] <= audioFrameTime) {
         keyCheckList.push(el);
         el.push(tempMap.nowIndex);
         el.push(i);
         tempMap.replayList.push(el);
-        tempMap.keyMemoryList.splice(i, 1);
-      }
     });
-
+    tempMap.keyMemoryList = []
     //키 판정 시작
     keyCheckList.forEach((key_el, i) => {
       const pushList = [];
@@ -348,13 +345,16 @@ export const createLiveMap = () => {
 
     //리플레이 리스트 만들기
     if (tempMap.replayList[0]) {
+      const tempReplayList  = [];
       tempMap.replayList.forEach((el, i) => {
-        if (el[3] <= tempMap.nowIndex) {
+        if (el[3] === tempMap.nowIndex) {
           keyCheckList.push(el);
-
-          tempMap.replayList.splice(i, 1);
+        }else {
+          tempReplayList.push(el)
         }
       });
+
+      tempMap.replayList = tempReplayList
     }
     keyCheckList.sort((a, b) => {
       return a[4] - b[4];

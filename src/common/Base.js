@@ -280,6 +280,7 @@ export const endGameSuccess2 = (liveMap) => {
     stmax30: liveMap.current.stmax30,
     stmax20: liveMap.current.stmax20,
     stmax10: liveMap.current.stmax10,
+    stmax1: liveMap.current.stmax1,
     stmax0: liveMap.current.stmax0,
 
     maxCombo: liveMap.current.maxCombo,

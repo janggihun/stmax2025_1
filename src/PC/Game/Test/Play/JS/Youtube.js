@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import YouTube from "react-youtube";
-import { fnData } from "../../../../common/Base";
+import { fnData } from "../../../../../common/Base";
 
 export const RenderGameYoutube_play = (props) => {
   const youtubeFlag = useSelector((state) => state.youtubeFlag.value);
@@ -14,8 +14,6 @@ export const RenderGameYoutube_play = (props) => {
       setTimeout(() => {
         //변수 초
         const diffTime = Date.now() - startTime;
-        console.log(diffTime);
-        console.log(startTime);
         player.seekTo(diffTime / 1000 - 3);
         player.playVideo();
       }, (startDelay + 0.5) * 1000);

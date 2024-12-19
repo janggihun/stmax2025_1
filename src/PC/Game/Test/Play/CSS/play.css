@@ -1,0 +1,44 @@
+.Scene_Youtube {
+  position: absolute;
+
+  z-index: 1;
+}
+.Scene_Game {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+}
+.Scene_BackGround {
+  position: absolute;
+  z-index: 2;
+}
+.Scene_Front {
+  position: absolute;
+  z-index: 4;
+}
+
+.Scene_BaseContainer {
+  position: absolute;
+  width: 440px;
+  height: 900px;
+  top: 0px;
+  left: 280px;
+}
+.Scene_Img {
+  position: absolute;
+  top: 0px;
+  left: 117px;
+}
+.Scene_buttonBox {
+  position: absolute;
+  top: 770px;
+  left: 285px;
+  width: 430px;
+  height: 100px;
+  /* background-color: aqua; */
+}
+.Scene_button {
+  width: 23%;
+  height: 100%;
+}

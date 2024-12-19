@@ -1,4 +1,4 @@
-import { fnData } from "../../../../common/Base";
+import { fnData } from "../../../../../common/Base";
 
 export const getAudio = async (keyType, musicCnt) => {
   const audioContextRef = new (window.AudioContext || window.webkitAudioContext)();

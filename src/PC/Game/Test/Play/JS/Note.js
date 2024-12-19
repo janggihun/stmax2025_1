@@ -1,4 +1,4 @@
-import { NoteReadManager } from "../../GameJsCommon/NoteReadManager";
+import { NoteReadManager } from "../../../GameJsCommon/NoteReadManager";
 
 //노트를 파싱
 export async function get_noteList(musicCnt, level) {

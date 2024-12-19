@@ -15,7 +15,7 @@ import { Replay_7key } from "./Game/7key/Component/Replay";
 import { Replay_4key } from "./Game/4key/Component/Replay";
 import { EndView } from "./Game/End/EndView";
 import { Loading } from "../UseHook/Loading/Loading";
-import { Play } from "./Game/Play/Play";
+import { Play } from "./Game/Test/Play/Play";
 
 function App() {
   const modal = useSelector((state) => state.modal.value);

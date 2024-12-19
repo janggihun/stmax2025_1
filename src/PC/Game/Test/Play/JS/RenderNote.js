@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import { getNowList, speedTimeHeight_play } from "../../../../common/Base";
+import { getNowList, speedTimeHeight_play } from "../../../../../common/Base";
 //숏노트 눌렀을때 효과
 const noteHeight = 30;
 const noteWidth = 95;

@@ -42,23 +42,7 @@ export const checkColor = (index) => {
     return "linear-gradient(to right, gray, white, white, gray)";
   }
 };
-// export const checkColor = (index) => {
-//   if (index === 0) {
-//     return "/Note/note_white.png";
-//   } else if (index === 1) {
-//     return "/Note/note_blue.png";
-//   } else if (index === 2) {
-//     return "/Note/note_white.png";
-//   } else if (index === 3) {
-//     return "linear-gradient(to right, rgb(175, 149, 0), gold, gold, rgb(175, 149, 0))";
-//   } else if (index === 4) {
-//     return "/Note/note_white.png";
-//   } else if (index === 5) {
-//     return "/Note/note_blue.png";
-//   } else if (index === 6) {
-//     return "/Note/note_white.png";
-//   }
-// };
+
 const white = "linear-gradient(to right, gray, white, white, gray)";
 const blue =
   "linear-gradient(to right,rgb(45, 57, 90),rgb(51, 158, 247),rgb(51, 158, 247),rgb(45, 57, 90))";

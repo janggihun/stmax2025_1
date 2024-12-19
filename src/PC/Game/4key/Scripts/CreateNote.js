@@ -55,40 +55,23 @@ export function CreateNote(liveMap) {
       div.style.border = "1px solid white";
       div.style.boxSizing = "border-box";
       div.style.width = 90 + "px";
-      const elem = document.createElement("img");
 
       //색 조건
 
       if (noteColorFlag === 0) {
         // noteColorFlag === 0 , 숏 : 노란색, 롱 : 흰색
         if (NoteType === "S") {
-          elem.setAttribute("src", "/Note/note_blue.png");
-          elem.setAttribute("height", "100%");
-          elem.setAttribute("width", "100%");
-          elem.setAttribute("alt", "note");
-          div.appendChild(elem);
+          div.style.background = gold;
         } else {
-          elem.setAttribute("src", "/Note/note_white.png");
-          elem.setAttribute("height", "100%");
-          elem.setAttribute("width", "100%");
-          elem.setAttribute("alt", "note");
-          div.appendChild(elem);
+          div.style.background = white;
         }
       } else if (noteColorFlag === 1) {
         // noteColorFlag === 1 , 외부 : 흰색, 내부 : 파란색
 
         if (nowNote[1] === 0 || nowNote[1] === 3) {
-          elem.setAttribute("src", "/Note/note_white.png");
-          elem.setAttribute("height", "100%");
-          elem.setAttribute("width", "100%");
-          elem.setAttribute("alt", "note");
-          div.appendChild(elem);
+          div.style.background = white;
         } else {
-          elem.setAttribute("src", "/Note/note_blue.png");
-          elem.setAttribute("height", "100%");
-          elem.setAttribute("width", "100%");
-          elem.setAttribute("alt", "note");
-          div.appendChild(elem);
+          div.style.background = blue;
         }
       }
       if (NoteType === "S") {

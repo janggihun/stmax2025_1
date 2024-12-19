@@ -1028,7 +1028,7 @@
   height: 100%;
 }
 .Game_ScoreBoard {
-  top: 50px;
+  top: 100px;
   left: 800px;
   width: 500px;
   height: 700px;
@@ -1064,4 +1064,12 @@
 .Game_ScoreBord_row_R {
   width: 50%;
   height: 100%;
+}
+.Game_Score_btn {
+  position: absolute;
+  top: 20px;
+  left: 950px;
+  width: 200px;
+  height: 40px;
+  /* background-color: #09ff15; */
 }

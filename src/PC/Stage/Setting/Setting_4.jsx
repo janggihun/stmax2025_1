@@ -482,7 +482,7 @@ export const Setting_4key = (props) => {
                       <option value={0}>노트별 : 숏(노란),롱(흰) </option>
                       <option value={1}>라인별 : 외부(흰),내부(파란)</option>
                     </select>
-                  </div>{" "}
+                  </div>
                   <div className="Setting_Btn"></div>
                 </div>
               </div>

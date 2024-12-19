@@ -29,8 +29,7 @@ export function RenderingNoteBox(
   const gameList = getNowList(allGameList, audioTime1);
 
   //전체 화면을 지운다.
-  //   graphics_short.clear();
-  //   graphics_long.clear();
+
   let bpmIndex = 0;
   let j = 0;
 
@@ -138,5 +137,9 @@ export function RenderingNoteBox(
   renderList_short.forEach((el) => {
     graphics_short.fillRectShape(el);
   });
-  console.log(renderList_short);
+  renderList_long.forEach((el) => {
+    graphics_long.fillRectShape(el);
+  });
+  console.log("renderList_short :",renderList_short.length);
+  console.log("renderList_long:",renderList_long.length);
 }

@@ -89,6 +89,11 @@ export const Play = () => {
 
       if (startTime.current) {
         const audioTime = now - startTime.current;
+        //현재 화면을 지운다.
+        graphics_short.current.clear();
+        graphics_long.current.clear();
+        renderList_short.current = [];
+        renderList_long.current = [];
         RenderingNoteBox(
           graphics_short.current,
           graphics_long.current,

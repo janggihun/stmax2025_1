@@ -1,10 +1,15 @@
 import { useEffect, useRef } from "react";
+import "./CSS/play.css";
 import Phaser from "phaser";
 import { get_noteList } from "./JS/Note";
 import { getAudio } from "./JS/Audio";
 import { RenderingNoteBox } from "./JS/RenderNote";
+import { RenderGameYoutube_play } from "./JS/Youtube";
+import { useDispatch } from "react-redux";
+import { changeYoutube } from "../../../Store/YoutubePlay";
 
 export const Play = () => {
+  const dispatch = useDispatch();
   const gameRef = useRef(null);
   const startTime = useRef(null);
   const audio = useRef(null);
@@ -15,17 +20,19 @@ export const Play = () => {
   const renderList_long = useRef([]);
   const graphics_short = useRef();
   const graphics_long = useRef();
+  const musicMap = useRef({ videoId: "Jt6UCd7JhAA" });
 
   //조건
   const speed = 1.5;
-  const musicCnt = 21;
+  const musicCnt = 1;
   const keyType = 4;
   const level = "stella";
 
   useEffect(() => {
     const config = {
       type: Phaser.AUTO,
-      backgroundColor: "#e68282",
+      // backgroundColor: "transparents",
+      transparent: true,
       key: "sceneGame",
       width: 1900,
       height: 900,
@@ -89,11 +96,15 @@ export const Play = () => {
 
       if (startTime.current) {
         const audioTime = now - startTime.current;
+        //화면과 오디오를 맞춘다.
+        dispatch(changeYoutube({ value: true, startTime: startTime.current }));
+
         //현재 화면을 지운다.
         graphics_short.current.clear();
         graphics_long.current.clear();
         renderList_short.current = [];
         renderList_long.current = [];
+
         RenderingNoteBox(
           graphics_short.current,
           graphics_long.current,
@@ -118,7 +129,12 @@ export const Play = () => {
 
   return (
     <div>
-      <div ref={gameRef} />
+      <div className="Scene_Youtube">
+        <RenderGameYoutube_play musicMap={musicMap.current} startTime={startTime.current} />
+      </div>
+      <div className="Scene_Game">
+        <div ref={gameRef} />
+      </div>
     </div>
   );
 };

@@ -11,6 +11,7 @@ import modalReducer from "./Store/ModalSlice";
 import gameSetReducer from "./Store/GameSetSlice";
 import loadingReducer from "./Store/LoadingSlice";
 import seasonReducer from "./Store/SeasonSlice";
+import youtubeReducer from "./Store/YoutubePlay";
 
 export default configureStore({
   reducer: {
@@ -26,6 +27,7 @@ export default configureStore({
     gameSet: gameSetReducer,
     loadingFlag: loadingReducer,
     season: seasonReducer,
+    youtubeFlag: youtubeReducer,
     // gameFlag: gameFlagReducer,
   },
   middleware: (getDefaultMiddleware) =>

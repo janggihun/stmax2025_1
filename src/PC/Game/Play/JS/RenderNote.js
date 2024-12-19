@@ -141,8 +141,8 @@ export function RenderingNoteBox(
     graphics_long.fillRectShape(el);
   });
 
-  console.log("renderList_short :", renderList_short);
-  console.log("renderList_long:", renderList_long);
+  // console.log("renderList_short :", renderList_short);
+  // console.log("renderList_long:", renderList_long);
   // console.log("renderList_short :", renderList_short.length);
   // console.log("renderList_long:", renderList_long.length);
 }

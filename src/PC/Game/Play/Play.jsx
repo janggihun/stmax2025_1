@@ -18,7 +18,7 @@ export const Play = () => {
 
   //조건
   const speed = 1.5;
-  const musicCnt = 1;
+  const musicCnt = 21;
   const keyType = 4;
   const level = "stella";
 

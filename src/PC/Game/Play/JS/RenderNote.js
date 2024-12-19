@@ -2,12 +2,12 @@ import Phaser from "phaser";
 import { getNowList, speedTimeHeight_play } from "../../../../common/Base";
 //숏노트 눌렀을때 효과
 const noteHeight = 30;
-const noteWidth = 90;
-const marginLeft = 340;
+const noteWidth = 95;
+const marginLeft = 290;
 //왼쪽부터 몇 px인지 확인후 리턴
 const checkPos = (index) => {
   //간격
-  return index * noteWidth + index * 15;
+  return index * noteWidth + index * 13;
 };
 /*노트 색깔별 */
 const white = "linear-gradient(to right, gray, white, white, gray)";
@@ -53,7 +53,7 @@ export function RenderingNoteBox(
         renderList_short.push(
           new Phaser.Geom.Rectangle(
             marginLeft + NotePos,
-            -EndTime + audioTime + 710 + noteHeight / 2,
+            -EndTime + audioTime + 710,
             noteWidth,
             noteHeight
           )
@@ -63,14 +63,13 @@ export function RenderingNoteBox(
         const LongHeight = EndTime - StartTime;
         //누른후 길이
         const LongHeight2 = EndTime - audioTime;
-        // div.style.left = NotePos + "px";
-        // div.style.top = -EndTime + audioTime + 710 + "px";
+
         renderList_long.push(
           new Phaser.Geom.Rectangle(
             marginLeft + NotePos,
-            -EndTime + audioTime + 710 + LongHeight / 2 + noteHeight / 2,
+            -EndTime + audioTime + 710,
             noteWidth,
-            noteHeight
+            LongHeight + noteHeight
           )
         );
         if (StartTime > audioTime) {
@@ -92,13 +91,14 @@ export function RenderingNoteBox(
     });
   } else {
     const audioTime = audioTime1;
+
     CopyHitList.forEach((el, i) => {
       const nowNote = el;
       const NoteType = nowNote[0];
       const NotePos = checkPos(nowNote[1]);
 
-      const StartTime = nowNote[2] * speed;
-      const EndTime = nowNote[3] * speed;
+      const StartTime = nowNote[2];
+      const EndTime = nowNote[3];
 
       //색 조건
 
@@ -106,20 +106,20 @@ export function RenderingNoteBox(
         renderList_short.push(
           new Phaser.Geom.Rectangle(
             marginLeft + NotePos,
-            -EndTime + audioTime + 710 + noteHeight / 2,
+            (-EndTime + audioTime) * speed + 710,
             noteWidth,
             noteHeight
           )
         );
       } else {
-        const LongHeight = EndTime - StartTime;
-        const LongHeight2 = EndTime - audioTime;
+        const LongHeight = EndTime * speed - StartTime * speed;
+        const LongHeight2 = EndTime * speed - audioTime * speed;
         renderList_long.push(
           new Phaser.Geom.Rectangle(
             marginLeft + NotePos,
-            -EndTime + audioTime + 710 + LongHeight / 2 + noteHeight / 2,
+            (-EndTime + audioTime) * speed + 710,
             noteWidth,
-            noteHeight
+            LongHeight + noteHeight
           )
         );
         // const returnValue = intervalList.find((el_i, index) => {
@@ -140,6 +140,9 @@ export function RenderingNoteBox(
   renderList_long.forEach((el) => {
     graphics_long.fillRectShape(el);
   });
-  console.log("renderList_short :",renderList_short.length);
-  console.log("renderList_long:",renderList_long.length);
+
+  console.log("renderList_short :", renderList_short);
+  console.log("renderList_long:", renderList_long);
+  // console.log("renderList_short :", renderList_short.length);
+  // console.log("renderList_long:", renderList_long.length);
 }

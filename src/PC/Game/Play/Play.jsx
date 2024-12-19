@@ -20,11 +20,11 @@ export const Play = () => {
   const renderList_long = useRef([]);
   const graphics_short = useRef();
   const graphics_long = useRef();
-  const musicMap = useRef({ videoId: "Jt6UCd7JhAA" });
+  const musicMap = useRef({ videoId: "CtXv2_NBBOU" });
 
   //조건
   const speed = 1.5;
-  const musicCnt = 1;
+  const musicCnt = 6;
   const keyType = 4;
   const level = "stella";
 

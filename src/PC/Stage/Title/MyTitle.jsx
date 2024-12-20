@@ -257,7 +257,12 @@ export const MyTitle = () => {
               <div className="Title_Box_R_B_R">
                 {applyMap && applyMap.result ? (
                   <button
-                    style={{ width: "300px", height: "100px" }}
+                    style={{
+                      width: "300px",
+                      height: "100px",
+                      color: "white",
+                      backgroundColor: "navy",
+                    }}
                     className="btn"
                     onClick={() => {
                       applyStart();

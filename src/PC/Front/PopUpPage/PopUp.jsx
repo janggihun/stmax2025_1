@@ -3,7 +3,7 @@ import "./PopUp.css";
 import { updateText } from "../../../common/UpdateText";
 
 export const usePopUp = () => {
-  const version = "12/14";
+  const version = "12/20";
   const [openPopUp, setPopUp] = useState(false);
 
   const rm_Popup = () => {

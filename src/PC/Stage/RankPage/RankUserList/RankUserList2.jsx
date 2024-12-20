@@ -93,7 +93,7 @@ export const RankUserList2 = (props) => {
                       {el.titleName && el.titleName}
                     </div>
                     <div className="RankUser_UserId">{el.userId}</div>
-                    {el.miss === 0 ? (
+                    {el.stmax0 === 0 ? (
                       <div className="RankUser_Blank2 ShowRank_AllCombo"> All Combo</div>
                     ) : (
                       <div className="RankUser_Blank2"></div>

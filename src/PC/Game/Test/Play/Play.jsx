@@ -33,9 +33,13 @@ export const Play = () => {
   /////
   const liveMap = useRef(createLiveMap_play());
   //조건
-  const objectPoolingCnt = 40;
+  const objectPoolingCnt = 10;
   const speed = 1.5;
-  const musicCnt = 6;
+
+  //staraligns
+  const musicCnt = 1;
+  //괴수의
+  // const musicCnt = 6;
   const keyType = 4;
   const level = "stella";
 
@@ -45,7 +49,6 @@ export const Play = () => {
 
   const findDownKey = (e) => {
     const diffTime = Date.now() - liveMap.current.startTime;
-    console.log(liveMap.current.keyMemoryList);
     if (e.keyCode === liveMap.current.keyList_4[0]) {
       if (liveMap.current.key0 === 0) {
         // audioPlaySound();

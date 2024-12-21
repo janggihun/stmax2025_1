@@ -4,6 +4,7 @@ import { getNowList, speedTimeHeight_play } from "../../../../../common/Base";
 const noteHeight = 30;
 const noteWidth = 95;
 const marginLeft = 288;
+const pannelTop = 680;
 //왼쪽부터 몇 px인지 확인후 리턴
 const checkPos = (index) => {
   //간격
@@ -31,8 +32,6 @@ export function RenderingNoteBox(
 ) {
   const gameList = getNowList(allGameList, audioTime1);
 
-  //전체 화면을 지운다.
-
   let bpmIndex = 0;
   let j = 0;
 
@@ -56,20 +55,25 @@ export function RenderingNoteBox(
       const EndTime = speedTimeHeight_play(nowNote[3], speedList, speed);
 
       if (NoteType === "S") {
+        if (!note_blue_List[shortIndex]) {
+          createObjPooling(self, "S", note_blue_List);
+        }
         note_blue_List[shortIndex].x = marginLeft + NotePos;
-        note_blue_List[shortIndex].y = (-EndTime + audioTime) * speed + 710;
+        note_blue_List[shortIndex].y = -EndTime + audioTime + pannelTop;
 
         shortIndex++;
       } else {
+        if (!note_white_List[shortIndex]) {
+          createObjPooling(self, "L", note_white_List);
+        }
         //원래길이
         const LongHeight = EndTime - StartTime;
         //누른후 길이
         const LongHeight2 = EndTime - audioTime;
         note_white_List[longIndex].x = marginLeft + NotePos;
-        note_white_List[longIndex].y = -EndTime + audioTime + 710;
+        note_white_List[longIndex].y = -EndTime + audioTime + pannelTop;
         note_white_List[longIndex].displayHeight = LongHeight + noteHeight;
-        // LongHeight + noteHeight;
-
+        longIndex++;
         if (StartTime > audioTime) {
           //   div.style.height = LongHeight + 30 + "px";
         } else {
@@ -101,18 +105,23 @@ export function RenderingNoteBox(
       //색 조건
 
       if (NoteType === "S") {
+        if (!note_blue_List[shortIndex]) {
+          createObjPooling(self, "S", note_blue_List);
+        }
         note_blue_List[shortIndex].x = marginLeft + NotePos;
-        note_blue_List[shortIndex].y = (-EndTime + audioTime) * speed + 710;
+        note_blue_List[shortIndex].y = (-EndTime + audioTime) * speed + pannelTop;
         shortIndex++;
       } else {
-        console.log(note_white_List[longIndex]);
+        if (!note_white_List[shortIndex]) {
+          createObjPooling(self, "L", note_white_List);
+        }
         const LongHeight = EndTime * speed - StartTime * speed;
         const LongHeight2 = EndTime * speed - audioTime * speed;
         note_white_List[longIndex].x = marginLeft + NotePos;
-        note_white_List[longIndex].y = (-EndTime + audioTime) * speed + 710;
+        note_white_List[longIndex].y = (-EndTime + audioTime) * speed + pannelTop;
         note_white_List[longIndex].displayHeight = LongHeight + noteHeight;
-
         longIndex++;
+
         // note_white_List[longIndex].height = LongHeight + noteHeight;
         // const returnValue = intervalList.find((el_i, index) => {
         //   if (el_i[5] === el[5]) {
@@ -139,5 +148,15 @@ export function RenderingNoteBox(
   // console.log("renderList_long:", renderList_long.length);
 }
 
-//만약 오브젝트 풀링 노트수가 부족한 경우에는 순간적으로 만들어서 사용한다.메서드만들기
-const createObjPooling = () => {};
+//만약 오브젝트 풀링 노트수가 부족한 경우에는 순간적으로 만들어서 사용한다
+const createObjPooling = (self, noteType, list) => {
+  if (noteType === "S") {
+    const blue = self.add.image(900, 840, "note_blue").setOrigin(0);
+    blue.depth = -1;
+    list.push(blue);
+  } else if (noteType === "L") {
+    const white = self.add.image(900, 840, "note_white").setOrigin(0);
+    white.depth = -1;
+    list.push(white);
+  }
+};

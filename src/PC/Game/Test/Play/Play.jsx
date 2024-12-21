@@ -22,6 +22,8 @@ export const Play = () => {
   const graphics_short = useRef();
   const graphics_long = useRef();
   const musicMap = useRef({ videoId: "CtXv2_NBBOU" });
+  const btn_Up_List = useRef([]);
+  const btn_Down_List = useRef([]);
   /////
   const liveMap = useRef(createLiveMap_play());
   //조건
@@ -30,6 +32,8 @@ export const Play = () => {
   const keyType = 4;
   const level = "stella";
 
+  //렌더링 인덱스
+  const renderIndex = useRef(0);
   //키 누를때
 
   const findDownKey = (e) => {
@@ -40,24 +44,32 @@ export const Play = () => {
         // audioPlaySound();
         liveMap.current.key0 = 1;
         liveMap.current.keyMemoryList.push([1, diffTime, 0]);
+        btn_Up_List.current[0].visible = true;
+        btn_Down_List.current[0].visible = false;
       }
     } else if (e.keyCode === liveMap.current.keyList_4[1]) {
       if (liveMap.current.key1 === 0) {
         // audioPlaySound();
         liveMap.current.key1 = 1;
         liveMap.current.keyMemoryList.push([1, diffTime, 1]);
+        btn_Up_List.current[1].visible = true;
+        btn_Down_List.current[1].visible = false;
       }
     } else if (e.keyCode === liveMap.current.keyList_4[2]) {
       if (liveMap.current.key2 === 0) {
         // audioPlaySound();
         liveMap.current.key2 = 1;
         liveMap.current.keyMemoryList.push([1, diffTime, 2]);
+        btn_Up_List.current[2].visible = true;
+        btn_Down_List.current[2].visible = false;
       }
     } else if (e.keyCode === liveMap.current.keyList_4[3]) {
       if (liveMap.current.key3 === 0) {
         // audioPlaySound();
         liveMap.current.key3 = 1;
         liveMap.current.keyMemoryList.push([1, diffTime, 3]);
+        btn_Up_List.current[3].visible = true;
+        btn_Down_List.current[3].visible = false;
       }
     }
   };
@@ -68,15 +80,23 @@ export const Play = () => {
     if (e.keyCode === liveMap.current.keyList_4[0]) {
       liveMap.current.key0 = 0;
       liveMap.current.keyMemoryList.push([0, diffTime, 0]);
+      btn_Down_List.current[0].visible = true;
+      btn_Up_List.current[0].visible = false;
     } else if (e.keyCode === liveMap.current.keyList_4[1]) {
       liveMap.current.key1 = 0;
       liveMap.current.keyMemoryList.push([0, diffTime, 1]);
+      btn_Down_List.current[1].visible = true;
+      btn_Up_List.current[1].visible = false;
     } else if (e.keyCode === liveMap.current.keyList_4[2]) {
       liveMap.current.key2 = 0;
       liveMap.current.keyMemoryList.push([0, diffTime, 2]);
+      btn_Down_List.current[2].visible = true;
+      btn_Up_List.current[2].visible = false;
     } else if (e.keyCode === liveMap.current.keyList_4[3]) {
       liveMap.current.key3 = 0;
       liveMap.current.keyMemoryList.push([0, diffTime, 3]);
+      btn_Down_List.current[3].visible = true;
+      btn_Up_List.current[3].visible = false;
     }
   };
 
@@ -107,7 +127,9 @@ export const Play = () => {
     async function preload() {
       console.log("프리로드 시작");
       //이미지 로딩
-      // this.load.image("frame", "/Gear7K/frame.png");
+      this.load.image("frame", "/Gear7K/frame.png");
+      this.load.image("btn_off", "/Gear7K/KL_White_off.png");
+      this.load.image("btn_on", "/Gear7K/KL_White_on.png");
       //노트 로딩
       const noteMap = await get_noteList(musicCnt, level);
 
@@ -128,18 +150,31 @@ export const Play = () => {
       graphics_long.current = this.add.graphics({ fillStyle: { color: 0xffffff } });
       //   gameState.music = this.sound.add("theme");
       //   gameState.music.play();
-      document.addEventListener("keydown", findDownKey);
-      document.addEventListener("keyup", findUpKey);
       console.log("크리에이트 시작");
       //4키 인 경우
       //(좌우, 위아래 , 이름)
-      // this.add.image(500, 450, "frame");
 
+      this.add.image(500, 450, "frame");
+
+      [...Array(4)].forEach((el, i) => {
+        const base = 340;
+        //on버튼 리스트
+        btn_Up_List.current.push(this.add.image(base + 108 * i, 840, "btn_on"));
+        //off 버튼 리스트
+        btn_Down_List.current.push(this.add.image(base + 108 * i, 840, "btn_off"));
+      });
       //   gameState.square = this.add.rectangle(150, 150, 100, 100, 0xff0000);
-      //   this.input.keyboard.on("keydown-W", function () {
-      //     console.log(gameState);
-      //     gameState.square.fillColor = 0xffff00;
-      //   });
+
+      //키보드 다운
+      this.input.keyboard.on("keydown", function (e) {
+        findDownKey(e);
+      });
+      //키보드업
+      this.input.keyboard.on("keyup", function (e) {
+        // console.log(e.keyCode);
+
+        findUpKey(e);
+      });
     }
 
     function update() {
@@ -159,6 +194,7 @@ export const Play = () => {
         renderList_short.current = [];
         renderList_long.current = [];
         //노트 화면 랜더링
+
         RenderingNoteBox(
           graphics_short.current,
           graphics_long.current,
@@ -170,6 +206,7 @@ export const Play = () => {
           renderList_short.current,
           renderList_long.current
         );
+
         //노트 로직 시작
       }
       liveMap.current.judgeMent();
@@ -181,9 +218,6 @@ export const Play = () => {
     return () => {
       game.destroy();
       audio.current.stop();
-      // add
-      document.removeEventListener("keydown", findDownKey);
-      document.removeEventListener("keyup", findUpKey);
     };
   }, []);
 
@@ -206,8 +240,8 @@ export const Play = () => {
       </div>
       {/* 프론트 */}
       <div className="Scene_Front">
-        <img className="Scene_Img" src="/Gear7K/frame.png" alt="사진없음" />
-        <div className="Scene_buttonBox">
+        {/* <img className="Scene_Img" src="/Gear7K/frame.png" alt="사진없음" /> */}
+        {/* <div className="Scene_buttonBox">
           <div
             style={{
               display: "flex",
@@ -221,8 +255,8 @@ export const Play = () => {
             <img className="Scene_button" src="/Gear7K/KL_White_off.png" alt="사진없음" />
             <img className="Scene_button" src="/Gear7K/KL_White_off.png" alt="사진없음" />
           </div>
-        </div>
-        <div className="Scene_buttonBox">
+        </div> */}
+        {/* <div className="Scene_buttonBox">
           <div
             style={{
               display: "flex",
@@ -236,7 +270,7 @@ export const Play = () => {
             <img className="Scene_button" src="/Gear7K/KL_White_on.png" alt="사진없음" />
             <img className="Scene_button" src="/Gear7K/KL_White_on.png" alt="사진없음" />
           </div>
-        </div>
+        </div> */}
         <div className="Scene_BaseContainer"></div>
       </div>
     </div>

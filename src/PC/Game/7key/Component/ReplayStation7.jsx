@@ -32,10 +32,29 @@ export const ReplayStation7 = (props) => {
   useEffect(() => {
     //마운트후 해야할 내용들
     liveMap.current.jhPool = new JudgeHighlightPool(20, JudgeSlowFast.current);
+    liveMap.current.addrMap.$scrollBox = document.getElementById("scrollBox");
 
     //게임 시작전 해야할 내용들
     const fps = 120;
+    //풀링 데이터 생성 // 숏노트 생성 // 롱노트 생성
+    [...Array(liveMap.current.poolingCount)].forEach((el) => {
+      const div_short = document.createElement("div");
+      div_short.style.border = "1px solid white";
+      div_short.style.boxSizing = "border-box";
+      div_short.style.width = 90 + "px";
+      div_short.classList.add("ShortNote");
 
+      liveMap.current.addrMap.$scrollBox.appendChild(div_short);
+      liveMap.current.objPoolingShortNoteList.push(div_short);
+
+      const div_long = document.createElement("div");
+      div_long.style.border = "1px solid white";
+      div_long.style.boxSizing = "border-box";
+      div_long.style.width = 90 + "px";
+      div_long.classList.add("LongNote");
+      liveMap.current.addrMap.$scrollBox.appendChild(div_long);
+      liveMap.current.objPoolingLongNoteList.push(div_long);
+    });
     // 게임시작
     StartGame();
 

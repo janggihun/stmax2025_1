@@ -23,6 +23,10 @@ export const createLiveMap = () => {
   tempMap.keyList_4 = JSON.parse(window.localStorage.getItem("4keyList"));
   tempMap.keyList_7 = JSON.parse(window.localStorage.getItem("7keyList"));
 
+  //숏노트 롱노트
+  tempMap.poolingCount = 20;
+  tempMap.objPoolingShortNoteList = [];
+  tempMap.objPoolingLongNoteList = [];
   tempMap.keyMemoryList = [];
 
   ////////////////////////////
@@ -219,10 +223,6 @@ export const createLiveMap = () => {
               el.push(diff); // el[8]
               tempMap.intervalList.push(el);
               el[4] = 1;
-            } else {
-              //숏노트인경우, 천천히 사라지게 만듬
-              el[6].style.transition = "all 0.2s";
-              el[6].style.opacity = 0;
             }
 
             // console.log("diff : ", diff);
@@ -385,9 +385,6 @@ export const createLiveMap = () => {
               el.push(diff); // el[8]
               tempMap.intervalList.push(el);
               el[4] = 1;
-            } else {
-              el[6].style.transition = "all 0.2s";
-              el[6].style.opacity = 0;
             }
 
             tempMap.CheckjudgeMent(diff, el);
@@ -668,9 +665,7 @@ export const createLiveMap = () => {
     }
 
     //fever확인
-    if (abs_diff > scope30 && el[0] === "L") {
-      el[6].className = "overPushed";
-    }
+
     tempMap.barValue = 98 - tempBar;
     tempMap.addrMap.$Game_ComboInt_Box.innerHTML = `<div class="Game_ComboInt">${tempMap.combo}</div>`;
   };

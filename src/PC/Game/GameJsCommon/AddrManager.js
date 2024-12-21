@@ -27,6 +27,8 @@ export const AddrManager = () => {
   tmpMap.LineLightList = [...document.getElementsByClassName("LineOne1")];
   tmpMap.lifeBoxList = [...document.getElementsByClassName("lifeBox")];
 
+  //
+
   //같은 Map(key, value) key이름의 다른 타입인경우
   if (keyType === 4) {
     tmpMap.EffectList = [...document.getElementsByClassName("Effect_4")];

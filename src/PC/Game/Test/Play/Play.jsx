@@ -222,7 +222,7 @@ export const Play = () => {
           frame: ["red", "yellow", "green"],
           lifespan: 300,
           speed: { min: 400, max: 500 },
-          scale: { start: 1.2, end: 0, random: true },
+          scale: { start: 1.3, end: 0, random: true },
           // gravityY: 0,
           blendMode: "ADD",
           emitting: false,

@@ -33,7 +33,10 @@ export const Play = () => {
   /////
   const liveMap = useRef(createLiveMap_play());
   //조건
+
+  //오브젝트 풀링 갯수
   const objectPoolingCnt = 10;
+
   const speed = 1.5;
 
   //staraligns
@@ -49,6 +52,7 @@ export const Play = () => {
 
   const findDownKey = (e) => {
     const diffTime = Date.now() - liveMap.current.startTime;
+
     if (e.keyCode === liveMap.current.keyList_4[0]) {
       if (liveMap.current.key0 === 0) {
         // audioPlaySound();
@@ -136,6 +140,7 @@ export const Play = () => {
 
     async function preload() {
       console.log("로딩 시작");
+
       //이미지 로딩
       this.load.image("frame", "/Gear7K/frame.png");
       this.load.image("btn_off", "/Gear7K/KL_White_off.png");
@@ -143,10 +148,22 @@ export const Play = () => {
       //노트 이미지 로딩
       this.load.image("note_blue", "/Note/note_blue.png");
       this.load.image("note_white", "/Note/note_white.png");
+      //effect로딩
+      // this.load.baseURL = "https://cdn.phaserfiles.com/v385";
+      // this.load.crossOrigin = "Anonymous";
+      // this.load.crossOrigin = true;
+      // this.load.setCORS("anonymous");
+      this.load.atlas("flares", "/particles/flares.png", "/particles/flares.json");
       //노트 데이터 로딩
       const noteMap = await get_noteList(musicCnt, level);
-
-      gameList.current = noteMap.gameList;
+      //gamelist6번 7번쨰 인덱스 추가
+      noteMap.gameList.forEach((el) => {
+        //6번째
+        el.push("div자리");
+        //7번째
+        el.push(0);
+      });
+      liveMap.current.gameList = noteMap.gameList;
       speedList.current = noteMap.speedList;
       liveMap.current.lastTime = noteMap.lastTime;
       //   speedList.current = noteMap.speedList ? noteMap.speedList : [0, 1, 4, 0];
@@ -197,6 +214,25 @@ export const Play = () => {
       this.input.keyboard.on("keyup", function (e) {
         findUpKey(e);
       });
+
+      //이펙트 시작
+
+      [...Array(liveMap.current.effectCount)].forEach((el) => {
+        const effect = this.add.particles(300, 250, "flares", {
+          frame: ["red", "yellow", "green"],
+          lifespan: 300,
+          speed: { min: 400, max: 500 },
+          scale: { start: 1.2, end: 0, random: true },
+          // gravityY: 0,
+          blendMode: "ADD",
+          emitting: false,
+          angle: { min: 0, max: 360, random: true },
+          // quantity: 1,
+        });
+        liveMap.current.effectList.push(effect);
+      });
+
+      //이펙트끝
     }
 
     function update() {
@@ -223,9 +259,7 @@ export const Play = () => {
 
         RenderingNoteBox(
           this,
-          graphics_short.current,
-          graphics_long.current,
-          gameList.current,
+          liveMap.current.gameList,
           audioTime,
           speed,
           speedList.current,
@@ -235,10 +269,12 @@ export const Play = () => {
           note_blue_List.current,
           note_white_List.current
         );
+        //메인 화면 렌더링
 
         //노트 로직 시작
+        liveMap.current.judgeMent();
       }
-      liveMap.current.judgeMent();
+
       // console.log(liveMap.current.stmax100);
 
       //   console.log("시간변경중 : ", now - startTime.current);

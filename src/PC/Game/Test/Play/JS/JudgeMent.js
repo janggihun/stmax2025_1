@@ -15,8 +15,14 @@ export const createLiveMap_play = () => {
   const scope0 = 155;
   const fps = 120;
   const tempMap = {};
-  // /
 
+  //  //이펙트 렌더링
+  tempMap.effectList = [];
+  tempMap.effectIndex = 0;
+  //이펙트 배열 갯수
+  tempMap.effectCount = 20;
+
+  const baseEffectRowPoint = 340;
   /////////////////////////////////////////////
   tempMap.keyList_4 = JSON.parse(window.localStorage.getItem("4keyList"));
   tempMap.keyList_7 = JSON.parse(window.localStorage.getItem("7keyList"));
@@ -79,7 +85,10 @@ export const createLiveMap_play = () => {
   ////////////////////////////////
   tempMap.lifeCnt = 20;
   tempMap.LifeRecureCnt = 0;
+
   tempMap.EffectCnt = 0;
+
+  //
   tempMap.nowIndex = 0;
   //////////////////////////////
   tempMap.audio = "";
@@ -154,7 +163,7 @@ export const createLiveMap_play = () => {
     tempMap.gameHeight = tempMap.gameHeight + gameSpeed * Math.floor(1000 / fps);
   };
   //이펙트 표시
-  tempMap.ShowEffect = (pos) => {
+  tempMap.ShowEffect_pre = (pos) => {
     tempMap.EffectCnt++;
 
     if (tempMap.EffectCnt === 20) {
@@ -166,6 +175,18 @@ export const createLiveMap_play = () => {
     nowEffect.classList.add("EffectAnimation");
     nowEffect.style.left = pos + "px";
   };
+
+  tempMap.ShowEffect = (pos) => {
+    tempMap.effectIndex++;
+    if (tempMap.effectIndex === tempMap.effectCount) {
+      tempMap.effectIndex = 0;
+    }
+    const effect = tempMap.effectList[tempMap.effectIndex];
+    effect.x = baseEffectRowPoint + pos * 108;
+    effect.y = 760;
+    effect.explode(50);
+  };
+
   //치우치는 선 만들기
   tempMap.LitJudgeMent = (diff) => {
     const posX = 98 - diff / 2;
@@ -176,7 +197,7 @@ export const createLiveMap_play = () => {
   };
   // 판정하기
   tempMap.judgeMent = () => {
-    // gameList [노트타입, 누르는키자리, 누르는시간, 때는시간, 인터벌용, 인덱스, 주소값, 사용한값확인]
+    // gameList [노트타입, 누르는키자리, 누르는시간, 때는시간, 인터벌용, 인덱스, 현재미정, 사용한값확인]
 
     const audioFrameTime = tempMap.audioTime;
 
@@ -217,15 +238,11 @@ export const createLiveMap_play = () => {
               el.push(diff); // el[8]
               tempMap.intervalList.push(el);
               el[4] = 1;
-            } else {
-              //숏노트인경우, 천천히 사라지게 만듬
-              el[6].style.transition = "all 0.2s";
-              el[6].style.opacity = 0;
             }
 
             // console.log("diff : ", diff);
             tempMap.CheckjudgeMent(diff, el);
-            tempMap.LitJudgeMent(diff);
+            // tempMap.LitJudgeMent(diff);
 
             return true;
           }
@@ -238,7 +255,7 @@ export const createLiveMap_play = () => {
             //미스범위 안에 있는경우 눌렀을때와 같은 결과값을 추가
             if (diff < scope0) {
               tempMap.CheckjudgeMent(el[8], el);
-              tempMap.LitJudgeMent(el[8]);
+              // tempMap.LitJudgeMent(el[8]);
             } else {
               //미스범위보다 큰경우
               tempMap.CheckjudgeMent(160, el); // 강제미스
@@ -276,9 +293,9 @@ export const createLiveMap_play = () => {
         el[4]++;
         tempMap.combo++;
         const returnValue = tempMap.diffJudge(el[8]);
-        tempMap.addrMap.$Game_ComboInt_Box.innerHTML = `<div class="Game_ComboInt">${tempMap.combo}</div>`;
-        tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_${returnValue}">STMAX ${returnValue}%</div>`;
-        const pos = tempMap.checkPos(el[1]);
+        // tempMap.addrMap.$Game_ComboInt_Box.innerHTML = `<div class="Game_ComboInt">${tempMap.combo}</div>`;
+        // tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_${returnValue}">STMAX ${returnValue}%</div>`;
+        const pos = el[1];
         tempMap.ShowEffect(pos);
       }
 
@@ -293,8 +310,7 @@ export const createLiveMap_play = () => {
     //마지막 시간 구하기
     if (tempMap.lastTime < audioFrameTime) {
       tempMap.lastTime = 9999999;
-      tempMap.addrMap.$LineContainer.style.transition = "all 1s";
-      tempMap.addrMap.$LineContainer.style.backgroundColor = "#3c0014c4";
+
       setTimeout(() => {
         // 게임종료
         // tempMap.dispatch(changeGameSet(2));
@@ -383,13 +399,10 @@ export const createLiveMap_play = () => {
               el.push(diff); // el[8]
               tempMap.intervalList.push(el);
               el[4] = 1;
-            } else {
-              el[6].style.transition = "all 0.2s";
-              el[6].style.opacity = 0;
             }
 
             tempMap.CheckjudgeMent(diff, el);
-            tempMap.LitJudgeMent(diff);
+            // tempMap.LitJudgeMent(diff);
 
             return true;
           }
@@ -404,7 +417,7 @@ export const createLiveMap_play = () => {
             //미스범위 안에 있는경우 눌렀을때와 같은 결과값을 추가
             if (diff < scope0) {
               tempMap.CheckjudgeMent(el[8], el);
-              tempMap.LitJudgeMent(el[8]);
+              // tempMap.LitJudgeMent(el[8]);
             } else {
               tempMap.CheckjudgeMent(160, el); // 강제미스
             }
@@ -439,9 +452,9 @@ export const createLiveMap_play = () => {
         el[4]++;
         tempMap.combo++;
         const returnValue = tempMap.diffJudge(el[8]);
-        tempMap.addrMap.$Game_ComboInt_Box.innerHTML = `<div class="Game_ComboInt">${tempMap.combo}</div>`;
-        tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_${returnValue}">STMAX ${returnValue}%</div>`;
-        const pos = tempMap.checkPos(el[1]);
+        // tempMap.addrMap.$Game_ComboInt_Box.innerHTML = `<div class="Game_ComboInt">${tempMap.combo}</div>`;
+        // tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_${returnValue}">STMAX ${returnValue}%</div>`;
+        const pos = el[1];
         tempMap.ShowEffect(pos);
       }
       // 계속 누르고 있는 경우
@@ -456,8 +469,6 @@ export const createLiveMap_play = () => {
     //마지막 시간 구하기
     if (tempMap.lastTime < audioFrameTime) {
       tempMap.lastTime = 9999999;
-      tempMap.addrMap.$LineContainer.style.transition = "all 1s";
-      tempMap.addrMap.$LineContainer.style.backgroundColor = "#3c0014c4";
 
       setTimeout(() => {
         // 게임종료
@@ -533,9 +544,10 @@ export const createLiveMap_play = () => {
   };
 
   tempMap.CheckjudgeMent = (diff, el) => {
+    console.log("diff : ", diff);
     const tempBar = diff / 5;
 
-    const pos = tempMap.checkPos(el[1]);
+    const pos = el[1];
     const abs_diff = Math.abs(diff);
 
     if (abs_diff <= scope100) {
@@ -545,7 +557,7 @@ export const createLiveMap_play = () => {
       tempMap.score = tempMap.score + tempMap.singleNoteScore;
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
 
-      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_100">STMAX 100%</div>`;
+      // tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_100">STMAX 100%</div>`;
 
       tempMap.CheckRecure();
       tempMap.ShowEffect(pos);
@@ -556,7 +568,7 @@ export const createLiveMap_play = () => {
 
       tempMap.score = tempMap.score + tempMap.singleNoteScore * 0.9;
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
-      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_90" style="">STMAX 90%</div>`;
+      // tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_90" style="">STMAX 90%</div>`;
       // background: linear-gradient(to top, #f3f2ba 40px, #fc0b0b);
       tempMap.CheckRecure();
       tempMap.ShowEffect(pos);
@@ -567,7 +579,7 @@ export const createLiveMap_play = () => {
 
       tempMap.score = tempMap.score + tempMap.singleNoteScore * 0.8;
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
-      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_80">STMAX 80%</div>`;
+      // tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_80">STMAX 80%</div>`;
 
       tempMap.CheckRecure();
       tempMap.ShowEffect(pos);
@@ -578,7 +590,7 @@ export const createLiveMap_play = () => {
 
       tempMap.score = tempMap.score + tempMap.singleNoteScore * 0.7;
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
-      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_70" >STMAX 70%</div>`;
+      // tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_70" >STMAX 70%</div>`;
 
       tempMap.CheckRecure();
       tempMap.ShowEffect(pos);
@@ -588,7 +600,7 @@ export const createLiveMap_play = () => {
 
       tempMap.score = tempMap.score + tempMap.singleNoteScore * 0.6;
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
-      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_60" >STMAX 60%</div>`;
+      // tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_60" >STMAX 60%</div>`;
 
       tempMap.CheckRecure();
       tempMap.ShowEffect(pos);
@@ -598,7 +610,7 @@ export const createLiveMap_play = () => {
 
       tempMap.score = tempMap.score + tempMap.singleNoteScore * 0.5;
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
-      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_50">STMAX 50%</div>`;
+      // tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_50">STMAX 50%</div>`;
 
       tempMap.CheckRecure();
       tempMap.ShowEffect(pos);
@@ -608,7 +620,7 @@ export const createLiveMap_play = () => {
 
       tempMap.score = tempMap.score + tempMap.singleNoteScore * 0.4;
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
-      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_40" >STMAX 40%</div>`;
+      // tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_40" >STMAX 40%</div>`;
 
       tempMap.CheckRecure();
       tempMap.ShowEffect(pos);
@@ -619,7 +631,7 @@ export const createLiveMap_play = () => {
       tempMap.score = tempMap.score + tempMap.singleNoteScore * 0.3;
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
 
-      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_30" >STMAX 30%</div>`;
+      // tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_30" >STMAX 30%</div>`;
 
       tempMap.CheckRecure();
       tempMap.ShowEffect(pos);
@@ -630,7 +642,7 @@ export const createLiveMap_play = () => {
       tempMap.score = tempMap.score + tempMap.singleNoteScore * 0.2;
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
 
-      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_20" >STMAX 20%</div>`;
+      // tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_20" >STMAX 20%</div>`;
 
       tempMap.CheckRecure();
       tempMap.ShowEffect(pos);
@@ -641,7 +653,7 @@ export const createLiveMap_play = () => {
       tempMap.score = tempMap.score + tempMap.singleNoteScore * 0.1;
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
 
-      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_10">STMAX 10%</div>`;
+      // tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_10">STMAX 10%</div>`;
 
       tempMap.CheckRecure();
       tempMap.ShowEffect(pos);
@@ -649,11 +661,11 @@ export const createLiveMap_play = () => {
       tempMap.stmax1++;
       tempMap.combo++;
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
-      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_1">STMAX 1%</div>`;
+      // tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_1">STMAX 1%</div>`;
       tempMap.CheckRecure();
       tempMap.ShowEffect(pos);
     } else {
-      tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_0">STMAX 0%</div>`;
+      // tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_0">STMAX 0%</div>`;
 
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
 
@@ -664,12 +676,8 @@ export const createLiveMap_play = () => {
       tempMap.combo = 0;
     }
 
-    //fever확인
-    if (abs_diff > scope30 && el[0] === "L") {
-      el[6].className = "overPushed";
-    }
     tempMap.barValue = 98 - tempBar;
-    tempMap.addrMap.$Game_ComboInt_Box.innerHTML = `<div class="Game_ComboInt">${tempMap.combo}</div>`;
+    // tempMap.addrMap.$Game_ComboInt_Box.innerHTML = `<div class="Game_ComboInt">${tempMap.combo}</div>`;
   };
 
   tempMap.minusLife = () => {

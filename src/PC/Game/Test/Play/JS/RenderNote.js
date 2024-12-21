@@ -1,10 +1,9 @@
-import Phaser from "phaser";
 import { getNowList, speedTimeHeight_play } from "../../../../../common/Base";
 //숏노트 눌렀을때 효과
 const noteHeight = 30;
 const noteWidth = 95;
 const marginLeft = 288;
-const pannelTop = 680;
+const pannelTop = 710;
 //왼쪽부터 몇 px인지 확인후 리턴
 const checkPos = (index) => {
   //간격
@@ -18,8 +17,6 @@ const gold = "linear-gradient(to right, rgb(175, 149, 0), gold, gold, rgb(175, 1
 
 export function RenderingNoteBox(
   self,
-  graphics_short,
-  graphics_long,
   allGameList,
   audioTime1,
   speed,
@@ -135,17 +132,6 @@ export function RenderingNoteBox(
       }
     });
   }
-  renderList_short.forEach((el) => {
-    graphics_short.fillRectShape(el);
-  });
-  renderList_long.forEach((el) => {
-    graphics_long.fillRectShape(el);
-  });
-
-  // console.log("renderList_short :", renderList_short);
-  // console.log("renderList_long:", renderList_long);
-  // console.log("renderList_short :", renderList_short.length);
-  // console.log("renderList_long:", renderList_long.length);
 }
 
 //만약 오브젝트 풀링 노트수가 부족한 경우에는 순간적으로 만들어서 사용한다

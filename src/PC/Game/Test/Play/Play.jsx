@@ -22,11 +22,18 @@ export const Play = () => {
   const graphics_short = useRef();
   const graphics_long = useRef();
   const musicMap = useRef({ videoId: "CtXv2_NBBOU" });
+  //버튼리스트
   const btn_Up_List = useRef([]);
   const btn_Down_List = useRef([]);
+
+  //노트이미지 리스트 20개를 기준으로 해봄
+  const note_blue_List = useRef([]);
+  const note_white_List = useRef([]);
+  const note_yellow_List = useRef([]);
   /////
   const liveMap = useRef(createLiveMap_play());
   //조건
+  const objectPoolingCnt = 40;
   const speed = 1.5;
   const musicCnt = 6;
   const keyType = 4;
@@ -125,12 +132,15 @@ export const Play = () => {
     const game = new Phaser.Game(config);
 
     async function preload() {
-      console.log("프리로드 시작");
+      console.log("로딩 시작");
       //이미지 로딩
       this.load.image("frame", "/Gear7K/frame.png");
       this.load.image("btn_off", "/Gear7K/KL_White_off.png");
       this.load.image("btn_on", "/Gear7K/KL_White_on.png");
-      //노트 로딩
+      //노트 이미지 로딩
+      this.load.image("note_blue", "/Note/note_blue.png");
+      this.load.image("note_white", "/Note/note_white.png");
+      //노트 데이터 로딩
       const noteMap = await get_noteList(musicCnt, level);
 
       gameList.current = noteMap.gameList;
@@ -146,22 +156,33 @@ export const Play = () => {
     }
 
     function create() {
-      graphics_short.current = this.add.graphics({ fillStyle: { color: 0xebcc34 } });
-      graphics_long.current = this.add.graphics({ fillStyle: { color: 0xffffff } });
+      // graphics_short.current = this.add.graphics({ fillStyle: { color: 0xebcc34 } });
+      // graphics_long.current = this.add.graphics({ fillStyle: { color: 0xffffff } });
       //   gameState.music = this.sound.add("theme");
       //   gameState.music.play();
       console.log("크리에이트 시작");
       //4키 인 경우
       //(좌우, 위아래 , 이름)
 
+      //프레임 초기화
       this.add.image(500, 450, "frame");
-
+      // 키 버튼 이미지 생성 초기화
       [...Array(4)].forEach((el, i) => {
         const base = 340;
         //on버튼 리스트
         btn_Up_List.current.push(this.add.image(base + 108 * i, 840, "btn_on"));
         //off 버튼 리스트
         btn_Down_List.current.push(this.add.image(base + 108 * i, 840, "btn_off"));
+      });
+      //오브젝트 풀링 리스트 초기화
+      [...Array(objectPoolingCnt)].forEach((el, i) => {
+        //피벗 맞추기
+        const blue = this.add.image(900, 840, "note_blue").setOrigin(0);
+        const white = this.add.image(900, 840, "note_white").setOrigin(0);
+        blue.depth = -1;
+        white.depth = -1;
+        note_blue_List.current.push(blue);
+        note_white_List.current.push(white);
       });
       //   gameState.square = this.add.rectangle(150, 150, 100, 100, 0xff0000);
 
@@ -171,8 +192,6 @@ export const Play = () => {
       });
       //키보드업
       this.input.keyboard.on("keyup", function (e) {
-        // console.log(e.keyCode);
-
         findUpKey(e);
       });
     }
@@ -189,13 +208,18 @@ export const Play = () => {
         dispatch(changeYoutube({ value: true, startTime: liveMap.current.startTime }));
 
         //현재 화면을 지운다.
-        graphics_short.current.clear();
-        graphics_long.current.clear();
-        renderList_short.current = [];
-        renderList_long.current = [];
+        note_blue_List.current.forEach((el) => {
+          el.x = 60;
+          el.y = 800;
+        });
+        note_white_List.current.forEach((el) => {
+          el.x = 60;
+          el.y = 500;
+        });
         //노트 화면 랜더링
 
         RenderingNoteBox(
+          this,
           graphics_short.current,
           graphics_long.current,
           gameList.current,
@@ -204,7 +228,9 @@ export const Play = () => {
           speedList.current,
           intervalList.current,
           renderList_short.current,
-          renderList_long.current
+          renderList_long.current,
+          note_blue_List.current,
+          note_white_List.current
         );
 
         //노트 로직 시작
@@ -240,37 +266,6 @@ export const Play = () => {
       </div>
       {/* 프론트 */}
       <div className="Scene_Front">
-        {/* <img className="Scene_Img" src="/Gear7K/frame.png" alt="사진없음" /> */}
-        {/* <div className="Scene_buttonBox">
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              width: "100%",
-              height: "140%",
-            }}
-          >
-            <img className="Scene_button" src="/Gear7K/KL_White_off.png" alt="사진없음" />
-            <img className="Scene_button" src="/Gear7K/KL_White_off.png" alt="사진없음" />
-            <img className="Scene_button" src="/Gear7K/KL_White_off.png" alt="사진없음" />
-            <img className="Scene_button" src="/Gear7K/KL_White_off.png" alt="사진없음" />
-          </div>
-        </div> */}
-        {/* <div className="Scene_buttonBox">
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              width: "100%",
-              height: "140%",
-            }}
-          >
-            <img className="Scene_button" src="/Gear7K/KL_White_on.png" alt="사진없음" />
-            <img className="Scene_button" src="/Gear7K/KL_White_on.png" alt="사진없음" />
-            <img className="Scene_button" src="/Gear7K/KL_White_on.png" alt="사진없음" />
-            <img className="Scene_button" src="/Gear7K/KL_White_on.png" alt="사진없음" />
-          </div>
-        </div> */}
         <div className="Scene_BaseContainer"></div>
       </div>
     </div>

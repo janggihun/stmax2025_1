@@ -19,8 +19,9 @@ export const Play = () => {
   const intervalList = useRef([]);
   const renderList_short = useRef([]);
   const renderList_long = useRef([]);
-  const graphics_short = useRef();
-  const graphics_long = useRef();
+
+  //text
+  const renderText = useRef();
   const musicMap = useRef({ videoId: "CtXv2_NBBOU" });
   //버튼리스트
   const btn_Up_List = useRef([]);
@@ -139,6 +140,8 @@ export const Play = () => {
     const game = new Phaser.Game(config);
 
     async function preload() {
+      liveMap.current.this = this;
+
       console.log("로딩 시작");
 
       //이미지 로딩
@@ -149,13 +152,19 @@ export const Play = () => {
       this.load.image("note_blue", "/Note/note_blue.png");
       this.load.image("note_white", "/Note/note_white.png");
       //effect로딩
-      // this.load.baseURL = "https://cdn.phaserfiles.com/v385";
-      // this.load.crossOrigin = "Anonymous";
-      // this.load.crossOrigin = true;
-      // this.load.setCORS("anonymous");
+
       this.load.atlas("flares", "/particles/flares.png", "/particles/flares.json");
       //노트 데이터 로딩
       const noteMap = await get_noteList(musicCnt, level);
+      noteMap.hitList.forEach((el) => {
+        if (el[0] === "S") {
+          liveMap.current.noteCount += 1;
+        } else if (el[0] === "L") {
+          liveMap.current.noteCount += 2;
+        }
+      });
+      liveMap.current.singleNoteScore = liveMap.current.maxScore / liveMap.current.noteCount;
+      console.log(liveMap.current.singleNoteScore);
       //gamelist6번 7번쨰 인덱스 추가
       noteMap.gameList.forEach((el) => {
         //6번째
@@ -176,10 +185,28 @@ export const Play = () => {
     }
 
     function create() {
-      // graphics_short.current = this.add.graphics({ fillStyle: { color: 0xebcc34 } });
-      // graphics_long.current = this.add.graphics({ fillStyle: { color: 0xffffff } });
-      //   gameState.music = this.sound.add("theme");
-      //   gameState.music.play();
+      liveMap.current.text = this.add
+        .text(500, 600, "Welcome! STMAX", {
+          font: "48px KOTRAHOPE",
+          fill: "#ffffff",
+        })
+        .setOrigin(0.5, 0.5);
+      liveMap.current.preScore = this.add
+        .text(500, 200, `Score : 0`, {
+          font: "30px KOTRAHOPE",
+          fill: "#ffffff",
+        })
+        .setOrigin(0.5, 0.5);
+      // renderText.current.setAlpha(0);
+      this.tweens.add({
+        targets: liveMap.current.text,
+        scale: 1, // 3배 크기로 확대
+        duration: 4000, // 3초 동안 크기 변화
+        ease: "Linear", // 선형 감속
+        alpha: 0,
+        // repeat: -1, // 무한 반복
+        // yoyo: true, // 커졌다가 작아짐
+      });
       console.log("크리에이트 시작");
       //4키 인 경우
       //(좌우, 위아래 , 이름)
@@ -218,7 +245,7 @@ export const Play = () => {
       //이펙트 시작
 
       [...Array(liveMap.current.effectCount)].forEach((el) => {
-        const effect = this.add.particles(300, 250, "flares", {
+        const effect = this.add.particles(200, 150, "flares", {
           frame: ["red", "yellow", "green"],
           lifespan: 300,
           speed: { min: 400, max: 500 },

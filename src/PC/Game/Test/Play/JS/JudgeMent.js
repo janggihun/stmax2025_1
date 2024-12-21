@@ -16,6 +16,8 @@ export const createLiveMap_play = () => {
   const fps = 120;
   const tempMap = {};
 
+  tempMap.this = null;
+
   //  //이펙트 렌더링
   tempMap.effectList = [];
   tempMap.effectIndex = 0;
@@ -294,7 +296,7 @@ export const createLiveMap_play = () => {
         tempMap.combo++;
         const returnValue = tempMap.diffJudge(el[8]);
         // tempMap.addrMap.$Game_ComboInt_Box.innerHTML = `<div class="Game_ComboInt">${tempMap.combo}</div>`;
-        // tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_${returnValue}">STMAX ${returnValue}%</div>`;
+        tempMap.renderText(returnValue);
         const pos = el[1];
         tempMap.ShowEffect(pos);
       }
@@ -453,7 +455,7 @@ export const createLiveMap_play = () => {
         tempMap.combo++;
         const returnValue = tempMap.diffJudge(el[8]);
         // tempMap.addrMap.$Game_ComboInt_Box.innerHTML = `<div class="Game_ComboInt">${tempMap.combo}</div>`;
-        // tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_${returnValue}">STMAX ${returnValue}%</div>`;
+        tempMap.renderText(returnValue);
         const pos = el[1];
         tempMap.ShowEffect(pos);
       }
@@ -544,7 +546,7 @@ export const createLiveMap_play = () => {
   };
 
   tempMap.CheckjudgeMent = (diff, el) => {
-    console.log("diff : ", diff);
+    // console.log("diff : ", diff);
     const tempBar = diff / 5;
 
     const pos = el[1];
@@ -556,7 +558,7 @@ export const createLiveMap_play = () => {
 
       tempMap.score = tempMap.score + tempMap.singleNoteScore;
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
-
+      tempMap.renderText(100);
       // tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_100">STMAX 100%</div>`;
 
       tempMap.CheckRecure();
@@ -565,7 +567,7 @@ export const createLiveMap_play = () => {
       // console.log("perfect");
       tempMap.stmax90++;
       tempMap.combo++;
-
+      tempMap.renderText(90);
       tempMap.score = tempMap.score + tempMap.singleNoteScore * 0.9;
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
       // tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_90" style="">STMAX 90%</div>`;
@@ -579,8 +581,7 @@ export const createLiveMap_play = () => {
 
       tempMap.score = tempMap.score + tempMap.singleNoteScore * 0.8;
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
-      // tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_80">STMAX 80%</div>`;
-
+      tempMap.renderText(80);
       tempMap.CheckRecure();
       tempMap.ShowEffect(pos);
     } else if (abs_diff <= scope70) {
@@ -590,8 +591,7 @@ export const createLiveMap_play = () => {
 
       tempMap.score = tempMap.score + tempMap.singleNoteScore * 0.7;
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
-      // tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_70" >STMAX 70%</div>`;
-
+      tempMap.renderText(70);
       tempMap.CheckRecure();
       tempMap.ShowEffect(pos);
     } else if (abs_diff <= scope60) {
@@ -600,8 +600,7 @@ export const createLiveMap_play = () => {
 
       tempMap.score = tempMap.score + tempMap.singleNoteScore * 0.6;
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
-      // tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_60" >STMAX 60%</div>`;
-
+      tempMap.renderText(60);
       tempMap.CheckRecure();
       tempMap.ShowEffect(pos);
     } else if (abs_diff <= scope50) {
@@ -610,8 +609,7 @@ export const createLiveMap_play = () => {
 
       tempMap.score = tempMap.score + tempMap.singleNoteScore * 0.5;
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
-      // tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_50">STMAX 50%</div>`;
-
+      tempMap.renderText(50);
       tempMap.CheckRecure();
       tempMap.ShowEffect(pos);
     } else if (abs_diff <= scope40) {
@@ -620,8 +618,7 @@ export const createLiveMap_play = () => {
 
       tempMap.score = tempMap.score + tempMap.singleNoteScore * 0.4;
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
-      // tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_40" >STMAX 40%</div>`;
-
+      tempMap.renderText(40);
       tempMap.CheckRecure();
       tempMap.ShowEffect(pos);
     } else if (abs_diff <= scope30) {
@@ -631,8 +628,7 @@ export const createLiveMap_play = () => {
       tempMap.score = tempMap.score + tempMap.singleNoteScore * 0.3;
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
 
-      // tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_30" >STMAX 30%</div>`;
-
+      tempMap.renderText(30);
       tempMap.CheckRecure();
       tempMap.ShowEffect(pos);
     } else if (abs_diff <= scope20) {
@@ -642,8 +638,7 @@ export const createLiveMap_play = () => {
       tempMap.score = tempMap.score + tempMap.singleNoteScore * 0.2;
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
 
-      // tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_20" >STMAX 20%</div>`;
-
+      tempMap.renderText(20);
       tempMap.CheckRecure();
       tempMap.ShowEffect(pos);
     } else if (abs_diff <= scope10) {
@@ -653,20 +648,18 @@ export const createLiveMap_play = () => {
       tempMap.score = tempMap.score + tempMap.singleNoteScore * 0.1;
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
 
-      // tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_10">STMAX 10%</div>`;
-
+      tempMap.renderText(10);
       tempMap.CheckRecure();
       tempMap.ShowEffect(pos);
     } else if (abs_diff <= scope1) {
       tempMap.stmax1++;
       tempMap.combo++;
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
-      // tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_1">STMAX 1%</div>`;
+      tempMap.renderText(1);
       tempMap.CheckRecure();
       tempMap.ShowEffect(pos);
     } else {
-      // tempMap.addrMap.$dataStatus.innerHTML = `<div class="AccPercent_0">STMAX 0%</div>`;
-
+      tempMap.renderText(0);
       tempMap.maxCombo = Math.max(tempMap.maxCombo, tempMap.combo);
 
       tempMap.minusLife();
@@ -810,7 +803,106 @@ export const createLiveMap_play = () => {
       tempMap.key6 = 0;
     }
   };
+  tempMap.fnTextColor = (value) => {
+    let topColor = "#0000ff";
+    let bottomColor = "#ff0000";
+    if (value === 100) {
+      topColor = "#FFFF00 ";
+      bottomColor = "#FFE600";
+    } else if (value === 90) {
+      topColor = "#FFE600";
+      bottomColor = "#FFCC00";
+    } else if (value === 80) {
+      topColor = "#FFCC00";
+      bottomColor = "#FFB300";
+    } else if (value === 70) {
+      topColor = "#FFB300";
+      bottomColor = "#FF9900";
+    } else if (value === 60) {
+      topColor = "#FF9900";
+      bottomColor = "#FF8000";
+    } else if (value === 50) {
+      topColor = "#FF8000";
+      bottomColor = "#FF6600";
+    } else if (value === 40) {
+      topColor = "#FF6600";
+      bottomColor = "#FF4D00";
+    } else if (value === 30) {
+      topColor = "#FF4D00";
+      bottomColor = "#FF3300";
+    } else if (value === 20) {
+      topColor = "#FF3300";
+      bottomColor = "#FF1900";
+    } else if (value === 10) {
+      topColor = "#FF1900";
+      bottomColor = "#ff0000";
+    } else if (value === 1) {
+      topColor = "#FF0000";
+      bottomColor = "#ff0000";
+    } else {
+      topColor = "#0000ff";
+      bottomColor = "#ff0000";
+    }
+    return { topColor: topColor, bottomColor: bottomColor };
+  };
+  tempMap.preText = null;
+  tempMap.preComboText = null;
+  tempMap.preScore = null;
+  tempMap.renderText = (value) => {
+    if (tempMap.preText) tempMap.preText.destroy();
+    if (tempMap.preComboText) tempMap.preComboText.destroy();
 
+    //stmax 값
+    const colorMap = tempMap.fnTextColor(value);
+    const self = tempMap.this;
+
+    tempMap.text = self.add
+      .text(500, 600, `STMAX ${value}`, {
+        font: "48px KOTRAHOPE",
+      })
+      .setOrigin(0.5, 0.5);
+
+    const text = tempMap.text;
+    tempMap.preText = text;
+    const gradient = text.context.createLinearGradient(0, 0, 0, text.height);
+
+    gradient.addColorStop(1, colorMap.topColor); // 빨간색
+    gradient.addColorStop(0, colorMap.bottomColor); // 파란색
+
+    text.setFill(gradient);
+    self.tweens.add({
+      targets: text,
+
+      duration: 500, // 3초 동안 페이드 아웃
+      ease: "Expo.easeOut",
+      alpha: 1,
+      scale: 1.5, // 3배 크기로 확대
+    });
+    //스코어
+
+    tempMap.preScore.setText(`Score :${Math.floor(tempMap.score)}`);
+
+    // 콤보
+
+    tempMap.preComboText = self.add
+      .text(500, 250, `${tempMap.combo}`, {
+        font: "110px KOTRAHOPE",
+        fill: "#ffffff",
+      })
+      .setOrigin(0.5, 0.5);
+    if (value === 0) {
+      tempMap.preComboText.y = 270;
+      return false;
+    }
+    self.tweens.add({
+      targets: tempMap.preComboText,
+      y: 270,
+      yoyo: true,
+      duration: 200, // 3초 동안 페이드 아웃
+      ease: "Linear",
+      alpha: 1,
+    });
+  };
   return tempMap;
 };
 
